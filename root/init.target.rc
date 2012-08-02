@@ -1,0 +1,86 @@
+# Copyright (c) 2010, Code Aurora Forum. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above
+#       copyright notice, this list of conditions and the following
+#       disclaimer in the documentation and/or other materials provided
+#       with the distribution.
+#     * Neither the name of Code Aurora Forum, Inc. nor the names of its
+#       contributors may be used to endorse or promote products derived
+#       from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+# BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#
+
+# on emmc mount the partition containing firmware
+on emmc-fs
+   mkdir /tombstones 0771 system system
+   # Begin DTS2011071805512 modified by z00175749 for tombstones partition
+   mount ext4 /dev/block/mmcblk0p24 /tombstones nosuid nodev barrier=1
+   # End DTS2011071805512 modified by z00175749 for tombstones partition
+   mkdir /tombstones/modem 0771 system system
+   mkdir /tombstones/mdm 0771 system system
+   mkdir /tombstones/lpass 0771 system system
+   mkdir /firmware 0771 system system
+   wait /dev/block/mmcblk0p1
+   #Begin: DTS2012020605852 modified for file property by c00181104 20120217
+   mount vfat /dev/block/mmcblk0p1 /firmware ro shortname=lower,dmask=0022
+   #End: DTS2012020605852 modified for file property by c00181104 20120217
+   exec /system/bin/sh /system/etc/init.qcom.modem_links.sh
+
+    write /sys/devices/i2c-0/0-0024/cyttsp_update_fw 1
+service kickstart /system/bin/qcks l
+    oneshot
+    disabled
+
+# Start kickstart if csfb or svlte2a target
+on property:ro.baseband=csfb
+    wait /dev/ttyHSL1
+    mkdir /data/qcks 0770 system system
+    exec /system/bin/sh /system/etc/init.qcom.mdm_links.sh
+    start kickstart
+
+on property:ro.baseband=svlte2a
+    wait /dev/ttyHSL1
+    mkdir /data/qcks 0770 system system
+    exec /system/bin/sh /system/etc/init.qcom.mdm_links.sh
+    start kickstart
+
+
+service dcvsd0 /system/bin/dcvsd -c 0 -f /data/misc/dcvsd/dcvsd0.conf
+    user root
+    disabled
+
+service dcvsd1 /system/bin/dcvsd -c 1 -f /data/misc/dcvsd/dcvsd1.conf
+    user root
+    disabled
+
+service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
+    user root
+    disabled
+
+service thermald /system/bin/thermald
+    user root
+    disabled
+
+service qrngd /system/bin/qrngd -f
+    user root
+
+on property:ro.baseband=svlte2a
+   setprop ro.config.ehrpd true
+   setprop ro.ril.svlte1x true

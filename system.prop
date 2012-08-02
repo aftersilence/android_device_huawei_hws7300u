@@ -1,0 +1,69 @@
+#
+# system.prop for hws7300u
+#
+
+ro.sf.lcd_density=213
+
+# radio
+rild.libpath=/system/lib/libril-qc-qmi-1.so
+rild.libargs=-d /dev/smd0
+persist.rild.nitz_plmn=
+persist.rild.nitz_long_ons_0=
+persist.rild.nitz_long_ons_1=
+persist.rild.nitz_long_ons_2=
+persist.rild.nitz_long_ons_3=
+persist.rild.nitz_short_ons_0=
+persist.rild.nitz_short_ons_1=
+persist.rild.nitz_short_ons_2=
+persist.rild.nitz_short_ons_3=
+mobiledata.interfaces=rmnet0
+ro.telephony.ril.v3=signalstrength
+ro.telephony.default_network=0
+
+# wifi
+wifi.interface=wlan0
+
+# graphics
+debug.composition.type=c2d
+debug.enabletr=true
+debug.sf.hw=1
+ro.opengles.version=131072
+ro.sf.compbypass.enable=0
+dev.pm.dyn_samplingrate=1
+
+# hdmi
+com.qc.hardware=true
+com.qc.hdmi_out=true
+ro.hdmi.enable=true
+
+# For adding charging animation
+persist.sys.chargingstart=false
+
+# Add To: use Sensor for the currentAppOrientation
+ro.config.hw_GSensorOptimize=true
+
+# System prop for sending transmit power request to RIL during WiFi hotspot on/off
+ro.ril.transmitpower=true
+
+# system prop for Bluetooth Auto connect for remote initated connections
+ro.bluetooth.remote.autoconnect=true
+
+# system prop for Bluetooth FTP profile
+ro.qualcomm.bluetooth.ftp=true
+
+# system prop for requesting Master role in incoming Bluetooth connection.
+ro.bluetooth.request.master=true
+
+# system props for the cne module
+# persist.cne.UseCne=vendor
+# persist.cne.UseSwim=false
+# persist.cne.bat.range.low.med=30
+# persist.cne.bat.range.med.high=60
+# persist.cne.loc.policy.op=/system/etc/OperatorPolicy.xml
+# persist.cne.loc.policy.user=/system/etc/UserPolicy.xml
+# persist.cne.bwbased.rat.sel=false
+# persist.cne.snsr.based.rat.mgt=false
+# persist.cne.bat.based.rat.mgt=false
+# persist.cne.rat.acq.time.out=30000
+# persist.cne.rat.acq.retry.tout=0
+# persist.cne.sync.swim.mode=false
