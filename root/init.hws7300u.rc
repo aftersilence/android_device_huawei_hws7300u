@@ -161,11 +161,6 @@ on post-fs-data
 
     #Create the symlink to qcn wpa_supplicant folder for ar6000 wpa_supplicant
     mkdir /data/system 0775 system system
-    symlink /data/misc/wifi/wpa_supplicant /data/system/wpa_supplicant
-
-    #Create directories for wiper services
-    mkdir /data/wpstiles/ 0755 shell
-    mkdir /data/wiper 0755 location qcom_oncrpc
 
     #Create directories for gpsone_daemon services
     mkdir /data/misc/gpsone_d 0770 system system
@@ -402,11 +397,6 @@ service iprenew_p2p /system/bin/dhcpcd -n p2p
 
 service dhcpcd_bnep0 /system/bin/dhcpcd -BKLG
     disabled
-    oneshot
-
-service wiperiface /system/bin/wiperiface
-    user location
-    group qcom_oncrpc
     oneshot
 
 service gpsone_daemon /system/bin/gpsone_daemon

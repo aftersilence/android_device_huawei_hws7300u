@@ -25,6 +25,12 @@
          Bluetooth module -->
     <bool name="config_bluetooth_adapter_quick_switch">true</bool>
 
+    <!-- True will enable the electron beam screen-off animation. -->
+    <bool name="config_screenOffAnimation">false</bool>
+
+    <!-- There is no charging LED. -->
+    <bool name="config_unplugTurnsOnScreen">true</bool>
+
     <!-- Default color for notification LED is green. -->
     <color name="config_defaultNotificationColor">#ff00ff00</color>
 
@@ -34,8 +40,8 @@
     <!-- Default LED off time for notification LED in milliseconds. -->
     <integer name="config_defaultNotificationLedOff">2000</integer>
 
-    <!-- disable menu hard key on Pyramid in non-pattern lockscreen -->
-    <bool name="config_disableMenuKeyInLockScreen">false</bool>
+    <!-- Allow the menu hard key to be disabled in LockScreen on some devices -->
+    <bool name="config_disableMenuKeyInLockScreen">true</bool>
 
     <!-- Component name of the default wallpaper. This will be ImageWallpaper if not
          specified -->
