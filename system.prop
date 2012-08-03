@@ -1,7 +1,5 @@
-#
-# system.prop for hws7300u
-#
 
+# set default lcd density to TVDPI
 ro.sf.lcd_density=213
 
 # radio
@@ -18,23 +16,43 @@ persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
 mobiledata.interfaces=rmnet0
 ro.telephony.ril.v3=signalstrength
-ro.telephony.default_network=0
-
-# wifi
-wifi.interface=wlan0
+ro.use_data_netmgrd=true
+ro.ril.hsxpa=1
+ro.ril.gprsclass=10
+ro.vendor.extension_library=/system/lib/libqc-opt.so
+ro.telephony.ril_class=QualcommSharedRIL
 
 # graphics
-debug.composition.type=c2d
+debug.composition.type=gpu
+debug.mdpcomp.maxlayer=0
+debug.mdpcomp.logs=0
 debug.enabletr=true
 debug.sf.hw=1
 ro.opengles.version=131072
-ro.sf.compbypass.enable=0
 dev.pm.dyn_samplingrate=1
+ro.hwui.text_cache_width=2048
+persist.sys.color.enhance=true
+
+# system props for SD card emulation of emmc partition
+ro.emmc.sdcard.partition=23
+
+#system props for the MM modules
+media.stagefright.enable-player=true
+media.stagefright.enable-http=true
+media.stagefright.enable-fma2dp=false
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+
+# System props for audio
+persist.audio.fluence.mode=endfire
+persist.audio.vr.enable=false
+
+# LPA
+# lpa.decode=false
+# lpa.use-stagefright=true
 
 # hdmi
 com.qc.hardware=true
-com.qc.hdmi_out=true
-ro.hdmi.enable=true
 
 # For adding charging animation
 persist.sys.chargingstart=false
@@ -45,25 +63,13 @@ ro.config.hw_GSensorOptimize=true
 # System prop for sending transmit power request to RIL during WiFi hotspot on/off
 ro.ril.transmitpower=true
 
-# system prop for Bluetooth Auto connect for remote initated connections
+# Bluetooth
 ro.bluetooth.remote.autoconnect=true
-
-# system prop for Bluetooth FTP profile
-ro.qualcomm.bluetooth.ftp=true
-
-# system prop for requesting Master role in incoming Bluetooth connection.
 ro.bluetooth.request.master=true
+ro.qualcomm.bluetooth.ftp=true
+ro.qualcomm.bluetooth.dun=true
 
-# system props for the cne module
-# persist.cne.UseCne=vendor
-# persist.cne.UseSwim=false
-# persist.cne.bat.range.low.med=30
-# persist.cne.bat.range.med.high=60
-# persist.cne.loc.policy.op=/system/etc/OperatorPolicy.xml
-# persist.cne.loc.policy.user=/system/etc/UserPolicy.xml
-# persist.cne.bwbased.rat.sel=false
-# persist.cne.snsr.based.rat.mgt=false
-# persist.cne.bat.based.rat.mgt=false
-# persist.cne.rat.acq.time.out=30000
-# persist.cne.rat.acq.retry.tout=0
-# persist.cne.sync.swim.mode=false
+# MTP on default
+persist.sys.usb.config=mtp,adb
+
+
