@@ -187,13 +187,6 @@ lib/helix/rv40.so
 lib/helix/wmv8.so
 lib/libhelixplayer.so
 
-# For encrypting
-# bin/cnd
-# etc/permissions/cneapiclient.xml
-# lib/libcneutils.so
-# lib/libcneqmiutils.so
-# lib/libcneapiclient.so
-
 # Other crap (something may be unneeded)
 etc/audio_cal.acdb
 etc/audio_cal_bs300.acdb

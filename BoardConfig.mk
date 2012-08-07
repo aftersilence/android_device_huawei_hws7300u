@@ -55,11 +55,13 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QCOM_GPS := true
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
-BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm8660
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 
 # Graphics
 USE_OPENGL_RENDERER := true
-TARGET_HAVE_BYPASS := false
+TARGET_HAVE_BYPASS := true
+TARGET_USES_SF_BYPASS := true
+TARGET_NO_BYPASS_CROPPING := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_OVERLAY := true
 TARGET_QCOM_HDMI_OUT := true
@@ -76,17 +78,19 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=hws7300u 
 BOARD_KERNEL_BASE := 0x40300000
 BOARD_KERNEL_PAGESIZE := 2048
 TARGET_PREBUILT_KERNEL := device/huawei/hws7300u/kernel
+# TARGET_KERNEL_SOURCE := kernel/huawei/hws7300u
+# TARGET_KERNEL_CONFIG := mediapad_defconfig
 
-# MTP
+# Usb connection to PC
 BOARD_MTP_DEVICE := "/dev/mtp_usb"
+BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
 # CWM Recovery
 # TARGET_RECOVERY_INITRC := device/huawei/hws7300u/recovery/init-cwm.rc
 BOARD_HAS_LARGE_FILESYSTEM := true
 # BOARD_CUSTOM_GRAPHICS:= ../../../device/huawei/hws7300u/recovery/graphics.c
 # BOARD_HAS_NO_SELECT_BUTTON := true
-BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun/file"
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
 # TWRP Recovery
 TARGET_RECOVERY_INITRC := device/huawei/hws7300u/recovery/init-twrp.rc

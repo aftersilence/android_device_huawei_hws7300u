@@ -46,9 +46,8 @@
 		 android:removable="true" 
 		 android:emulated="false" /> 
 	<!-- external USB storage -->
-	<storage android:mountPoint="/mnt/usb" 
+	<storage android:mountPoint="/mnt/usbdisk" 
 		 android:storageDescription="@string/storage_usb" 
 		 android:primary="false" 
-		 android:removable="true" 
-		 android:emulated="false" />
+		 android:removable="true" />
 </StorageList>

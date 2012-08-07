@@ -172,12 +172,6 @@ $(call inherit-product, frameworks/base/build/phone-xhdpi-1024-dalvik-heap.mk)
 # proprietary side of the device
 $(call inherit-product-if-exists, vendor/huawei/hws7300u/hws7300u-vendor.mk)
 
-# 8660 Common Firmware
-PRODUCT_COPY_FILES += \
-
-# Common Qualcomm scripts
-PRODUCT_COPY_FILES += \
-
 $(call inherit-product, build/target/product/full.mk)
 
 # We have enough storage space to hold precise GC data

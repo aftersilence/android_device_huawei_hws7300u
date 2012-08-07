@@ -18,7 +18,8 @@ persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
 mobiledata.interfaces=rmnet0
 ro.telephony.ril.v3=signalstrength
-ro.telephony.default_network=0
+ro.telephony.ril_class=QualcommSharedRIL
+ro.use_data_netmgrd=true
 
 # wifi
 wifi.interface=wlan0
@@ -28,13 +29,18 @@ debug.composition.type=c2d
 debug.enabletr=true
 debug.sf.hw=1
 ro.opengles.version=131072
-ro.sf.compbypass.enable=0
 dev.pm.dyn_samplingrate=1
+windowsmgr.max_events_per_sec=240
+ro.sf.compbypass.enable=0
 
 # hdmi
 com.qc.hardware=true
 com.qc.hdmi_out=true
 ro.hdmi.enable=true
+
+# QCOM LPA (Low Power Audio)
+lpa.use-stagefright=true
+lpa.decode=true
 
 # For adding charging animation
 persist.sys.chargingstart=false
@@ -54,16 +60,5 @@ ro.qualcomm.bluetooth.ftp=true
 # system prop for requesting Master role in incoming Bluetooth connection.
 ro.bluetooth.request.master=true
 
-# system props for the cne module
-# persist.cne.UseCne=vendor
-# persist.cne.UseSwim=false
-# persist.cne.bat.range.low.med=30
-# persist.cne.bat.range.med.high=60
-# persist.cne.loc.policy.op=/system/etc/OperatorPolicy.xml
-# persist.cne.loc.policy.user=/system/etc/UserPolicy.xml
-# persist.cne.bwbased.rat.sel=false
-# persist.cne.snsr.based.rat.mgt=false
-# persist.cne.bat.based.rat.mgt=false
-# persist.cne.rat.acq.time.out=30000
-# persist.cne.rat.acq.retry.tout=0
-# persist.cne.sync.swim.mode=false
+# System props for time-services
+persist.timed.enable=true

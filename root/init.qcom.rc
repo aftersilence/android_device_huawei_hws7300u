@@ -581,7 +581,7 @@ service time_daemon /system/bin/time_daemon
 
 #/* <DTS2011100601117  for time by z00168965, begin 2011/10/10 */
 on property:persist.timed.enable=true
-    mkdir /tmpdata/time/ 0700
+    mkdir /data/time/ 0700
     start time_daemon
 #/* DTS2011100601117  for time by z00168965, end 2011/10/10> */
 

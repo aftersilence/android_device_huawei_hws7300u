@@ -12,19 +12,5 @@
 ## <sysfs_path> - List of sysfs paths to source devices
 ######################
 
-## Example of a standard sdcard mount for the emulator / Dream
-# Mounts the first usable partition of the specified device
-#dev_mount sdcard /mnt/sdcard auto /devices/platform/goldfish_mmc.0 /devices/platform/msm_sdcc.2/mmc_host/mmc1
-# modified by z176551 20110401 for auto mount SD card 
-#Begin: DTS2011042400156 x00166755 20110420
-#Add to: S7-30Xu Storage Managerment Scheme.
 dev_mount sdcard /mnt/sdcard2 auto /devices/platform/msm_sdcc.3/mmc_host/mmc1
-dev_mount udisk /mnt/usb auto /devices/platform/msm_hsusb_host.0/usb1/
-#End  : DTS2011042400156 x00166755 20110420
-
-## Example of a dual card setup
-# dev_mount left_sdcard  /sdcard1  auto /devices/platform/goldfish_mmc.0 /devices/platform/msm_sdcc.2/mmc_host/mmc1
-# dev_mount right_sdcard /sdcard2  auto /devices/platform/goldfish_mmc.1 /devices/platform/msm_sdcc.3/mmc_host/mmc1
-
-## Example of specifying a specific partition for mounts
-# dev_mount sdcard /sdcard 2 /devices/platform/goldfish_mmc.0 /devices/platform/msm_sdcc.2/mmc_host/mmc1
+dev_mount usbdisk /mnt/usbdisk auto /devices/platform/msm_hsusb_host.0

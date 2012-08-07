@@ -22,7 +22,6 @@ loglevel 3
     export ANDROID_DATA /data
     export PHONE_STORAGE /mnt/sdcard
     export EXTERNAL_STORAGE /mnt/sdcard2
-    export UDISK_MOUNTPOINT /mnt/usb
     export ASEC_MOUNTPOINT /mnt/asec
     export LOOP_MOUNTPOINT /mnt/obb
     export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar:/system/framework/filterfw.jar
@@ -37,7 +36,7 @@ loglevel 3
     symlink /data/usercust /usercust
     mkdir /mnt/sdcard2 0000 system system
     mkdir /mnt/lan      0444 system system    
-    mkdir /mnt/usb 0000 system system
+    mkdir /mnt/usbdisk 0755 system system
     mkdir /mnt/sdcard 0000 system system
     mkdir /mnt/tmp 0000 system system
 
@@ -106,9 +105,11 @@ loglevel 3
 # This is needed by any process that uses socket tagging.
     chmod 0644 /dev/xt_qtaguid
 
-	  chmod 0777 /dev/lcd_ctrl
+    chmod 0777 /dev/lcd_ctrl
     chmod 0777 /system/bin/diagd
+
 on emmc-pre
+
     mount ext4 /dev/block/mmcblk0p21 /persist nosuid nodev noatime barrier=1
     wait /dev/block/mmcblk0p20
     mount ext4 /dev/block/mmcblk0p20 /system rw noatime barrier=1
@@ -118,15 +119,15 @@ on emmc-pre
     chown nobody shell /system/bin/RescueServer
     chmod 755 /system/bin/RescueServer
     chmod 2755 /system/bin/pcscd
-   mount ext4 /dev/block/mmcblk0p20 /system ro noatime remount
+    mount ext4 /dev/block/mmcblk0p20 /system ro noatime remount
     wait /dev/block/mmcblk0p23
     exec /system/bin/e2fsck -p /dev/block/mmcblk0p23
     mount ext4 /dev/block/mmcblk0p23 /tmpdata nosuid nodev noatime barrier=1 noauto_da_alloc
     wait /dev/block/mmcblk0p27
     exec /system/bin/e2fsck -f -y /dev/block/mmcblk0p27
+
 on fs
-# mount mtd partitions
-    # Mount /system rw first to give the filesystem a chance to save a checkpoint
+
     mount yaffs2 mtd@system /system
     mount yaffs2 mtd@system /system ro remount
     mount yaffs2 mtd@userdata /data nosuid nodev
@@ -135,11 +136,14 @@ on fs
     mount yaffs2 mtd@persist /persist nosuid nodev
     chown root root /system/etc
     chmod 0777 /system/etc
+
 on emmc-fs
+
     mount ext4 /dev/block/mmcblk0p22 /cache nosuid nodev noatime barrier=1
     mount ext4 /dev/block/mmcblk0p27 /data nosuid nodev noatime barrier=1,commit=15,nodelalloc,noauto_da_alloc
 
 on post-fs
+
     chown system system /tmpdata
     chmod 0770 /tmpdata
     mkdir /data/share
@@ -240,6 +244,7 @@ on post-fs-data
     # create directory for DRM plug-ins - give drm the read/write access to
     # the following directory.
     mkdir /data/drm 0770 drm drm
+    mkdir /data/drm/rights 0774 drm drm
 
     # If there is no fs-post-data action in the init.<device>.rc file, you
     # must uncomment this line, otherwise encrypted filesystems
@@ -266,7 +271,7 @@ on boot
 
 # Memory management.  Basic kernel parameters, and allow the high
 # level system server to be able to adjust the kernel OOM driver
-# paramters to match how it is managing things.
+# parameters to match how it is managing things.
     write /proc/sys/vm/overcommit_memory 1
     write /proc/sys/vm/min_free_order_shift 4
     chown root system /sys/module/lowmemorykiller/parameters/adj
@@ -350,15 +355,19 @@ on boot
     chown system shell /sys/firmware/touchscreen/update_firmware
     chown system shell /sys/firmware/touchscreen/firmware_file_version
     chown system shell /sys/firmware/touchscreen/tp_control
+
 # Define TCP buffer sizes for various networks
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
     setprop net.tcp.buffersize.default 4096,87380,110208,4096,16384,110208
     setprop net.tcp.buffersize.wifi    524288,1048576,2097152,262144,524288,1048576
-    setprop net.tcp.buffersize.lte     524288,1048576,2097152,262144,524288,1048576
+    setprop net.tcp.buffersize.lte     4094,87380,1220608,4096,16384,1220608
     setprop net.tcp.buffersize.umts    4094,87380,110208,4096,16384,110208
-    setprop net.tcp.buffersize.hspa    4094,87380,262144,4096,16384,262144
+    setprop net.tcp.buffersize.hspa    4094,87380,1220608,4096,16384,1220608
+    setprop net.tcp.buffersize.hsupa   4094,87380,1220608,4096,16384,1220608
+    setprop net.tcp.buffersize.hsdpa   4094,87380,1220608,4096,16384,1220608
     setprop net.tcp.buffersize.edge    4093,26280,35040,4096,16384,35040
     setprop net.tcp.buffersize.gprs    4092,8760,11680,4096,8760,11680
+    setprop net.tcp.buffersize.evdo_b  4094,87380,262144,4096,16384,262144
 
 # allow system to modify ksm control files
     chown root system /sys/kernel/mm/ksm/pages_to_scan
@@ -574,8 +583,6 @@ service bluetoothd /system/bin/bluetoothd -n
     class main
     socket bluetooth stream 660 bluetooth bluetooth
     socket dbus_bluetooth stream 660 bluetooth bluetooth
-    # init.rc does not yet support applying capabilities, so run as root and
-    # let bluetoothd drop uid to bluetooth with the right linux capabilities
     group bluetooth net_bt_admin misc
     disabled
 
@@ -586,7 +593,6 @@ service installd /system/bin/installd
 service racoon /system/bin/racoon
     class main
     socket racoon stream 600 system system
-    # IKE uses UDP port 500. Racoon will setuid to vpn after binding the port.
     group vpn net_admin inet
     disabled
     oneshot
