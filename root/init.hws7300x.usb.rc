@@ -24,7 +24,7 @@ on property:sys.usb.config=mass_storage,adb
     setprop sys.usb.state $sys.usb.config
 
 # USBPID_HUAWEI_S7_MTP_ADB_MSC  mtp adb mass_storage  
-on property:sys.usb.config=mtp,adb,mass_storage
+on property:sys.usb.config=mtp,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 12D1
     write /sys/class/android_usb/android0/idProduct 360F
@@ -34,7 +34,7 @@ on property:sys.usb.config=mtp,adb,mass_storage
     setprop sys.usb.state $sys.usb.config  
 
 # USBPID_HUAWEI_S7_PTP_ADB_MSC  ptp adb mass_storage  
-on property:sys.usb.config=ptp,adb,mass_storage
+on property:sys.usb.config=ptp,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 12D1
     write /sys/class/android_usb/android0/idProduct 360A

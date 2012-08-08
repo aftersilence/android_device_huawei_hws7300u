@@ -62,3 +62,6 @@ ro.bluetooth.request.master=true
 
 # System props for time-services
 persist.timed.enable=true
+
+# MTP on default
+persist.sys.usb.config=mtp,adb
