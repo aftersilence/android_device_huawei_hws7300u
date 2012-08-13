@@ -2,7 +2,7 @@
 # system.prop for hws7300u
 #
 
-ro.sf.lcd_density=213
+ro.sf.lcd_density=192
 
 # radio
 rild.libpath=/system/lib/libril-qc-qmi-1.so

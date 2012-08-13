@@ -69,7 +69,6 @@ lib/libloc_eng.so
 lib/libloc_ext.so
 lib/libcommondefs.so
 lib/libgpsone_bit_api.so
-lib/hw/gps.default.so
 
 # Sensors
 lib/hw/sensors.default.so
@@ -196,11 +195,6 @@ etc/bluetooth/blacklist.conf
 etc/sn.txt
 etc/mtab
 etc/thermald.conf
-
-etc/permissions/com.blockbuster.lib.tab.hua.xml
-etc/permissions/com.qualcomm.location.quipslib.xml
-etc/permissions/huawei.software.srs_trumedia.xml
-etc/permissions/com.qualcomm.location.vzw_library.xml
 
 etc/coulometer/bq27510_version
 etc/coulometer/bq27510_pro.dffs

@@ -9,6 +9,9 @@
 /dev/binder               0666   root       root
 /dev/rtc0                 0600   system     system
 
+# wifi	
+/dev/rfkill               0660   wifi       wifi
+
 # logger should be world writable (for logging) but not readable
 /dev/log/*                0662   root       log
 
@@ -49,7 +52,7 @@
 /dev/pmem_adsp*           0660   system     audio
 /dev/pmem_smipool*        0660   system     camera
 /dev/pmem_camera*         0660   system     camera
-/dev/oncrpc/*             0660   root       qcom_oncrpc
+/dev/oncrpc/*             0666   root       qcom_oncrpc
 /dev/adsp/*               0660   system     audio
 /dev/snd/*                0660   system     audio
 /dev/mt9t013              0660   system     system

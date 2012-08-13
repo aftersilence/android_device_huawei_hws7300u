@@ -1,0 +1,28 @@
+diff --git a/packages/apps/Trebuchet/res/values/config.xml b/packages/apps/Trebuchet/res/values/config.xml
+index 650f2f1..86d7d56 100644
+--- a/packages/apps/Trebuchet/res/values/config.xml
++++ b/packages/apps/Trebuchet/res/values/config.xml
+@@ -95,6 +95,6 @@
+     <integer name="folder_max_num_items">16</integer>
+ 
+     <!-- Workspace grid size -->
+-    <integer name="config_workspaceRows">4</integer>
+-    <integer name="config_workspaceColumns">4</integer>
++    <integer name="config_workspaceRows">6</integer>
++    <integer name="config_workspaceColumns">7</integer>
+ </resources>
+diff --git a/packages/apps/Trebuchet/src/com/cyanogenmod/trebuchet/Workspace.java b/packages/apps/Trebuchet/src/com/cyanogenmod/trebuchet/Workspace.java
+index 5a03a2f..ae70053 100644
+--- a/packages/apps/Trebuchet/src/com/cyanogenmod/trebuchet/Workspace.java
++++ b/packages/apps/Trebuchet/src/com/cyanogenmod/trebuchet/Workspace.java
+@@ -318,10 +318,8 @@ public class Workspace extends PagedView
+         a.recycle();
+ 
+         // if there is a value set it the preferences, use that instead
+-        if (!LauncherApplication.isScreenLarge()) {
+             cellCountX = PreferencesProvider.Interface.Homescreen.getCellCountX(context, cellCountX);
+             cellCountY = PreferencesProvider.Interface.Homescreen.getCellCountY(context, cellCountY);
+-        }
+ 
+         LauncherModel.updateWorkspaceLayoutCells(cellCountX, cellCountY);
+         setHapticFeedbackEnabled(false);
