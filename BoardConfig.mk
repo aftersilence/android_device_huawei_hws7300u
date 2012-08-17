@@ -25,6 +25,7 @@ ARCH_ARM_HAVE_NEON := true
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
+COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK
 
 # Scorpion optimizations
 TARGET_USE_SCORPION_BIONIC_OPTIMIZATION := true
@@ -67,6 +68,7 @@ TARGET_USES_OVERLAY := true
 TARGET_QCOM_HDMI_OUT := true
 TARGET_QCOM_HDMI_RESOLUTION_AUTO := true
 BOARD_EGL_CFG := device/huawei/hws7300u/prebuilt/egl.cfg
+TARGET_NO_HW_VSYNC := true
 
 # Webkit
 ENABLE_WEBGL := true
