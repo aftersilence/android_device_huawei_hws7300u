@@ -1,7 +1,4 @@
-#
-# system.prop for hws7300u
-#
-
+# set default lcd density to TVDPI
 ro.sf.lcd_density=213
 
 # radio
@@ -25,22 +22,20 @@ ro.use_data_netmgrd=true
 wifi.interface=wlan0
 
 # graphics
-debug.composition.type=c2d
+debug.composition.type=dyn
+debug.mdpcomp.maxlayer=2
 debug.enabletr=true
 debug.sf.hw=1
 ro.opengles.version=131072
 dev.pm.dyn_samplingrate=1
-windowsmgr.max_events_per_sec=240
-ro.sf.compbypass.enable=0
+
+# system props for SD card emulation of emmc partition
+ro.emmc.sdcard.partition=23
 
 # hdmi
 com.qc.hardware=true
 com.qc.hdmi_out=true
 ro.hdmi.enable=true
-
-# QCOM LPA (Low Power Audio)
-lpa.use-stagefright=true
-lpa.decode=true
 
 # For adding charging animation
 persist.sys.chargingstart=false

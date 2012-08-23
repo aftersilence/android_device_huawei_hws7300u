@@ -24,7 +24,7 @@ ARCH_ARM_HAVE_NEON := true
 # Flags
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
-COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_NO_SECURE_PLAYBACK -DICS_CAMERA_BLOB
 
 # Scorpion optimizations
 TARGET_USE_SCORPION_BIONIC_OPTIMIZATION := true
@@ -43,10 +43,6 @@ WIFI_DRIVER_FW_PATH_STA     := "/etc/wifi/rtecdc-bcm4329.bin"
 WIFI_DRIVER_FW_PATH_AP      := "/etc/wifi/rtecdc-apsta-bcm4329.bin"
 WIFI_DRIVER_MODULE_ARG      := "firmware_path=/etc/wifi/rtecdc-bcm4329.bin nvram_path=/etc/wifi/nvram-bcm4329.txt"
 
-# Audio
-COMMON_GLOBAL_CFLAGS += -DWITH_QCOM_LPA
-TARGET_USES_QCOM_LPA := true
-
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
@@ -59,19 +55,16 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 
 # Graphics
 USE_OPENGL_RENDERER := true
-TARGET_HAVE_BYPASS := true
-TARGET_USES_SF_BYPASS := true
-TARGET_NO_BYPASS_CROPPING := true
 TARGET_USES_C2D_COMPOSITION := true
-TARGET_USES_OVERLAY := true
 TARGET_QCOM_HDMI_OUT := true
 TARGET_QCOM_HDMI_RESOLUTION_AUTO := true
 BOARD_EGL_CFG := device/huawei/hws7300u/prebuilt/egl.cfg
 
 # Webkit
 ENABLE_WEBGL := true
-TARGET_FORCE_CPU_UPLOAD := true
-DYNAMIC_SHARED_LIBV8SO := true
+
+# Workaround for missing symbols in camera
+BOARD_NEEDS_MEMORYHEAPPMEM := true
 
 #kernel
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=hws7300u vmalloc=578M kgsl.ptcount=16
@@ -107,3 +100,5 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 # TW_ALWAYS_RMRF := true
 # TW_FLASH_FROM_STORAGE := true
 # TW_NO_BATT_PERCENT := true
+
+TARGET_NO_HW_VSYNC := true

@@ -53,12 +53,6 @@
          in to AC and 2 to stay on when plugged in to USB.  (So 3 for both.) -->
     <integer name="config_deskDockKeepsScreenOn">0</integer>
 
-    <!-- Component name of the service providing network location support. -->
-    <string name="config_networkLocationProvider">com.google.android.location.NetworkLocationProvider</string>
-
-    <!-- Component name of the service providing geocoder API support. -->
-    <string name="config_geocodeProvider">com.google.android.location.GeocodeProvider</string>
-
     <!-- Flag indicating whether we should enable the automatic brightness in Settings.
          config_hardware_automatic_brightness_available is not set, so we will use software implementation -->
     <bool name="config_automatic_brightness_available">true</bool>
@@ -74,9 +68,11 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
-	<item>75</item> 
-	<item>137</item> 
-	<item>220</item> 
+	<item>70</item> 
+	<item>120</item> 
+	<item>170</item>
+	<item>220</item>  
+	<item>255</item> 
     </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
@@ -84,9 +80,12 @@
          than the size of the config_autoBrightnessLevels array.
     -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-	<item>75</item> 
-	<item>137</item> 
-	<item>220</item> 
+	<item>40</item>
+	<item>90</item>
+	<item>130</item> 
+	<item>180</item> 
+	<item>220</item>
+	<item>255</item>
     </integer-array>
 
     <!-- Array of output values for button backlight corresponding to the LUX values
@@ -125,18 +124,14 @@
          does not require auto-restore. -->
     <!-- the 6th element indicates boot-time dependency-met value. -->
     <string-array translatable="false" name="networkAttributes">
-	<item>wifi,1,1,1,-1,true</item> 
-	<item>mobile,0,0,0,-1,true</item> 
-	<item>mobile_mms,2,0,2,60000,true</item> 
-	<item>mobile_supl,3,0,2,60000,true</item> 
-	<item>mobile_dun,4,0,2,60000,true</item> 
-	<item>mobile_hipri,5,0,3,60000,true</item> 
-	<item>mobile_fota,10,0,2,60000,true</item> 
-	<item>mobile_ims,11,0,2,60000,true</item> 
-	<item>mobile_cbs,12,0,2,60000,true</item> 
-	<item>wifi_p2p,13,1,0,-1,true</item> 
-	<item>bluetooth,7,7,2,-1,true</item> 
-
+        <item>"wifi,1,1,1,-1,true"</item>
+        <item>"mobile,0,0,0,-1,true"</item>
+        <item>"mobile_mms,2,0,2,60000,true"</item>
+        <item>"mobile_supl,3,0,2,60000,true"</item>
+        <item>"mobile_dun,4,0,3,60000,true"</item>
+        <item>"mobile_hipri,5,0,3,60000,true"</item>
+        <item>"mobile_bluetooth,7,7,1,-1,true"</item>
+        <item>"wifi_p2p,13,1,0,-1,true"</item>
     </string-array>
 
     <!-- An Array of "[ConnectivityManager connectionType],
@@ -188,13 +183,19 @@
     <!-- Enables or disables fading edges when marquee is enabled in TextView. -->
     <bool name="config_ui_enableFadingMarquee">true</bool>
 
-    <!-- Component name of the service providing network location support. -->
-    <string name="config_networkLocationProvider">com.google.android.location.NetworkLocationProvider</string>
-
-    <!-- Component name of the service providing geocoder API support. -->
-    <string name="config_geocodeProvider">com.google.android.location.GeocodeProvider</string>
-
     <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
     <bool name="config_intrusiveNotificationLed">true</bool>
+
+  <!-- Base "touch slop" value used by ViewConfiguration as a movement threshold where scrolling should begin.          -->
+    <dimen name="config_viewConfigurationTouchSlop">12dp</dimen>
+
+    <!-- Separate software navigation bar required on this device. -->
+    <bool name="config_showNavigationBar">true</bool>
+
+     <!-- Component name of the service providing network location support. -->	
+    <string name="config_networkLocationProviderPackageName" translatable="false">com.google.android.location.NetworkLocationProvider</string>
+	
+     <!-- Component name of the service providing geocoder API support. -->	
+    <string name="config_geocodeProviderPackageName" translatable="false">com.google.android.location.GeocodeProvider</string>
 
 </resources>
