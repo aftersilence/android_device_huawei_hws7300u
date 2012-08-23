@@ -30,10 +30,12 @@ lib/egl/libEGL_adreno200.so
 lib/egl/libGLESv1_CM_adreno200.so
 lib/egl/libGLESv2_adreno200.so
 lib/egl/libq3dtools_adreno200.so
+lib/egl/libGLESv2S3D_adreno200.so
 lib/libgsl.so
 lib/libC2D2.so
 lib/libOpenVG.so
 lib/libsc-a2xx.so
+lib/libc2d2_z180.so
 
 # Radio
 bin/netmgrd
@@ -126,6 +128,9 @@ etc/firmware/t1320_tm1828_001.img
 etc/firmware/t1320_tm1885_004.img
 etc/firmware/s7020_suc.img
 etc/firmware/atmel_cmi_pro.img
+etc/firmware/a225p5_pm4.fw
+etc/firmware/a225_pfp.fw
+etc/firmware/a225_pm4.fw
 
 # SAR
 etc/sar/sar_302U.conf
@@ -195,11 +200,6 @@ etc/bluetooth/blacklist.conf
 etc/sn.txt
 etc/mtab
 etc/thermald.conf
-
-etc/permissions/com.blockbuster.lib.tab.hua.xml
-etc/permissions/com.qualcomm.location.quipslib.xml
-etc/permissions/huawei.software.srs_trumedia.xml
-etc/permissions/com.qualcomm.location.vzw_library.xml
 
 etc/coulometer/bq27510_version
 etc/coulometer/bq27510_pro.dffs
