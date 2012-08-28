@@ -4,8 +4,6 @@
 # This is a common source of Android security bugs.
 #
 
-import /init.${ro.hardware}.rc
-import /init.usb.rc
 import /init.trace.rc
 
 on early-init
@@ -153,9 +151,6 @@ on post-fs
 
     chown system system /tmpdata
     chmod 0770 /tmpdata
-    mkdir /data/share
-    chown system system /data/share
-    chmod 0777 /data/share
     # once everything is setup, no need to modify /
     mount rootfs rootfs / ro remount
 

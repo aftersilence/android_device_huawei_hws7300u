@@ -1,10 +1,3 @@
-# Copyright (c) 2011, Code Aurora Forum. All rights reserved.
-#
-# THIS FILE TAKE PLACE  WITH INTI.QCOM.USB.RC, AS THERE IS SO MUCH DIFFERENCE
-# WE RESERVE THE ORINIET FILE, AND MAKE A NEW FILE AND MODIFY IT
-# ORINIET FILE INTI.QCOM.USB.RC IS NOT USED
-#
-
 on init
     write /sys/class/android_usb/android0/f_rndis/wceis 1
 
@@ -131,8 +124,6 @@ on property:sys.usb.config=rndis
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state $sys.usb.config  
 
-
-#Begin: DTS2011122804955  modified for support usb modem by c00181104 20111228
 # USBPID_HUAWEI_S7_MTP_ADB_DIAG_GMDM_GNMEA_MSC_RMNET 
 on property:sys.usb.config=mtp,adb,diag,serial_smd,serial_tty,mass_storage,rmnet
     write /sys/class/android_usb/android0/enable 0
@@ -157,5 +148,3 @@ on property:sys.usb.config=mtp,diag,serial_smd,serial_tty,mass_storage,rmnet
     write /sys/class/android_usb/android0/functions mtp,diag,serial,mass_storage,rmnet
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state $sys.usb.config
-    
-#End: DTS2011122804955  modified for support usb modem by c00181104 20111228

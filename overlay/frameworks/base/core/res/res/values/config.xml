@@ -66,13 +66,12 @@
          Zone N:        array[N - 1] <= LUX < array[N]
          Zone N + 1:    array[N] <= LUX < infinity
 
-         Must be overridden in platform specific overlays -->
-    <integer-array name="config_autoBrightnessLevels">
-	<item>70</item> 
-	<item>120</item> 
-	<item>170</item>
-	<item>220</item>  
-	<item>255</item> 
+         Must be overridden in platform specific overlays
+   -->
+   <integer-array name="config_autoBrightnessLevels">
+	<item>75</item> 
+	<item>137</item> 
+	<item>220</item> 
     </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
@@ -80,12 +79,9 @@
          than the size of the config_autoBrightnessLevels array.
     -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-	<item>40</item>
-	<item>90</item>
-	<item>130</item> 
-	<item>180</item> 
-	<item>220</item>
-	<item>255</item>
+	<item>75</item> 
+	<item>137</item> 
+	<item>220</item> 
     </integer-array>
 
     <!-- Array of output values for button backlight corresponding to the LUX values

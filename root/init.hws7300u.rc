@@ -1,14 +1,23 @@
 import init.hws7300x.usb.rc
 
 on early-init
-    mkdir /storage 0050 system sdcard_r
-    mkdir /storage/sdcard0 0000 system system
+    mount debugfs debugfs /sys/kernel/debug
+
+    export EXTERNAL_STORAGE /storage/sdcard0
+    export SECONDARY_STORAGE /storage/sdcard1
+
+    mkdir /storage 0775 system system
+    mkdir /storage/sdcard0 0775 system system
+    mkdir /storage/sdcard1 0775 system system
+    mkdir /storage/usbdisk 0775 system system
 
     # for backwards compatibility
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard0 /mnt/sdcard
-
-    export EXTERNAL_STORAGE /storage/sdcard0
+    symlink /storage/sdcard1 /sdcard1
+    symlink /storage/sdcard1 /mnt/sdcard1
+    symlink /storage/usbdisk /usbdisk
+    symlink /storage/usbdisk /mnt/usbdisk
 
 on init
     mkdir /devlog 0700 root root
@@ -17,28 +26,56 @@ on init
     mkdir /tmpdata 0771 system system
     mkdir /persist 0771 system system
 
-# create directory for mounting usb drives
-    mkdir /storage/usbdisk 0666 system system
-    symlink /storage/usbdisk /mnt/usbdisk
-    symlink /mnt/usbdisk /usbdisk
-
     chmod 0777 /dev/lcd_ctrl
     chmod 0777 /system/bin/diagd
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
+
 on post-fs-data
+    # we will remap this as /storage/sdcard0 with the sdcard fuse tool
+    mkdir /data/media 0770 media_rw media_rw
+    chown media_rw media_rw /data/media
     # double check the perms and set owner
     chown root root /devlog
     chmod 0700 /devlog
+    mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
-    # Set indication (checked by vold) that we have finished this action
+    mkdir /data/misc/wifi 0770 wifi wifi
+    mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    chown dhcp dhcp /data/misc/dhcp
+
+    mkdir /data/misc/audio 0770 audio audio
+
+# Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
+# We chown/chmod /persist again so because mount is run as root + defaults
+    chown system system /persist
+    chmod 0771 /persist
+
+#Create directories for gpsone_daemon services
+    mkdir /data/misc/gpsone_d 0770 system system
+
+#Create directories for QuIPS
+    mkdir /data/misc/quipc 0770 gps system
+
+#Create directory from IMS services
+    mkdir /data/shared 0755
+    chown system system /data/shared
+
+#Provide the access to hostapd.conf only to root and group
+    chmod 0660 /data/hostapd/hostapd.conf
+
+# Create /data/time folder for time-services
+    mkdir /data/time/ 0700 system system
+
+# Set indication (checked by vold) that we have finished this action
     setprop vold.post_fs_data_done 1
 
 on boot	  
 # Chown polling nodes as needed from UI running on system server
-    mount debugfs /sys/kernel/debug /sys/kernel/debug
     chmod 0664 /sys/devices/platform/msm_sdcc.1/polling
     chmod 0664 /sys/devices/platform/msm_sdcc.2/polling
     chmod 0664 /sys/devices/platform/msm_sdcc.3/polling
@@ -61,8 +98,6 @@ on boot
     chmod 0660 /dev/ttyHS0
     chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
-
-    setprop wifi.interface wlan0
 
 # Enable Bluetooth 802.11 PAL when Bluetooth is turned on
     setprop ro.config.bt.amp no
@@ -118,41 +153,6 @@ on boot
     write /proc/sys/net/ipv6/conf/rmnet_sdio5/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet_sdio6/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet_sdio7/accept_ra 2
-
-on post-fs-data
-
-    mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
-
-    mkdir /data/misc/wifi 0770 wifi wifi
-    mkdir /data/misc/wifi/sockets 0770 wifi wifi
-    mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
-    mkdir /data/misc/dhcp 0770 dhcp dhcp
-    chown dhcp dhcp /data/misc/dhcp
-
-    mkdir /data/misc/audio 0770 audio audio
-
-# Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
-# We chown/chmod /persist again so because mount is run as root + defaults
-    chown system system /persist
-    chmod 0771 /persist
-
-#Create directories for gpsone_daemon services
-    mkdir /data/misc/gpsone_d 0770 system system
-
-#Create directories for QuIPS
-    mkdir /data/misc/quipc 0770 gps system
-
-#Create directory from IMS services
-    mkdir /data/shared 0755
-    chown system system /data/shared
-
-#Provide the access to hostapd.conf only to root and group
-    chmod 0660 /data/hostapd/hostapd.conf
-
-# Create /data/time folder for time-services
-    mkdir /data/time/ 0700 system system
-
-    setprop vold.post_fs_data_done 1
 
 service p2p_supplicant /system/bin/wpa_supplicant -Dwext -iwlan0 -c /data/misc/wifi/wpa_supplicant.conf
     user root
@@ -520,21 +520,11 @@ service sensor_daemon /system/bin/sensor_daemon
     disabled
     oneshot
 
-service hw_fuse /system/bin/sdcard /data/share 1000 1015
-    class late_start
-    oneshot
-
-service umount_fuse /system/bin/umount_fuse /sdcard
-	class main
-	disabled
-	oneshot
-
-on property:persist.sys.fuse=stop
-	start umount_fuse
-	stop hw_fuse
-
-on property:persist.sys.fuse=start
-	start hw_fuse
+# create virtual SD card at /storage/sdcard0, based on the /data/media directory
+# daemon will drop to user/group system/media_rw after initializing
+# underlying files in /data/media will be created with user and group media_rw (1023)
+service sdcard /system/bin/sdcard /data/media 1023 1023
+    class main
 
 # For add BT TestMode
 service testbt /system/bin/sh /system/etc/test.bt.sh

@@ -12,6 +12,7 @@ TARGET_BOARD_PLATFORM := msm8660
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 
 # Architecture
+TARGET_ARCH := arm
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
@@ -58,10 +59,12 @@ USE_OPENGL_RENDERER := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_QCOM_HDMI_OUT := true
 TARGET_QCOM_HDMI_RESOLUTION_AUTO := true
+TARGET_USES_OVERLAY := true
+TARGET_USES_PMEM := true
 BOARD_EGL_CFG := device/huawei/hws7300u/prebuilt/egl.cfg
 
 # Webkit
-ENABLE_WEBGL := true
+TARGET_FORCE_CPU_UPLOAD := true
 
 # Workaround for missing symbols in camera
 BOARD_NEEDS_MEMORYHEAPPMEM := true
@@ -78,6 +81,9 @@ TARGET_PREBUILT_KERNEL := device/huawei/hws7300u/kernel
 BOARD_MTP_DEVICE := "/dev/mtp_usb"
 BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
+
+# Disable PIE since it breaks ICS camera blobs
+TARGET_DISABLE_ARM_PIE := true
 
 # CWM Recovery
 TARGET_RECOVERY_INITRC := device/huawei/hws7300u/recovery/init-cwm.rc

@@ -200,6 +200,8 @@ etc/bluetooth/blacklist.conf
 etc/sn.txt
 etc/mtab
 etc/thermald.conf
+bin/brcm_patchram_plus
+lib/libbluedroid.so
 
 etc/coulometer/bq27510_version
 etc/coulometer/bq27510_pro.dffs

@@ -1,3 +1,4 @@
+
 # set default lcd density to TVDPI
 ro.sf.lcd_density=213
 
@@ -22,7 +23,7 @@ ro.use_data_netmgrd=true
 wifi.interface=wlan0
 
 # graphics
-debug.composition.type=dyn
+debug.composition.type=gpu
 debug.mdpcomp.maxlayer=2
 debug.enabletr=true
 debug.sf.hw=1
