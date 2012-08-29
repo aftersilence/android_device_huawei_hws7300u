@@ -150,7 +150,6 @@ PRODUCT_PACKAGES += \
 
 # Boot ramdisk
 PRODUCT_COPY_FILES += \
-    device/huawei/hws7300u/root/init:root/init \
     device/huawei/hws7300u/root/init.rc:root/init.rc \
     device/huawei/hws7300u/root/ueventd.rc:root/ueventd.rc \
     device/huawei/hws7300u/root/init.hws7300x.usb.rc:root/init.hws7300x.usb.rc \
