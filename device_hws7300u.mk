@@ -124,6 +124,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     gps.default
 
+# Power
+PRODUCT_PACKAGES += \
+    power.msm8660
+
 # HDMI
 PRODUCT_PACKAGES += \
     hdmid
@@ -151,10 +155,8 @@ PRODUCT_COPY_FILES += \
     device/huawei/hws7300u/root/ueventd.rc:root/ueventd.rc \
     device/huawei/hws7300u/root/init.hws7300x.usb.rc:root/init.hws7300x.usb.rc \
     device/huawei/hws7300u/root/init.hws7300u.rc:root/init.hws7300u.rc \
-    device/huawei/hws7300u/root/init.qcom.usb.rc:root/init.qcom.usb.rc \
     device/huawei/hws7300u/root/init.qcom.usb.sh:root/init.qcom.usb.sh \
     device/huawei/hws7300u/root/init.target.rc:root/init.target.rc \
-    device/huawei/hws7300u/root/init.qcom.rc:root/init.qcom.rc \
     device/huawei/hws7300u/root/init.qcom.sh:root/init.qcom.sh
 
 # Recovery ramdisk

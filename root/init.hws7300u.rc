@@ -14,8 +14,8 @@ on early-init
     # for backwards compatibility
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard0 /mnt/sdcard
-    symlink /storage/sdcard1 /sdcard1
-    symlink /storage/sdcard1 /mnt/sdcard1
+    symlink /storage/sdcard1 /external_sd
+    symlink /storage/sdcard1 /mnt/external_sd
     symlink /storage/usbdisk /usbdisk
     symlink /storage/usbdisk /mnt/usbdisk
 
@@ -452,10 +452,10 @@ on property:persist.sys.coordinate=true
    write /sys/bus/i2c/drivers/st303_compass/coordinate_mag 1
    write /sys/bus/i2c/drivers/l3g4200d/coordinate_gyro	    1	
 
-#on property:persist.sys.color.enhance=true
-#	write /sys/bus/platform/drivers/lcdc_s7Pro_lvds_wxga/color_en 1
-#on property:persist.sys.color.enhance=false
-#	write /sys/bus/platform/drivers/lcdc_s7Pro_lvds_wxga/color_en 0
+on property:persist.sys.color.enhance=true
+	write /sys/bus/platform/drivers/lcdc_s7Pro_lvds_wxga/color_en 1
+on property:persist.sys.color.enhance=false
+	write /sys/bus/platform/drivers/lcdc_s7Pro_lvds_wxga/color_en 0
 
 service thermald /system/bin/thermald
     class main
@@ -504,7 +504,7 @@ service ril-daemon1 /system/bin/rild -c 1
     socket rild-debug1 stream 660 radio system
     user root
     disabled
-    group radio cache inet misc audio sdcard_rw qcom_oncrpc diag
+    group radio cache inet misc audio sdcard_rw qcom_oncrpc qcom_diag log
 
 service profiler_daemon /system/bin/profiler_daemon
     class late_start

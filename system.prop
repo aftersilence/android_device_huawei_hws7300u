@@ -27,8 +27,11 @@ debug.composition.type=gpu
 debug.mdpcomp.maxlayer=2
 debug.enabletr=true
 debug.sf.hw=1
+debug.egl.hw=1
 ro.opengles.version=131072
 dev.pm.dyn_samplingrate=1
+ro.hwui.text_cache_width=2048
+persist.sys.color.enhance=true
 
 # system props for SD card emulation of emmc partition
 ro.emmc.sdcard.partition=23

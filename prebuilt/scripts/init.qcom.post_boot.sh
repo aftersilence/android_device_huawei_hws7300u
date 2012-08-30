@@ -144,6 +144,8 @@ case "$target" in
      chmod 220 /sys/devices/system/cpu/mfreq
      chown root.system /sys/devices/system/cpu/cpu1/online
      chmod 664 /sys/devices/system/cpu/cpu1/online
+     chown root.system /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
+     chmod 664 /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
         ;;
 esac
 
@@ -158,6 +160,8 @@ case "$target" in
         echo 50000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
         ;;
 esac
+
+chown system /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
 
 # Begin:DTS2011092100690 added by z00176551 20110926 for fingerprint of 301w version
 case "$target" in

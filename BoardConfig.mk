@@ -64,6 +64,7 @@ TARGET_USES_PMEM := true
 BOARD_EGL_CFG := device/huawei/hws7300u/prebuilt/egl.cfg
 
 # Webkit
+ENABLE_WEBGL := true
 TARGET_FORCE_CPU_UPLOAD := true
 
 # Workaround for missing symbols in camera
@@ -78,8 +79,6 @@ TARGET_PREBUILT_KERNEL := device/huawei/hws7300u/kernel
 # TARGET_KERNEL_CONFIG := mediapad_defconfig
 
 # Usb connection to PC
-BOARD_MTP_DEVICE := "/dev/mtp_usb"
-BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
 # Disable PIE since it breaks ICS camera blobs
