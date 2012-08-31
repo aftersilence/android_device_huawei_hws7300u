@@ -75,7 +75,7 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=hws7300u 
 BOARD_KERNEL_BASE := 0x40300000
 BOARD_KERNEL_PAGESIZE := 2048
 TARGET_KERNEL_SOURCE := kernel/huawei/hws7300u
-TARGET_KERNEL_CONFIG := hws7300u_defconfig
+TARGET_KERNEL_CONFIG := mediapad_defconfig
 
 # Usb connection to PC
 BOARD_MTP_DEVICE := "/dev/mtp_usb"
