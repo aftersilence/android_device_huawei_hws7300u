@@ -39,7 +39,7 @@ DEVICE_PACKAGE_OVERLAYS += device/huawei/hws7300u/overlay
 
 # Modules that are currently not built on the fly
 PRODUCT_COPY_FILES += \
-    device/huawei/hws7300u/prebuilt/modules/rpc_server_handset.ko:system/lib/rpc_server_handset.ko \
+    device/huawei/hws7300u/prebuilt/modules/rpc_server_handset.ko:system/lib/modules/rpc_server_handset.ko \
     device/huawei/hws7300u/prebuilt/modules/dhd.ko:system/lib/modules/dhd.ko
 
 # Permissions
