@@ -27,6 +27,9 @@
 
     <!-- True will enable the electron beam screen-off animation. -->
     <bool name="config_screenOffAnimation">false</bool>
+	
+    <!-- NOTE: Set to true for now so electron beam isn't used. This causes a screen lockup on our QCOM's right now. -->
+    <bool name="config_animateScreenLights">true</bool>
 
     <!-- There is no charging LED. -->
     <bool name="config_unplugTurnsOnScreen">true</bool>

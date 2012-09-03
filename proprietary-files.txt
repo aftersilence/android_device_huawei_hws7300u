@@ -1,28 +1,18 @@
-# Some crap
-vendor/lib/libWVStreamControlAPI_L3.so
-vendor/lib/libwvdrm_L3.so
-vendor/lib/drm/libdrmwvmplugin.so
-vendor/lib/libwvm.so
-lib/drm/libdrmhwomavoneplugin.so
-
-# Charging and shutdown animations
-media/shutdownanimation.zip
+# Charging animation
 media/charginganimation.zip
 bin/charginganimation
-bin/shutdownanimation
 bin/bootanimationex
 
 # Audio
-lib/libacdbmapper.so
-lib/libaudioalsa.so
-lib/libacdbloader.so
+lib/libacdbmapper.so     # needed_for_build
+lib/libaudioalsa.so     # needed_for_build
+lib/libacdbloader.so     # needed_for_build
 lib/libaudcal.so
 lib/libaudioparsers.so
 
 # mmparser extended
 lib/libmmparser.so
 lib/libmmosal.so
-lib/libmmparser_divxdrmlib.so
 
 # Graphics
 lib/egl/eglsubAndroid.so
@@ -43,14 +33,11 @@ bin/qmiproxy
 bin/qmuxd
 bin/rmt_storage
 bin/rmt_oeminfo
-bin/rild
 lib/libqmi.so
 lib/libqmiservices.so
 lib/libqdi.so
 lib/libqdp.so
 lib/libqueue.so
-lib/libril.so
-lib/libreference-ril.so
 lib/libril-qc-qmi-1.so
 lib/libril-qcril-hook-oem.so
 lib/libdsutils.so
@@ -94,9 +81,6 @@ bin/v4l2-qcamera-app
 
 # General
 lib/libdiag.so
-
-# Webkit
-lib/libv8.so
 
 # Wi-Fi
 etc/wifi/rtecdc-bcm4319.bin
@@ -198,7 +182,6 @@ etc/voicemail-conf.xml
 etc/bluetooth/BCM4329B1_37.4M.hcd
 etc/bluetooth/blacklist.conf
 etc/sn.txt
-etc/mtab
 etc/thermald.conf
 bin/brcm_patchram_plus
 lib/libbluedroid.so
@@ -217,7 +200,6 @@ bin/mm-aenc-omxevrc-test
 bin/diagd
 bin/mm-jps-enc-test
 bin/radish
-bin/setup_fs
 bin/am
 bin/bmgr
 bin/svc
@@ -257,7 +239,6 @@ bin/time_daemon
 bin/pcscd
 bin/testpcsc
 bin/ds_fmc_appd
-bin/make_ext4fs
 bin/mkfs.ext4
 bin/bridgemgrd
 bin/hw_rm
@@ -270,7 +251,6 @@ lib/liboem_rapi.so
 lib/tcp-connections.so
 lib/libOmxQcelp13Enc.so
 lib/libmmmpod.so
-lib/libsrsprocessing.so
 lib/libtcpfinaggr.so
 lib/libstagefright_soft_ffmpegaudiodec.so
 lib/libdnshostprio.so
@@ -288,7 +268,7 @@ lib/lib_iec_60958_61937.so
 lib/libwebkitaccel.so
 lib/libthermal_mitigation_fusion.so
 lib/libconfigdb.so
-lib/libI420colorconvert.so
+
 lib/libulp.so
 lib/libqc-opt.so
 lib/libprofiler_msmadc.so
@@ -317,8 +297,6 @@ lib/libdtsprocessing.so
 lib/libnetmonitor.so
 lib/libulp2.so
 lib/libmm-abl.so
-lib/libstagefright_soft_dtsaudiodec.so
-
 
 bin/mm-abl-daemon
 bin/mm-aenc-omxaac-test
@@ -334,6 +312,5 @@ bin/mm-audio-native-test
 bin/mm-adec-omxwma-test
 bin/mm-jpeg-dec-test
 
-data/srs_processing.cfg
 xbin/zip
 xbin/iperf
