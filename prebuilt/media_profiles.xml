@@ -91,8 +91,8 @@
   <!-- Each camcorder profile defines a set of predefined configuration parameters -->
   <!-- Back Camera -->
   <CamcorderProfiles cameraId="0">
-	<!-- Begin DTS2012022000464 modify by xuxin kf63528 for Camera CTS -->
-    <EncoderProfile quality="low" fileFormat="3gp" duration="30">
+
+    <EncoderProfile quality="low" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="384000"
              width="176"
@@ -104,9 +104,8 @@
              sampleRate="8000"
              channels="1" />
     </EncoderProfile>
-	<!-- end DTS2012022000464 modify by xuxin kf63528 for Camera CTS -->
-    <!-- Begin DTS2012020101046 modify by ligang 00183745 for Camera CTS -->
-    <EncoderProfile quality="high" fileFormat="3gp" duration="30">
+
+    <EncoderProfile quality="high" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="14000000"
              width="1280"
@@ -118,10 +117,8 @@
              sampleRate="48000"
              channels="2" />
     </EncoderProfile>
-    <!-- End DTS2012020101046 modify by ligang 00183745 for Camera CTS -->
 
-    <!-- Begin DTS2012020101595  modify by wangaicui 00161317 20120211 for video quality -->
-    <EncoderProfile quality="qcif" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="qcif" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="384000"
              width="176"
@@ -133,9 +130,8 @@
              sampleRate="8000"
              channels="1" />
     </EncoderProfile>
-    <!-- END DTS2012020101595  modify by wangaicui 00161317 20120211 for video quality -->
 
-    <EncoderProfile quality="cif" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="cif" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="720000"
              width="352"
@@ -148,23 +144,19 @@
              channels="1" />
     </EncoderProfile>
 
-    <!-- Begin DTS2012020101595  modify by wangaicui 00161317 20120211 for video quality -->
-    <EncoderProfile quality="480p" fileFormat="3gp" duration="30">
-   	<!--begin DTS2012020201284 modify xuxin kf63528 for 480p size-->
+    <EncoderProfile quality="480p" fileFormat="mp4" duration="30">
       <Video codec="h264"
-             bitRate="4000000"
+             bitRate="5000000"
              width="640"
              height="480"
              frameRate="30" />
-	<!--end DTS2012020201284 modify xuxin kf63528 for 480p size-->
       <Audio codec="aac"
              bitRate="156000"
              sampleRate="48000"
              channels="2" />
     </EncoderProfile>
-    <!-- END DTS2012020101595  modify by wangaicui 00161317 20120211 for video quality -->
 
-    <EncoderProfile quality="720p" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="720p" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="14000000"
              width="1280"
@@ -177,8 +169,7 @@
              channels="2" />
     </EncoderProfile>
 
-    <!-- Begin DTS2012020101046 modify by ligang 00183745 for Camera CTS -->
-    <!-- <EncoderProfile quality="1080p" fileFormat="3gp" duration="30">
+    <!-- <EncoderProfile quality="1080p" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="20000000"
              width="1920"
@@ -190,9 +181,8 @@
              sampleRate="48000"
              channels="2" />
     </EncoderProfile> -->
-    <!-- End DTS2012020101046 modify by ligang 00183745 for Camera CTS -->
 
-    <EncoderProfile quality="wvga" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="wvga" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="2000000"
              width="800"
@@ -205,7 +195,7 @@
              channels="2" />
     </EncoderProfile>
 
-     <EncoderProfile quality="vga" fileFormat="3gp" duration="30">
+     <EncoderProfile quality="vga" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="2000000"
              width="640"
@@ -218,7 +208,7 @@
              channels="2" />
     </EncoderProfile>
 
-    <EncoderProfile quality="qvga" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="qvga" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="512000"
              width="320"
@@ -230,8 +220,8 @@
              sampleRate="48000"
              channels="2" />
     </EncoderProfile>
-	<!-- begin DTS2012022000464 modify by xuxin kf63528 for Camera CTS -->
-    <EncoderProfile quality="timelapselow" fileFormat="3gp" duration="30">
+
+    <EncoderProfile quality="timelapselow" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="384000"
              width="176"
@@ -243,9 +233,8 @@
              sampleRate="8000"
              channels="1" />
     </EncoderProfile>
-	<!-- end DTS2012022000464 modify by xuxin kf63528 for Camera CTS -->
-    <!-- Begin DTS2012020101046 modify by ligang 00183745 for Camera CTS -->
-    <EncoderProfile quality="timelapsehigh" fileFormat="3gp" duration="30">
+
+    <EncoderProfile quality="timelapsehigh" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="14000000"
              width="1280"
@@ -257,10 +246,8 @@
              sampleRate="48000"
              channels="2" />
     </EncoderProfile>
-    <!-- End DTS2012020101046 modify by ligang 00183745 for Camera CTS -->
 
-    <!-- Begin DTS2012020101595  modify by wangaicui 00161317 20120211 for video quality -->
-    <EncoderProfile quality="timelapseqcif" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="timelapseqcif" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="384000"
              width="176"
@@ -272,9 +259,8 @@
              sampleRate="8000"
              channels="1" />
     </EncoderProfile>
-    <!-- END DTS2012020101595  modify by wangaicui 00161317 20120211 for video quality -->
 
-    <EncoderProfile quality="timelapsecif" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="timelapsecif" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="720000"
              width="352"
@@ -287,8 +273,7 @@
              channels="1" />
     </EncoderProfile>
 
-    <!-- Begin DTS2012020101595  modify by wangaicui 00161317 20120211 for video quality -->
-    <EncoderProfile quality="timelapse480p" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="timelapse480p" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="4000000"
              width="640"
@@ -300,9 +285,8 @@
              sampleRate="48000"
              channels="2" />
     </EncoderProfile>
-    <!-- END DTS2012020101595  modify by wangaicui 00161317 20120211 for video quality -->
 
-    <EncoderProfile quality="timelapse720p" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="timelapse720p" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="14000000"
              width="1280"
@@ -315,12 +299,11 @@
              channels="2" />
     </EncoderProfile>
 
-    <!-- Begin DTS2012020101046 modify by ligang 00183745 for Camera CTS -->
-    <!--<EncoderProfile quality="timelapse1080p" fileFormat="3gp" duration="30">
+    <!--<EncoderProfile quality="timelapse1080p" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="20000000"
              width="1920"
-             height="1088"
+             height="1080"
              frameRate="30" />
 
       <Audio codec="aac"
@@ -328,7 +311,6 @@
              sampleRate="48000"
              channels="2" />
     </EncoderProfile>-->
-    <!-- End DTS2012020101046 modify by ligang 00183745 for Camera CTS -->
 
     <ImageEncoding quality="90" />
     <ImageEncoding quality="80" />
@@ -339,9 +321,8 @@
 
   <!-- Front Camera -->
   <CamcorderProfiles cameraId="1">
-	<!-- begin DTS2012022000464 modify by xuxin kf63528 for Camera CTS -->
-    <!-- Begin DTS2012020101046 modify by ligang 00183745 for Camera CTS -->
-    <EncoderProfile quality="low" fileFormat="3gp" duration="30">
+
+    <EncoderProfile quality="low" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="384000"
              width="176"
@@ -353,10 +334,8 @@
              sampleRate="8000"
              channels="1" />
     </EncoderProfile>
-    <!-- End DTS2012020101046 modify by ligang 00183745 for Camera CTS -->
-	<!-- end DTS2012022000464 modify by xuxin kf63528 for Camera CTS -->
-    <!-- Begin DTS2012020101046 modify by ligang 00183745 for Camera CTS -->
-    <EncoderProfile quality="high" fileFormat="3gp" duration="30">
+
+    <EncoderProfile quality="high" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="14000000"
              width="1280"
@@ -368,10 +347,8 @@
              sampleRate="48000"
              channels="2" />
     </EncoderProfile>
-    <!-- End DTS2012020101046 modify by ligang 00183745 for Camera CTS -->
 
-    <!-- Begin DTS2012020101595  modify by wangaicui 00161317 20120211 for video quality -->
-    <EncoderProfile quality="qcif" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="qcif" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="384000"
              width="176"
@@ -383,9 +360,8 @@
              sampleRate="8000"
              channels="1" />
     </EncoderProfile>
-    <!-- END DTS2012020101595  modify by wangaicui 00161317 20120211 for video quality -->
 
-    <EncoderProfile quality="cif" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="cif" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="720000"
              width="352"
@@ -398,23 +374,20 @@
              channels="1" />
     </EncoderProfile>
 
-    <!-- Begin DTS2012020101595  modify by wangaicui 00161317 20120211 for video quality -->
-    <EncoderProfile quality="480p" fileFormat="3gp" duration="30">
-		<!--begin DTS2012020201284 modify xuxin kf63528 for 480p size-->
+    <EncoderProfile quality="480p" fileFormat="mp4" duration="30">
         <Video codec="h264"
              bitRate="4000000"
              width="640"
              height="480"
              frameRate="30" />
-		<!--end DTS2012020201284 modify xuxin kf63528 for 480p size-->
+
       	<Audio codec="aac"
              bitRate="156000"
              sampleRate="48000"
              channels="2" />
     </EncoderProfile>
-    <!-- END DTS2012020101595  modify by wangaicui 00161317 20120211 for video quality -->
 
-    <EncoderProfile quality="720p" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="720p" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="14000000"
              width="1280"
@@ -427,12 +400,11 @@
              channels="2" />
     </EncoderProfile>
 
-    <!-- Begin DTS2012020101046 modify by ligang 00183745 for Camera CTS -->
-    <!--<EncoderProfile quality="1080p" fileFormat="3gp" duration="30">
+    <!--<EncoderProfile quality="1080p" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="20000000"
              width="1920"
-             height="1088"
+             height="1080"
              frameRate="30" />
 
       <Audio codec="aac"
@@ -440,9 +412,8 @@
              sampleRate="48000"
              channels="2" />
     </EncoderProfile>-->
-    <!-- End DTS2012020101046 modify by ligang 00183745 for Camera CTS -->
 
-    <EncoderProfile quality="wvga" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="wvga" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="2000000"
              width="800"
@@ -455,7 +426,7 @@
              channels="2" />
     </EncoderProfile>
 
-     <EncoderProfile quality="vga" fileFormat="3gp" duration="30">
+     <EncoderProfile quality="vga" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="2000000"
              width="640"
@@ -468,7 +439,7 @@
              channels="2" />
     </EncoderProfile>
 
-    <EncoderProfile quality="qvga" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="qvga" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="512000"
              width="320"
@@ -480,8 +451,8 @@
              sampleRate="48000"
              channels="2" />
     </EncoderProfile>
-	<!-- begin DTS2012022000464 modify by xuxin kf63528 for Camera CTS -->
-    <EncoderProfile quality="timelapselow" fileFormat="3gp" duration="30">
+
+    <EncoderProfile quality="timelapselow" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="384000"
              width="176"
@@ -493,9 +464,8 @@
              sampleRate="8000"
              channels="1" />
     </EncoderProfile>
-	<!-- end DTS2012022000464 modify by xuxin kf63528 for Camera CTS -->
-    <!-- Begin DTS2012020401432 modify by ligang 00183745 for camera CTS -->
-    <EncoderProfile quality="timelapsehigh" fileFormat="3gp" duration="30">
+
+    <EncoderProfile quality="timelapsehigh" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="8000000"
              width="1280"
@@ -507,10 +477,8 @@
              sampleRate="16000"
              channels="1" />
     </EncoderProfile>
-    <!-- End DTS2012020401432 modify by ligang 00183745 for camera CTS -->
 
-    <!-- Begin DTS2012020101595  modify by wangaicui 00161317 20120211 for video quality -->
-    <EncoderProfile quality="timelapseqcif" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="timelapseqcif" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="384000"
              width="176"
@@ -522,9 +490,8 @@
              sampleRate="8000"
              channels="1" />
     </EncoderProfile>
-    <!-- END DTS2012020101595  modify by wangaicui 00161317 20120211 for video quality -->
 
-    <EncoderProfile quality="timelapsecif" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="timelapsecif" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="720000"
              width="352"
@@ -537,8 +504,7 @@
              channels="1" />
     </EncoderProfile>
 
-    <!-- Begin DTS2012020101595  modify by wangaicui 00161317 20120211 for video quality -->
-    <EncoderProfile quality="timelapse480p" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="timelapse480p" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="4000000"
              width="640"
@@ -550,10 +516,8 @@
              sampleRate="48000"
              channels="2" />
     </EncoderProfile>
-    <!-- END DTS2012020101595  modify by wangaicui 00161317 20120211 for video quality -->
 
-    <!-- Begin DTS2012013004457 modify by xuxin kf63528 for front camera 720p time laspe -->
-    <EncoderProfile quality="timelapse720p" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="timelapse720p" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="8000000"
              width="1280"
@@ -565,7 +529,7 @@
              sampleRate="16000"
              channels="1" />
     </EncoderProfile>
-    <!-- End DTS2012013004457 modify by xuxin kf63528 for front camera 720p time laspe -->
+
     <ImageEncoding quality="90" />
     <ImageEncoding quality="80" />
     <ImageEncoding quality="70" />
@@ -573,7 +537,8 @@
 
   </CamcorderProfiles>
 
-  <EncoderOutputFileFormat name="3gp" />
+  <EncoderOutputFileFormat name="3gp" /> 
+  <EncoderOutputFileFormat name="mp4" /> 
 
   <!--
          If a codec is not enabled, it is invisible to the applications
@@ -583,7 +548,7 @@
   <VideoEncoderCap name="h264" enabled="true"
       minBitRate="64000" maxBitRate="20000000"
       minFrameWidth="176" maxFrameWidth="1920"
-      minFrameHeight="144" maxFrameHeight="1088"
+      minFrameHeight="144" maxFrameHeight="1080"
       minFrameRate="1" maxFrameRate="30" />
 
   <VideoEncoderCap name="h263" enabled="true"
@@ -595,7 +560,7 @@
   <VideoEncoderCap name="m4v" enabled="true"
       minBitRate="64000" maxBitRate="20000000"
       minFrameWidth="176" maxFrameWidth="1920"
-      minFrameHeight="144" maxFrameHeight="1088"
+      minFrameHeight="144" maxFrameHeight="1080"
       minFrameRate="1" maxFrameRate="30" />
 
   <AudioEncoderCap name="aac" enabled="true"

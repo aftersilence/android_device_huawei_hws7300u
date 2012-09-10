@@ -35,6 +35,21 @@ persist.sys.color.enhance=true
 # system props for SD card emulation of emmc partition
 ro.emmc.sdcard.partition=23
 
+#system props for the MM modules
+media.stagefright.enable-player=true
+media.stagefright.enable-http=true
+media.stagefright.enable-fma2dp=false
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+
+# System props for audio
+persist.audio.fluence.mode=endfire
+persist.audio.vr.enable=false
+
+# LPA
+# lpa.decode=true
+# lpa.use-stagefright=true
+
 # hdmi
 com.qc.hardware=true
 com.qc.hdmi_out=true

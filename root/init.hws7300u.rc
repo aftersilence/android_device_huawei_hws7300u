@@ -466,17 +466,6 @@ service thermald /system/bin/thermald
 on property:persist.thermal.monitor=true
     start thermald
 
-service time_daemon /system/bin/time_daemon
-    class late_start
-    user root
-    group root
-    oneshot
-    disabled
-
-on property:persist.timed.enable=true
-    mkdir /data/time/ 0700
-    start time_daemon
-
 service ftp /system/bin/sdptool add --psm=5257 --channel=20 FTP
     class late_start
     user bluetooth

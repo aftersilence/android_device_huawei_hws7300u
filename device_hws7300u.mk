@@ -74,8 +74,10 @@ PRODUCT_PACKAGES += \
     libgenlock \
     libmemalloc \
     liboverlay \
-    libQcomUI \
-    libtilerenderer
+    libqdutils \
+    libqdMetaData.so \
+    libtilerenderer \
+    libI420colorconvert
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -88,11 +90,14 @@ PRODUCT_PACKAGES += \
 # Omx
 PRODUCT_PACKAGES += \
     libdivxdrmdecrypt \
-    libI420colorconvert \
     libmm-omxcore \
     libOmxCore \
     libOmxVdec \
     libOmxVenc \
+    libOmxAacEnc \
+    libOmxAmrEnc \
+    libOmxEvrcEnc \
+    libOmxQcelp13Enc \
     libstagefrighthw \
     libstagefright_client
 

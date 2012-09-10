@@ -135,7 +135,7 @@
 /dev/video*	          0660   system     camera 
 /dev/tun                  0660   system     vpn
 #regular apps need to be able to open ion
-/dev/ion                  0664   system     system
+/dev/ion                  0664   media     system
 
 # CDMA radio interface MUX
 /dev/ts0710mux*           0640   radio      radio
