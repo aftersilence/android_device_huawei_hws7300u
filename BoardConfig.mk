@@ -67,7 +67,9 @@ ENABLE_WEBGL := true
 TARGET_FORCE_CPU_UPLOAD := true
 
 # Camera
+BOARD_CAMERA_USE_MM_HEAP := true
 BOARD_NEEDS_MEMORYHEAPPMEM := true
+TARGET_DISABLE_ARM_PIE := true
 COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
 
 #kernel
@@ -79,9 +81,6 @@ TARGET_KERNEL_CONFIG := mediapad_defconfig
 
 # Usb connection to PC
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
-
-# Disable PIE since it breaks ICS camera blobs
-TARGET_DISABLE_ARM_PIE := true
 
 # Audio
 # BOARD_USE_QCOM_LPA := true
@@ -107,5 +106,3 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 # TW_ALWAYS_RMRF := true
 # TW_FLASH_FROM_STORAGE := true
 # TW_NO_BATT_PERCENT := true
-
-TARGET_NO_HW_VSYNC := true
