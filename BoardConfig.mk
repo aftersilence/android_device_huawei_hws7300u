@@ -59,7 +59,7 @@ USE_OPENGL_RENDERER := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_QCOM_HDMI_OUT := true
 TARGET_QCOM_HDMI_RESOLUTION_AUTO := true
-TARGET_USES_PMEM := true
+TARGET_USES_ION := true
 BOARD_EGL_CFG := device/huawei/hws7300u/prebuilt/egl.cfg
 
 # Webkit
