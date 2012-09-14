@@ -2,6 +2,9 @@ USE_CAMERA_STUB := false
 
 TARGET_SPECIFIC_HEADER_PATH := device/huawei/hws7300u/include
 
+# Releasetools
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/huawei/hws7300u/releasetools/hws7300u_ota_from_target_files
+
 # Bootloader, radio
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
