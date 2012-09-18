@@ -188,7 +188,6 @@ bin/ftmdaemon
 bin/pcscd
 bin/testpcsc
 bin/ds_fmc_appd
-bin/mkfs.ext4
 bin/bridgemgrd
 bin/hw_rm
 lib/libdsm.so
@@ -242,7 +241,6 @@ lib/libWVphoneAPI.so
 lib/libmm-color-convertor.so
 lib/libOmxQcelp13Dec.so
 lib/libOmxEvrcEnc.so
-lib/libdtsprocessing.so
 lib/libnetmonitor.so
 lib/libulp2.so
 lib/libmm-abl.so

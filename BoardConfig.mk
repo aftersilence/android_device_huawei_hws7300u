@@ -1,3 +1,6 @@
+# Releasetools	
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/huawei/hws7300u/releasetools/ota_from_target_files
+
 USE_CAMERA_STUB := false
 
 TARGET_SPECIFIC_HEADER_PATH := device/huawei/hws7300u/include
@@ -43,6 +46,7 @@ BOARD_WLAN_DEVICE           := bcm4329
 WIFI_DRIVER_FW_PATH_STA     := "/etc/wifi/rtecdc-bcm4329.bin"
 WIFI_DRIVER_FW_PATH_AP      := "/etc/wifi/rtecdc-apsta-bcm4329.bin"
 WIFI_DRIVER_MODULE_ARG      := "firmware_path=/etc/wifi/rtecdc-bcm4329.bin nvram_path=/etc/wifi/nvram-bcm4329.txt"
+BOARD_HAVE_HUAWEI_WIFI := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -67,7 +71,6 @@ ENABLE_WEBGL := true
 TARGET_FORCE_CPU_UPLOAD := true
 
 # Camera
-BOARD_CAMERA_USE_MM_HEAP := true
 BOARD_NEEDS_MEMORYHEAPPMEM := true
 TARGET_DISABLE_ARM_PIE := true
 COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
@@ -76,8 +79,9 @@ COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=hws7300u vmalloc=578M kgsl.ptcount=16
 BOARD_KERNEL_BASE := 0x40300000
 BOARD_KERNEL_PAGESIZE := 2048
-TARGET_KERNEL_SOURCE := kernel/huawei/hws7300u
-TARGET_KERNEL_CONFIG := mediapad_defconfig
+TARGET_PREBUILT_KERNEL := device/huawei/hws7300u/kernel
+#TARGET_KERNEL_SOURCE := kernel/huawei/hws7300u
+#TARGET_KERNEL_CONFIG := mediapad_defconfig
 
 # Usb connection to PC
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"

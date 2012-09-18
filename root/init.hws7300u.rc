@@ -154,13 +154,6 @@ on boot
     write /proc/sys/net/ipv6/conf/rmnet_sdio6/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet_sdio7/accept_ra 2
 
-service p2p_supplicant /system/bin/wpa_supplicant -Dwext -iwlan0 -c /data/misc/wifi/wpa_supplicant.conf
-    user root
-    group wifi inet
-    socket wpa_wlan0 dgram 0660 wifi wifi
-    disabled
-    oneshot
-
 # Export GPIO56 for fusion targets to enable/disable hub
 service usbhub_init /system/bin/usbhub_init
    class late_start
@@ -179,9 +172,6 @@ on property:init.svc.wpa_supp_wapi=stopped
     stop dhcpcd
     stop dhcpcd_wlan0
     stop iprenew_wlan0
-
-on property:init.svc.p2p_supplicant=stopped	
-    stop dhcpcd
 
 on property:bluetooth.isEnabled=true
     start btwlancoex
@@ -438,9 +428,6 @@ service ims_regmanager /system/bin/exe-ims-regmanagerprocessnative
 on property:persist.ims.regmanager.mode=1
     start ims_regmanager
 
-on property:ro.data.large_tcp_window_size=true
-    write /proc/sys/net/ipv4/tcp_adv_win_scale  1
-
 # For sensor service
 on property:persist.sys.coordinate=false
    write /sys/bus/i2c/drivers/st303_acc/coordinate_acc 	0
@@ -558,3 +545,9 @@ service load_logo /system/bin/load_logo
     group root
     disabled
     oneshot
+
+# qrngd will drop permissions after startup
+service qrngd /system/bin/qrngd -f
+    class main
+    user root
+    group root

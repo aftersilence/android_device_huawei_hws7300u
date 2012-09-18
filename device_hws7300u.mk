@@ -17,6 +17,13 @@
 PRODUCT_AAPT_CONFIG := normal large tvdpi hdpi
 PRODUCT_AAPT_PREF_CONFIG := tvdpi
 
+LOCAL_PATH := device/huawei/hws7300u  	
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+    LOCAL_KERNEL := $(LOCAL_PATH)/kernel
+else
+    LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)	
+endif
+
 DEVICE_PACKAGE_OVERLAYS := \
     device/huawei/hws7300u/overlay
 
@@ -37,10 +44,30 @@ PRODUCT_CHARACTERISTICS := tablet
 
 DEVICE_PACKAGE_OVERLAYS += device/huawei/hws7300u/overlay
 
-# Modules that are currently not built on the fly
+# Modules
 PRODUCT_COPY_FILES += \
+    device/huawei/hws7300u/prebuilt/modules/qce.ko:system/lib/modules/qce.ko \
+    device/huawei/hws7300u/prebuilt/modules/sch_dsmark.ko:system/lib/modules/sch_dsmark.ko \
+    device/huawei/hws7300u/prebuilt/modules/spidev.ko:system/lib/modules/spidev.ko \
+    device/huawei/hws7300u/prebuilt/modules/ksapi.ko:system/lib/modules/ksapi.ko \
     device/huawei/hws7300u/prebuilt/modules/rpc_server_handset.ko:system/lib/modules/rpc_server_handset.ko \
-    device/huawei/hws7300u/prebuilt/modules/dhd.ko:system/lib/modules/dhd.ko
+    device/huawei/hws7300u/prebuilt/modules/qcrypto.ko:system/lib/modules/qcrypto.ko \
+    device/huawei/hws7300u/prebuilt/modules/dal_remotetest.ko:system/lib/modules/dal_remotetest.ko \
+    device/huawei/hws7300u/prebuilt/modules/tsif_chrdev.ko:system/lib/modules/tsif_chrdev.ko \
+    device/huawei/hws7300u/prebuilt/modules/lcd.ko:system/lib/modules/lcd.ko \
+    device/huawei/hws7300u/prebuilt/modules/tun.ko:system/lib/modules/tun.ko \
+    device/huawei/hws7300u/prebuilt/modules/ansi_cprng.ko:system/lib/modules/ansi_cprng.ko \
+    device/huawei/hws7300u/prebuilt/modules/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko \
+    device/huawei/hws7300u/prebuilt/modules/librasdioif.ko:system/lib/modules/librasdioif.ko \
+    device/huawei/hws7300u/prebuilt/modules/mt9m114.ko:system/lib/modules/mt9m114.ko \
+    device/huawei/hws7300u/prebuilt/modules/cls_flow.ko:system/lib/modules/cls_flow.ko \
+    device/huawei/hws7300u/prebuilt/modules/dma_test.ko:system/lib/modules/dma_test.ko \
+    device/huawei/hws7300u/prebuilt/modules/evbug.ko:system/lib/modules/evbug.ko \
+    device/huawei/hws7300u/prebuilt/modules/msm_tsif.ko:system/lib/modules/msm_tsif.ko \
+    device/huawei/hws7300u/prebuilt/modules/dhd.ko:system/lib/modules/dhd.ko \
+    device/huawei/hws7300u/prebuilt/modules/gspca_main.ko:system/lib/modules/gspca_main.ko \
+    device/huawei/hws7300u/prebuilt/modules/msm-buspm-dev.ko:system/lib/modules/msm-buspm-dev.ko \
+    device/huawei/hws7300u/prebuilt/modules/qcedev.ko:system/lib/modules/qcedev.ko
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -112,6 +139,10 @@ PRODUCT_PACKAGES += \
 # HDMI
 PRODUCT_PACKAGES += \
     hdmid
+
+# QRNGD
+PRODUCT_PACKAGES += \
+    qrngd
 
 # Misc
 PRODUCT_PACKAGES += \
