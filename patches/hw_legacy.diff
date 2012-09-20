@@ -12,31 +12,39 @@ index 3b89a17..67fd906 100644
 +
  LOCAL_SHARED_LIBRARIES += libnetutils
 diff --git a/hardware/libhardware_legacy/wifi/wifi.c b/hardware/libhardware_legacy/wifi/wifi.c
-index 7facd29..cf03327 100644
+index 7facd29..46c2070 100644
 --- a/hardware/libhardware_legacy/wifi/wifi.c
 +++ b/hardware/libhardware_legacy/wifi/wifi.c
-@@ -276,11 +276,21 @@ int wifi_load_driver()
+@@ -276,11 +276,29 @@ int wifi_load_driver()
  #endif
  
  #ifdef SAMSUNG_WIFI
 -    snprintf(module_arg2, sizeof(module_arg2), "%s%s", DRIVER_MODULE_ARG, type == NULL ? "" : type);
-+ snprintf(module_arg2, sizeof(module_arg2), "%s%s", DRIVER_MODULE_ARG, type == NULL ? "" : type);
++	snprintf(module_arg2, sizeof(module_arg2), "%s%s", DRIVER_MODULE_ARG, type == NULL ? "" : type);
  
 -    if (insmod(DRIVER_MODULE_PATH, module_arg2) < 0) {
-+ if (insmod(DRIVER_MODULE_PATH, module_arg2) < 0) {
++	if (insmod(DRIVER_MODULE_PATH, module_arg2) < 0) {
  #else
 -    if (insmod(DRIVER_MODULE_PATH, DRIVER_MODULE_ARG) < 0) {
-+ ALOGW("DRIVER MODULE ARG");
-+#ifdef HUAWEI_WIFI
-+ char serialno[PROPERTY_VALUE_MAX];
-+ char huawei_module_arg[256];
-+ property_get("ro.serialno", serialno, "f6r6rd1212541368");
-+ snprintf(huawei_module_arg, sizeof(huawei_module_arg), "%s wlan_mac=%02x%02x%02x%02x%02x%02x", DRIVER_MODULE_ARG, serialno[5], serialno[6], serialno[7], serialno[8], serialno[9], serialno[10]);
-+ ALOGW("HUAWEI WIFI DRIVER MODULE ARG: %s", huawei_module_arg);
-+ if (insmod(DRIVER_MODULE_PATH, huawei_module_arg) < 0) {
-+#else
-+ if (insmod(DRIVER_MODULE_PATH, DRIVER_MODULE_ARG) < 0) {
-+#endif
++	ALOGW("DRIVER MODULE ARG");
++	#ifdef HUAWEI_WIFI
++		char wlan_mac[PROPERTY_VALUE_MAX];
++		char serialno[PROPERTY_VALUE_MAX];
++		char huawei_module_arg[256];
++		//custome mac
++		property_get("wlan.mac", wlan_mac, "");
++		property_get("ro.serialno", serialno, "f6r6rd1212541368");
++
++		if(strlen(wlan_mac) == 0)		
++			snprintf(huawei_module_arg, sizeof(huawei_module_arg), "%s wlan_mac=%02x%02x%02x%02x%02x%02x", DRIVER_MODULE_ARG, serialno[5], serialno[6], serialno[7], serialno[8], serialno[9], serialno[10]);
++		else
++			snprintf(huawei_module_arg, sizeof(huawei_module_arg), "%s wlan_mac=%s", DRIVER_MODULE_ARG, wlan_mac);	
++
++		ALOGW("HUAWEI WIFI DRIVER MODULE ARG: %s", huawei_module_arg);
++		if (insmod(DRIVER_MODULE_PATH, huawei_module_arg) < 0) {
++	#else
++		if (insmod(DRIVER_MODULE_PATH, DRIVER_MODULE_ARG) < 0) {
++	#endif
  #endif
  
  #ifdef WIFI_EXT_MODULE_NAME

@@ -144,8 +144,6 @@ case "$target" in
      chmod 220 /sys/devices/system/cpu/mfreq
      chown root.system /sys/devices/system/cpu/cpu1/online
      chmod 664 /sys/devices/system/cpu/cpu1/online
-     chown root.system /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
-     chmod 664 /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
         ;;
 esac
 

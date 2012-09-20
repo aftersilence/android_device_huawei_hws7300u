@@ -99,10 +99,11 @@ PRODUCT_PACKAGES += \
     gralloc.msm8660 \
     hwcomposer.msm8660 \
     libgenlock \
+    libhwcexternal.so \
+    libhwcservice.so \
     libmemalloc \
     liboverlay \
     libqdutils \
-    libqdMetaData.so \
     libtilerenderer \
     libI420colorconvert
 

@@ -112,9 +112,6 @@ etc/firmware/t1320_tm1828_001.img
 etc/firmware/t1320_tm1885_004.img
 etc/firmware/s7020_suc.img
 etc/firmware/atmel_cmi_pro.img
-etc/firmware/a225p5_pm4.fw
-etc/firmware/a225_pfp.fw
-etc/firmware/a225_pm4.fw
 
 # SAR
 etc/sar/sar_302U.conf
