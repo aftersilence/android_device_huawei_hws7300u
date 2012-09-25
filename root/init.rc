@@ -380,6 +380,9 @@ on boot
     chown system shell /sys/firmware/touchscreen/firmware_file_version
     chown system shell /sys/firmware/touchscreen/tp_control
 
+    chown system system /sys/block/mmcblk0/queue/scheduler
+    chmod 0664 /sys/block/mmcblk0/queue/scheduler
+
 # Define TCP buffer sizes for various networks
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
     setprop net.tcp.buffersize.default 4096,87380,110208,4096,16384,110208

@@ -11,6 +11,7 @@ lib/libaudcal.so
 lib/libaudioparsers.so
 
 # mmparser extended
+lib/libmmparser_divxdrmlib.so
 lib/libmmparser.so
 lib/libmmosal.so
 
@@ -87,7 +88,6 @@ etc/wifi/rtecdc-bcm4319.bin
 etc/wifi/rtecdc-apsta-bcm4319.bin
 etc/wifi/rtecdc-apsta-bcm4329.bin
 etc/wifi/nvram-bcm4319.txt
-etc/wifi/wpa_supplicant.conf
 etc/wifi/rtecdc-mfgtest-bcm4329.bin
 etc/wifi/nvram-bcm4329.txt
 etc/wifi/config
@@ -129,9 +129,9 @@ etc/voicemail-conf.xml
 etc/bluetooth/BCM4329B1_37.4M.hcd
 etc/bluetooth/blacklist.conf
 etc/sn.txt
-etc/thermald.conf
 bin/brcm_patchram_plus
 lib/libbluedroid.so
+etc/thermald.conf
 
 etc/coulometer/bq27510_version
 etc/coulometer/bq27510_pro.dffs
@@ -194,7 +194,6 @@ lib/libhwrpc.so
 lib/libdsucsdappif_apis_fusion.so
 lib/liboem_rapi.so
 lib/tcp-connections.so
-lib/libOmxQcelp13Enc.so
 lib/libmmmpod.so
 lib/libtcpfinaggr.so
 lib/libstagefright_soft_ffmpegaudiodec.so
@@ -221,7 +220,6 @@ lib/libffmpeg_huawei.so
 lib/libxt_v01.so
 lib/libping_apps.so
 lib/libstagefright_soft_ffmpegvideodec.so
-lib/libOmxEvrcDec.so
 lib/libdss.so
 lib/libqsap_sdk.so
 lib/liballjoyn.so
@@ -255,6 +253,3 @@ bin/mm-mpo-dec-test
 bin/mm-audio-native-test
 bin/mm-adec-omxwma-test
 bin/mm-jpeg-dec-test
-
-xbin/zip
-xbin/iperf

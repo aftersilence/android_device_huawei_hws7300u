@@ -99,8 +99,8 @@ PRODUCT_PACKAGES += \
     gralloc.msm8660 \
     hwcomposer.msm8660 \
     libgenlock \
-    libhwcexternal.so \
-    libhwcservice.so \
+    libhwcexternal \
+    libhwcservice \
     libmemalloc \
     liboverlay \
     libqdutils \
@@ -120,14 +120,13 @@ PRODUCT_PACKAGES += \
     libdivxdrmdecrypt \
     libmm-omxcore \
     libOmxCore \
+    libstagefrighthw \
     libOmxVdec \
     libOmxVenc \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxEvrcEnc \
-    libOmxQcelp13Enc \
-    libstagefrighthw \
-    libstagefright_client
+    libOmxQcelp13Enc
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -159,6 +158,7 @@ PRODUCT_PACKAGES += \
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     make_ext4fs \
+    e2fsck \
     setup_fs
 
 # Boot ramdisk

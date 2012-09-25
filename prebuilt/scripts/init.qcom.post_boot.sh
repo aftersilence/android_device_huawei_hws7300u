@@ -26,6 +26,10 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+#Set dirty_writeback_interval as default after booting animation for booting time
+echo 500 > /proc/sys/vm/dirty_writeback_centisecs
+echo 200 > /proc/sys/vm/dirty_expire_centisecs
+
 target=`getprop ro.board.platform`
 case "$target" in
     "msm7201a_ffa" | "msm7201a_surf" | "msm7627_ffa" | "msm7627_6x" | "msm7627a"  | "msm7627_surf" | \
@@ -54,7 +58,6 @@ case "$target" in
         ;;
 esac
 
-# Begin:DTS2011092100690 added by z00176551 20110926 for fingerprint of 301w version
 case "$target" in
     "msm8660" | "hws7300u" | "hws7300w" )
 
@@ -69,30 +72,26 @@ case "$target" in
 	 echo 1 > /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/suspend_enabled
 	 echo 1 > /sys/module/pm_8x60/modes/cpu0/power_collapse/idle_enabled
 	 echo 1 > /sys/module/pm_8x60/modes/cpu1/power_collapse/idle_enabled
-	 echo 1 > /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/idle_enabled
-	 echo 1 > /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/idle_enabled
+	 echo 0 > /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/idle_enabled
+	 echo 0 > /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/idle_enabled
 	 echo 1 > /sys/module/pm_8660/modes/cpu0/power_collapse/suspend_enabled
 	 echo 1 > /sys/module/pm_8660/modes/cpu1/power_collapse/suspend_enabled
 	 echo 1 > /sys/module/pm_8660/modes/cpu0/standalone_power_collapse/suspend_enabled
 	 echo 1 > /sys/module/pm_8660/modes/cpu1/standalone_power_collapse/suspend_enabled
 	 echo 1 > /sys/module/pm_8660/modes/cpu0/power_collapse/idle_enabled
 	 echo 1 > /sys/module/pm_8660/modes/cpu1/power_collapse/idle_enabled
-	 echo 1 > /sys/module/pm_8660/modes/cpu0/standalone_power_collapse/idle_enabled
-	 echo 1 > /sys/module/pm_8660/modes/cpu1/standalone_power_collapse/idle_enabled
+	 echo 0 > /sys/module/pm_8660/modes/cpu0/standalone_power_collapse/idle_enabled
+	 echo 0 > /sys/module/pm_8660/modes/cpu1/standalone_power_collapse/idle_enabled
 	 echo "ondemand" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 	 echo "ondemand" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
-	 # Begin: DTS2011051400900  added by liang l00180803 20110511 for system sleep
-	 echo 25000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
-	 
-	 # End: DTS2011051400900  added by liang l00180803 20110511 for system sleep
-	 echo 90 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
-	 echo 1 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
+	 echo 50000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
+	 echo 85 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+	 echo 0 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
 	 echo 4 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
-	 
-	 # Begin: DTS2011051400900  added by liang l00180803 20110511 for system sleep
+	 echo 5 > /sys/devices/system/cpu/cpufreq/ondemand/down_differential 
 	 echo 192000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 	 echo 192000 > /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
-	 # End: DTS2011051400900  added by liang l00180803 20110511 for system sleep
+	 chown system /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
 	 chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 	 chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 	 chown system /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
@@ -103,7 +102,6 @@ case "$target" in
 	 chmod 664 /sys/devices/system/cpu/cpu1/online
         ;;
 esac
-# End:DTS2011092100690 added by z00176551 20110926 for fingerprint of 301w version
 
 case "$target" in
     "msm8960")
@@ -133,6 +131,7 @@ case "$target" in
      echo 50000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
      echo 1 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
      echo 4 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+
      echo 384000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
      echo 384000 > /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
      chown system /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
@@ -159,19 +158,6 @@ case "$target" in
         ;;
 esac
 
-chown system /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
-
-# Begin:DTS2011092100690 added by z00176551 20110926 for fingerprint of 301w version
-case "$target" in
-#/* <DTS2011050500465 for oeminfo by x00164162, begin 2011/5/5 */
-     "msm8660" | "hws7300u" | "hws7300w" | "qsd8650a_st1x")
-        mount -t debugfs debugfs /sys/kernel/debug
-#/* <DTS2011050500465 for oeminfo by x00164162, end 2011/5/5 */
-    ;;
-esac
-#/* <DTS2011050500465 for oeminfo by x00164162, begin 2011/5/5 */
-
-chown system /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
 
 emmc_boot=`getprop ro.emmc`
 case "$emmc_boot"
@@ -199,17 +185,22 @@ case "$target" in
         ;;
 esac
 
-#/* <DTS2011050500465 for oeminfo by x00164162, begin 2011/5/5 */
 case "$target" in
      "msm8660" | "hws7300u" | "hws7300w")
      insmod /system/lib/modules/rpc_server_handset.ko
      ;;
 esac
-#/* <DTS2011050500465 for oeminfo by x00164162, end 2011/5/5 */
-
 
 case "$target" in
     "msm8660")
         start thermald
     ;;
+esac 
+
+# Change adj level and min_free_kbytes setting for lowmemory killer to kick in
+case "$target" in
+     "msm8660")
+        echo 0,1,2,4,9,12 > /sys/module/lowmemorykiller/parameters/adj
+        echo 5120 > /proc/sys/vm/min_free_kbytes
+     ;;
 esac
