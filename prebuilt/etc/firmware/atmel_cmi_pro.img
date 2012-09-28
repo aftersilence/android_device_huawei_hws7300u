@@ -1,0 +1,54 @@
+#************************************************************************************************************
+#************************************************************************************************************
+# File of maxtouch IC configuration upgrade, by Yaobing Li, liyaobing@huawei.com                           **
+# the idea is to pack all objects data into a text file. data is orgnized in format of object by object.   ** 
+# Two bytes are added at the begining of each object. First one is TYPE of this object, 2nd one is number  **  
+# of data of this object in byte.                                                                          **
+# Host application just simply reads the file, recognize the TYPE, and read number of data indicated by    **
+# following byte. With the information of START_ADDRESS of each object read from maxtouch IC during        **
+# initialization stage, host application can easily write related data into corresponding object           **
+# configuration zone. After all objects are written, host application sends BACKUP command, followed       **
+# by a RESET command after waiting for 20 millisecond so that IC can write configuration data into device  **
+# EEPROM. the formation of this config file as followly:                                                   **
+#  (1) all of characters is valid in rows beginning with annotation ¡®#¡¯                                    **
+#  (2) only character of ['0'¡«'9'¡¢'a'¡«'f'¡¢'A'¡«'F'¡¢''¡¢\t] is valid in rows beginning with            **
+#      non-annotation ¡®#¡¯                                                                                  **
+#  (3) config data must be two-character hexadecimal character with no 0x as it's leader character.        **
+#      for example, "01" "12" "1f" "1F" is valid config data,but "0x01" "1" "f" is invalid config data     ** 
+#  (4) in rows of config data £¬the first data is TYPE of this object£¬the second data is number of        **
+#      config data of this object in byte. the number of config data followlly this data must be equal     **
+#      with it£¬otherwise erro will occur .                                                                **
+#revision list :                                                                                           **
+#  (1) file be created by liyaobing in 2011.8.29                                                           ** 
+#  (2) the last byte of T18 can not be written leyihua add, 2011/09/16                                     **
+#      the first byte of T19, if the bit2 set to 1, the GPIO/PWM object then clear it, so we do not care   **
+#      the second byte of T28 is used for one low-level calibration and later not use                      **
+#************************************************************************************************************
+#************************************************************************************************************
+
+#GEN_POWERCONFIG_T7 
+07 03 20 ff 32 
+#GEN_ACQUISITIONCONFIG_T8
+08 0a 0a 00 14 14 00 00 01 40 30 25
+#TOUCH_MULTITOUCHSCREEN_T9
+09 20 8b 00 00 13 0b 00 00 28 03 02 02 05 01 0f 05 0a 19 14 FF 04 1f 03 40 00 00 00 00 00 00 00 c8 0a
+#TOUCH_KEYARRAY_T15
+0f 0b 00 00 00 00 00 00 00 00 00 00 00
+#SPT_COMCONFIG_T18
+12 02 04 00
+#SPT_GPIOPWM_T19
+13 10 00 00 3c 00 00 00 00 00 00 00 00 00 00 00 00 00
+#PROCI_GRIPFACESUPPRESSION_T20
+14 0c 07 00 46 00 00 06 00 0f 0a 04 0f 05 
+#PROCG_NOISESUPPRESSION_T22
+16 11 8d 00 00 00 00 00 00 04 20 00 00 04 0a 14 19 27 04
+#TOUCH_PROXIMITY_T23
+17 0f 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+#SPT_CTECONFIG_T28
+1c 06 00 00 03 08 08 3c
+#SPT_USERDATA_T38
+26 08 0a 00 00 00 00 00 00 00
+ 
+
+
+	

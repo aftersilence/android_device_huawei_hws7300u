@@ -15,19 +15,6 @@ lib/libmmparser_divxdrmlib.so
 lib/libmmparser.so
 lib/libmmosal.so
 
-# Graphics
-lib/egl/eglsubAndroid.so
-lib/egl/libEGL_adreno200.so
-lib/egl/libGLESv1_CM_adreno200.so
-lib/egl/libGLESv2_adreno200.so
-lib/egl/libq3dtools_adreno200.so
-lib/egl/libGLESv2S3D_adreno200.so
-lib/libgsl.so
-lib/libC2D2.so
-lib/libOpenVG.so
-lib/libsc-a2xx.so
-lib/libc2d2_z180.so
-
 # Radio
 bin/netmgrd
 bin/qmiproxy
@@ -93,25 +80,6 @@ etc/wifi/nvram-bcm4329.txt
 etc/wifi/config
 etc/wifi/rtecdc-mfgtest-bcm4319.bin
 etc/wifi/rtecdc-bcm4329.bin
-
-# Firmware
-etc/firmware/cyttsp_8660_ffa.hex
-etc/firmware/cyttsp_8660_fluid_p2.hex
-etc/firmware/cyttsp_8660_fluid_p3.hex
-etc/firmware/dsps_fluid.b00
-etc/firmware/dsps_fluid.b01
-etc/firmware/dsps_fluid.b02
-etc/firmware/dsps_fluid.b03
-etc/firmware/dsps_fluid.mdt
-etc/firmware/leia_pfp_470.fw
-etc/firmware/leia_pm4_470.fw
-etc/firmware/vidc_1080p.fw
-etc/firmware/yamato_pfp.fw
-etc/firmware/yamato_pm4.fw
-etc/firmware/t1320_tm1828_001.img
-etc/firmware/t1320_tm1885_004.img
-etc/firmware/s7020_suc.img
-etc/firmware/atmel_cmi_pro.img
 
 # SAR
 etc/sar/sar_302U.conf
@@ -234,7 +202,6 @@ lib/libOmxAacDec.so
 lib/libthermal_mitigation.so
 lib/libWVphoneAPI.so
 lib/libmm-color-convertor.so
-lib/libOmxQcelp13Dec.so
 lib/libOmxEvrcEnc.so
 lib/libnetmonitor.so
 lib/libulp2.so
