@@ -178,19 +178,19 @@ PRODUCT_COPY_FILES += \
 
 # Scripts
 PRODUCT_COPY_FILES += \
-    device/huawei/hws7300u/prebuilt/etc/scripts/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
-    device/huawei/hws7300u/prebuilt/etc/scripts/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
-    device/huawei/hws7300u/prebuilt/etc/scripts/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
-    device/huawei/hws7300u/prebuilt/etc/scripts/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
-    device/huawei/hws7300u/prebuilt/etc/scripts/init.hw.insmod.sh:system/etc/init.hw.insmod.sh \
-    device/huawei/hws7300u/prebuilt/etc/scripts/init.brcm.bt.sh:system/etc/init.brcm.bt.sh \
-    device/huawei/hws7300u/prebuilt/etc/scripts/test.bt.sh:system/etc/test.bt.sh \
-    device/huawei/hws7300u/prebuilt/etc/scripts/init.bt.sh:system/etc/init.bt.sh \
-    device/huawei/hws7300u/prebuilt/etc/scripts/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
-    device/huawei/hws7300u/prebuilt/etc/scripts/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
-    device/huawei/hws7300u/prebuilt/etc/scripts/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
-    device/huawei/hws7300u/prebuilt/etc/scripts/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh \
-    device/huawei/hws7300u/prebuilt/etc/scripts/bluetooth_power.sh:system/etc/bluetooth_power.sh
+    device/huawei/hws7300u/prebuilt/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
+    device/huawei/hws7300u/prebuilt/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
+    device/huawei/hws7300u/prebuilt/etc/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
+    device/huawei/hws7300u/prebuilt/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
+    device/huawei/hws7300u/prebuilt/etc/init.hw.insmod.sh:system/etc/init.hw.insmod.sh \
+    device/huawei/hws7300u/prebuilt/etc/init.brcm.bt.sh:system/etc/init.brcm.bt.sh \
+    device/huawei/hws7300u/prebuilt/etc/test.bt.sh:system/etc/test.bt.sh \
+    device/huawei/hws7300u/prebuilt/etc/init.bt.sh:system/etc/init.bt.sh \
+    device/huawei/hws7300u/prebuilt/etc/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
+    device/huawei/hws7300u/prebuilt/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
+    device/huawei/hws7300u/prebuilt/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
+    device/huawei/hws7300u/prebuilt/etc/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh \
+    device/huawei/hws7300u/prebuilt/etc/bluetooth_power.sh:system/etc/bluetooth_power.sh
 
 # Firmware
 PRODUCT_COPY_FILES += \
