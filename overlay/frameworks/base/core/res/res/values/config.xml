@@ -134,7 +134,7 @@
         <item>"mobile_dun,4,0,3,60000,true"</item>
         <item>"mobile_hipri,5,0,3,60000,true"</item>
         <item>"mobile_bluetooth,7,7,1,-1,true"</item>
-        <item>"wifi_p2p,13,1,0,-1,true"</item>
+        <item>"wifi_p2p,13,1,0,-1,false"</item>
     </string-array>
 
     <!-- An Array of "[ConnectivityManager connectionType],
@@ -197,10 +197,10 @@
          The default is false. -->
     <bool name="config_lidControlsSleep">true</bool>
 
-     <!-- Component name of the service providing network location support. -->	
-    <string name="config_networkLocationProviderPackageName" translatable="false">com.google.android.location.NetworkLocationProvider</string>
-	
-     <!-- Component name of the service providing geocoder API support. -->	
-    <string name="config_geocodeProviderPackageName" translatable="false">com.google.android.location.GeocodeProvider</string>
+    <!-- Package name providing network location support. -->
+    <string name="config_networkLocationProviderPackageName" translatable="false">com.google.android.location</string>
+
+    <!-- Package name providing geocoder API support. -->
+    <string name="config_geocodeProviderPackageName" translatable="false">com.google.android.location</string>
 
 </resources>

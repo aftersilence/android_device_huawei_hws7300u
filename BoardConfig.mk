@@ -79,14 +79,15 @@ COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=hws7300u vmalloc=578M kgsl.ptcount=16
 BOARD_KERNEL_BASE := 0x40300000
 BOARD_KERNEL_PAGESIZE := 2048
-TARGET_KERNEL_SOURCE := kernel/huawei/hws7300u
-TARGET_KERNEL_CONFIG := mediapad_defconfig
+TARGET_PREBUILT_KERNEL := device/huawei/hws7300u/kernel
+#TARGET_KERNEL_SOURCE := kernel/huawei/hws7300u
+#TARGET_KERNEL_CONFIG := mediapad_defconfig
 
 # Usb connection to PC
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
 # Audio
-BOARD_USE_QCOM_LPA := true
+# BOARD_USE_QCOM_LPA := true
 
 # CWM Recovery
 TARGET_RECOVERY_INITRC := device/huawei/hws7300u/recovery/init-cwm.rc
