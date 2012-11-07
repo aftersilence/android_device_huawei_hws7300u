@@ -161,11 +161,8 @@ lib/libtime_genoff.so
 lib/libhwrpc.so
 lib/libdsucsdappif_apis_fusion.so
 lib/liboem_rapi.so
-lib/tcp-connections.so
 lib/libmmmpod.so
-lib/libtcpfinaggr.so
 lib/libstagefright_soft_ffmpegaudiodec.so
-lib/libdnshostprio.so
 lib/libnode.so
 lib/libmmjps.so
 lib/libxml.so
@@ -192,10 +189,8 @@ lib/libdss.so
 lib/libqsap_sdk.so
 lib/liballjoyn.so
 lib/libdsprofile.so
-lib/qnet-plugin.so
 lib/libping_lte_rpc.so
 lib/libping_mdm.so
-lib/pp_proc_plugin.so
 lib/liboeminfo.so
 lib/libOmxWmaDec.so
 lib/libOmxAacDec.so

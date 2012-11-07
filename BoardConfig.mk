@@ -1,8 +1,6 @@
 # Releasetools	
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/huawei/hws7300u/releasetools/ota_from_target_files
 
-USE_CAMERA_STUB := false
-
 TARGET_SPECIFIC_HEADER_PATH := device/huawei/hws7300u/include
 
 # Bootloader, radio
@@ -61,8 +59,6 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 # Graphics
 USE_OPENGL_RENDERER := true
 TARGET_USES_C2D_COMPOSITION := true
-TARGET_QCOM_HDMI_OUT := true
-TARGET_QCOM_HDMI_RESOLUTION_AUTO := true
 TARGET_USES_ION := true
 BOARD_EGL_CFG := device/huawei/hws7300u/prebuilt/egl.cfg
 
@@ -87,7 +83,7 @@ TARGET_PREBUILT_KERNEL := device/huawei/hws7300u/kernel
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
 # Audio
-# BOARD_USE_QCOM_LPA := true
+BOARD_USE_QCOM_LPA := true
 
 # CWM Recovery
 TARGET_RECOVERY_INITRC := device/huawei/hws7300u/recovery/init-cwm.rc
