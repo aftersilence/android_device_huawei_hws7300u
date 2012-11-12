@@ -387,7 +387,9 @@ on property:init.svc.bootanim=stopped
 
 service hdmid /system/bin/hdmid
     class late_start
-    socket hdmid stream 0660 root system graphics
+    user system
+    group system graphics
+    socket hdmid stream 0660 system system
     disabled
 
 on property:ro.hdmi.enable=true

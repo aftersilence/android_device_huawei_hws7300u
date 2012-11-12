@@ -114,7 +114,6 @@ PRODUCT_PACKAGES += \
     audio.primary.msm8660 \
     audio.a2dp.default \
     audio_policy.msm8660 \
-    audio_policy.conf \
     libaudioutils
 
 # Omx
@@ -230,6 +229,7 @@ PRODUCT_COPY_FILES += \
 
 # Some misc configuration files
 PRODUCT_COPY_FILES += \
+    device/huawei/hws7300u/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf \
     device/huawei/hws7300u/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
     device/huawei/hws7300u/prebuilt/usr/idc/t1320.idc:system/usr/idc/t1320.idc
 

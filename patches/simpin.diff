@@ -1,0 +1,19 @@
+diff --git a/frameworks/base/telephony/java/com/android/internal/telephony/RIL.java b/frameworks/base/telephony/java/com/android/internal/telephony/RIL.java
+index 98c5c82..db40326 100644
+--- a/frameworks/base/telephony/java/com/android/internal/telephony/RIL.java
++++ b/frameworks/base/telephony/java/com/android/internal/telephony/RIL.java
+@@ -3118,6 +3118,14 @@ public class RIL extends BaseCommands implements CommandsInterface {
+             ca.app_type       = ca.AppTypeFromRILInt(p.readInt());
+             ca.app_state      = ca.AppStateFromRILInt(p.readInt());
+             ca.perso_substate = ca.PersoSubstateFromRILInt(p.readInt());
++            if ((ca.app_state == IccCardApplication.AppState.APPSTATE_SUBSCRIPTION_PERSO) &&
++              ((ca.perso_substate == IccCardApplication.PersoSubState.PERSOSUBSTATE_READY) ||
++              (ca.perso_substate == IccCardApplication.PersoSubState.PERSOSUBSTATE_UNKNOWN))) {
++              // ridiculous hack for network SIM unlock pin	
++              ca.app_state = IccCardApplication.AppState.APPSTATE_UNKNOWN;	
++              Log.d(LOG_TAG, "ca.app_state == AppState.APPSTATE_SUBSCRIPTION_PERSO");
++              Log.d(LOG_TAG, "ca.perso_substate == PersoSubState.PERSOSUBSTATE_READY");
++            }
+             ca.aid            = p.readString();
+             ca.app_label      = p.readString();
+             ca.pin1_replaced  = p.readInt();

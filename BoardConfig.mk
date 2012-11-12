@@ -59,7 +59,7 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 # Graphics
 USE_OPENGL_RENDERER := true
 TARGET_USES_C2D_COMPOSITION := true
-TARGET_USES_ION := true
+TARGET_USES_PMEM := true
 BOARD_EGL_CFG := device/huawei/hws7300u/prebuilt/egl.cfg
 
 # Webkit
@@ -83,7 +83,7 @@ TARGET_PREBUILT_KERNEL := device/huawei/hws7300u/kernel
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
 # Audio
-BOARD_USE_QCOM_LPA := true
+# BOARD_USE_QCOM_LPA := true
 
 # CWM Recovery
 TARGET_RECOVERY_INITRC := device/huawei/hws7300u/recovery/init-cwm.rc
@@ -106,3 +106,6 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 # TW_ALWAYS_RMRF := true
 # TW_FLASH_FROM_STORAGE := true
 # TW_NO_BATT_PERCENT := true
+
+TARGET_NO_HW_VSYNC := true
+COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK
