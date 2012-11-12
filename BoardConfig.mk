@@ -83,7 +83,7 @@ TARGET_PREBUILT_KERNEL := device/huawei/hws7300u/kernel
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
 # Audio
-BOARD_USE_QCOM_LPA := true
+# BOARD_USE_QCOM_LPA := true
 
 # CWM Recovery
 TARGET_RECOVERY_INITRC := device/huawei/hws7300u/recovery/init-cwm.rc

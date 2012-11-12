@@ -1,0 +1,74 @@
+diff --git a/packages/apps/Settings/src/com/android/settings/DeviceInfoSettings.java b/packages/apps/Settings/src/com/android/settings/DeviceInfoSettings.java
+index 29b35a5..ab01d71 100644
+--- a/packages/apps/Settings/src/com/android/settings/DeviceInfoSettings.java
++++ b/packages/apps/Settings/src/com/android/settings/DeviceInfoSettings.java
+@@ -87,7 +87,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
+         setValueSummary(KEY_EQUIPMENT_ID, PROPERTY_EQUIPMENT_ID);
+         setStringSummary(KEY_DEVICE_MODEL, Build.MODEL);
+         setStringSummary(KEY_BUILD_NUMBER, Build.DISPLAY);
+-        findPreference(KEY_KERNEL_VERSION).setSummary(getFormattedKernelVersion());
++        findPreference(KEY_KERNEL_VERSION).setSummary(getKernelVersion());
+         setValueSummary(KEY_MOD_VERSION, "ro.cm.version");
+         findPreference(KEY_MOD_VERSION).setEnabled(true);
+         setValueSummary(KEY_MOD_BUILD_DATE, "ro.build.date");
+@@ -235,6 +235,20 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
+         }
+     }
+ 
++    private String getKernelVersion() {
++        String procVersionStr;
++        try {
++            procVersionStr = readLine(FILENAME_PROC_VERSION);
++            return procVersionStr;
++        } catch (IOException e) {
++            Log.e(LOG_TAG,
++                "IO Exception when getting kernel version for Device Info screen",
++                e);
++
++            return "Unavailable";
++        }
++    }
++
+     private String getFormattedKernelVersion() {
+         String procVersionStr;
+ 
+diff --git a/packages/apps/Settings/src/com/android/settings/cmstats/ReportingServiceManager.java b/packages/apps/Settings/src/com/android/settings/cmstats/ReportingServiceManager.java
+index 41f563d..1f680a89 100644
+--- a/packages/apps/Settings/src/com/android/settings/cmstats/ReportingServiceManager.java
++++ b/packages/apps/Settings/src/com/android/settings/cmstats/ReportingServiceManager.java
+@@ -27,6 +27,11 @@ import android.net.ConnectivityManager;
+ import android.net.NetworkInfo;
+ import android.util.Log;
+ 
++import android.os.IBinder;
++import android.os.ServiceManager;
++import android.os.Parcel;
++import android.os.RemoteException;
++
+ public class ReportingServiceManager extends BroadcastReceiver {
+ 
+     public static final long dMill = 24 * 60 * 60 * 1000;
+@@ -38,6 +43,23 @@ public class ReportingServiceManager extends BroadcastReceiver {
+             setAlarm(ctx);
+         } else {
+             launchService(ctx);
++	    }
++
++	disableOverlaysOption(1);
++    }
++
++    private void disableOverlaysOption(int status) {
++        try {
++            IBinder flinger = ServiceManager.getService("SurfaceFlinger");
++            if (flinger != null) {
++                Parcel data = Parcel.obtain();
++                data.writeInterfaceToken("android.ui.ISurfaceComposer");
++                final int disableOverlays = status; 
++                data.writeInt(disableOverlays);
++                flinger.transact(1008, data, null, 0);
++                data.recycle();
++            }
++        } catch (RemoteException ex) {
+         }
+     }
+ 
