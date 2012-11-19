@@ -12,21 +12,15 @@ index 3b89a17..67fd906 100644
 +
  LOCAL_SHARED_LIBRARIES += libnetutils
 diff --git a/hardware/libhardware_legacy/wifi/wifi.c b/hardware/libhardware_legacy/wifi/wifi.c
-index 7facd29..46c2070 100644
+index 405d2ec..0fc1427 100644
 --- a/hardware/libhardware_legacy/wifi/wifi.c
 +++ b/hardware/libhardware_legacy/wifi/wifi.c
-@@ -276,11 +276,29 @@ int wifi_load_driver()
- #endif
+@@ -280,7 +280,26 @@ int wifi_load_driver()
  
- #ifdef SAMSUNG_WIFI
--    snprintf(module_arg2, sizeof(module_arg2), "%s%s", DRIVER_MODULE_ARG, type == NULL ? "" : type);
-+	snprintf(module_arg2, sizeof(module_arg2), "%s%s", DRIVER_MODULE_ARG, type == NULL ? "" : type);
- 
--    if (insmod(DRIVER_MODULE_PATH, module_arg2) < 0) {
-+	if (insmod(DRIVER_MODULE_PATH, module_arg2) < 0) {
+     if (insmod(DRIVER_MODULE_PATH, module_arg2) < 0) {
  #else
 -    if (insmod(DRIVER_MODULE_PATH, DRIVER_MODULE_ARG) < 0) {
-+	ALOGW("DRIVER MODULE ARG");
++    ALOGW("DRIVER MODULE ARG");
 +	#ifdef HUAWEI_WIFI
 +		char wlan_mac[PROPERTY_VALUE_MAX];
 +		char serialno[PROPERTY_VALUE_MAX];
