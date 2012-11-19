@@ -121,17 +121,45 @@ on boot
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
 
-# create symlink for fb1 as HDMI
-    symlink /dev/graphics/fb1 /dev/graphics/hdmi
-
 # Remove write permissions to video related nodes
-    # remove write permissions to video nodes
-    chmod 0664 /sys/devices/virtual/graphics/fb1/hpd
-    chmod 0664 /sys/devices/virtual/graphics/fb1/video_mode
-    chmod 0664 /sys/devices/virtual/graphics/fb1/format_3d
+    chmod 0660 /sys/devices/virtual/graphics/fb1/video_mode
+    chmod 0440 /sys/devices/virtual/graphics/fb1/video_mode_str
+    chmod 0440 /sys/devices/virtual/graphics/fb1/connected
+    chmod 0440 /sys/devices/virtual/graphics/fb1/edid_modes
+    chmod 0440 /sys/devices/virtual/graphics/fb1/hdcp
+    chmod 0660 /sys/devices/virtual/graphics/fb1/hpd
+    chmod 0440 /sys/devices/virtual/graphics/fb1/3d_present
+    chmod 0440 /sys/devices/virtual/graphics/fb1/hdcp_present
+    chmod 0660 /sys/devices/virtual/graphics/fb1/format_3d
+    chmod 0660 /sys/devices/virtual/graphics/fb1/edid_3d_modes
+    chmod 0440 /sys/devices/virtual/graphics/fb1/underscan
+    chmod 0440 /sys/devices/virtual/graphics/fb1/dvi
+    chmod 0440 /sys/devices/virtual/graphics/fb1/pa
+    chmod 0660 /sys/devices/virtual/graphics/fb1/cec
+    chmod 0660 /sys/devices/virtual/graphics/fb1/cec_logical_addr
+    chmod 0660 /sys/devices/virtual/graphics/fb1/cec_wr_frame
+    chmod 0660 /sys/devices/virtual/graphics/fb1/product_description
+    chmod 0660 /sys/devices/virtual/graphics/fb1/vendor_name
 
-# Change owner and group for media server and surface flinger
-    chown system system /sys/devices/virtual/graphics/fb1/format_3d
+# Change owner and group for system server and surface flinger
+    chown system graphics /sys/devices/virtual/graphics/fb1/video_mode
+    chown system graphics /sys/devices/virtual/graphics/fb1/video_mode_str
+    chown system graphics /sys/devices/virtual/graphics/fb1/connected
+    chown system graphics /sys/devices/virtual/graphics/fb1/edid_modes
+    chown system graphics /sys/devices/virtual/graphics/fb1/hdcp
+    chown system graphics /sys/devices/virtual/graphics/fb1/hpd
+    chown system graphics /sys/devices/virtual/graphics/fb1/3d_present
+    chown system graphics /sys/devices/virtual/graphics/fb1/hdcp_present
+    chown system graphics /sys/devices/virtual/graphics/fb1/format_3d
+    chown system graphics /sys/devices/virtual/graphics/fb1/edid_3d_modes
+    chown system graphics /sys/devices/virtual/graphics/fb1/underscan
+    chown system graphics /sys/devices/virtual/graphics/fb1/dvi
+    chown system graphics /sys/devices/virtual/graphics/fb1/pa
+    chown system graphics /sys/devices/virtual/graphics/fb1/cec
+    chown system graphics /sys/devices/virtual/graphics/fb1/cec_logical_addr
+    chown system graphics /sys/devices/virtual/graphics/fb1/cec_wr_frame
+    chown system graphics /sys/devices/virtual/graphics/fb1/product_description
+    chown system graphics /sys/devices/virtual/graphics/fb1/vendor_name
 
 #For bridgemgr daemon to inform the USB driver of the correct transport
     chown radio radio /sys/class/android_usb/f_rmnet_smd_sdio/transport
@@ -387,9 +415,7 @@ on property:init.svc.bootanim=stopped
 
 service hdmid /system/bin/hdmid
     class late_start
-    user system
-    group system graphics
-    socket hdmid stream 0660 system system
+    socket hdmid stream 0660 root system graphics
     disabled
 
 on property:ro.hdmi.enable=true
