@@ -32,7 +32,8 @@ index 7facd29..46c2070 100644
 +		char serialno[PROPERTY_VALUE_MAX];
 +		char huawei_module_arg[256];
 +		//custome mac
-+		property_get("wlan.mac", wlan_mac, "");
++		property_get("persist.wlan.mac", wlan_mac, "");
++		property_get("persist.wlan.random", wlan_random_mac, "false");
 +		property_get("ro.serialno", serialno, "f6r6rd1212541368");
 +
 +		if(strlen(wlan_mac) == 0)		
