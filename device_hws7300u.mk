@@ -244,10 +244,6 @@ PRODUCT_COPY_FILES += \
     device/huawei/hws7300u/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/huawei/hws7300u/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml
 
-# Device specific settings
-PRODUCT_COPY_FILES += \
-    device/huawei/hws7300u/prebuilt/app/DeviceSettings.apk:system/app/DeviceSettings.apk
-
 # Auto loading of gamepad modules
 PRODUCT_COPY_FILES += \
     device/huawei/hws7300u/prebuilt/etc/init.d/01x360ctrlr:system/etc/init.d/01x360ctrlr
