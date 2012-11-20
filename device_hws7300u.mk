@@ -128,6 +128,10 @@ PRODUCT_PACKAGES += \
     libOmxAmrEnc \
     libOmxEvrcEnc \
     libOmxQcelp13Enc
+	
+# Device specific settings
+PRODUCT_PACKAGES += \
+     MediapadSettings \
 
 # GPS
 PRODUCT_PACKAGES += \
