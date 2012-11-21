@@ -1,6 +1,3 @@
-# Releasetools	
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/huawei/hws7300u/releasetools/ota_from_target_files
-
 TARGET_SPECIFIC_HEADER_PATH := device/huawei/hws7300u/include
 
 # Bootloader, radio
