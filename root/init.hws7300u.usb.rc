@@ -1,4 +1,7 @@
 on init
+    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+    write /sys/class/android_usb/android0/f_rndis/manufacturer Huawei
+    write /sys/class/android_usb/android0/f_rndis/vendorID 12D1
     write /sys/class/android_usb/android0/f_rndis/wceis 1
 
 service qcom-usb-sh /system/bin/sh /init.qcom.usb.sh
