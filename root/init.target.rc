@@ -29,19 +29,15 @@
 
 # on emmc mount the partition containing firmware
 on emmc-fs
-   mkdir /tombstones 0771 system system
-   # Begin DTS2011071805512 modified by z00175749 for tombstones partition
-   mount ext4 /dev/block/mmcblk0p24 /tombstones nosuid nodev barrier=1
-   # End DTS2011071805512 modified by z00175749 for tombstones partition
-   mkdir /tombstones/modem 0771 system system
-   mkdir /tombstones/mdm 0771 system system
-   mkdir /tombstones/lpass 0771 system system
-   mkdir /firmware 0771 system system
-   wait /dev/block/mmcblk0p1
-   #Begin: DTS2012020605852 modified for file property by c00181104 20120217
-   mount vfat /dev/block/mmcblk0p1 /firmware ro shortname=lower,dmask=0022
-   #End: DTS2012020605852 modified for file property by c00181104 20120217
-   exec /system/bin/sh /system/etc/init.qcom.modem_links.sh
+    mkdir /tombstones 0771 system system
+    mount ext4 /dev/block/mmcblk0p24 /tombstones nosuid nodev barrier=1
+    mkdir /tombstones/modem 0771 system system
+    mkdir /tombstones/mdm 0771 system system
+    mkdir /tombstones/lpass 0771 system system
+    mkdir /firmware 0771 system system
+    wait /dev/block/mmcblk0p1
+    mount vfat /dev/block/mmcblk0p1 /firmware ro shortname=lower,dmask=0022
+    exec /system/bin/sh /system/etc/init.qcom.modem_links.sh
 
     write /sys/devices/i2c-0/0-0024/cyttsp_update_fw 1
 service kickstart /system/bin/qcks l

@@ -1,0 +1,39 @@
+on early-init
+    mount debugfs debugfs /sys/kernel/debug
+
+    export EXTERNAL_STORAGE /storage/sdcard0
+    export SECONDARY_STORAGE /storage/sdcard1
+
+    mkdir /storage 0775 system system
+    mkdir /storage/sdcard0 0775 system system
+    mkdir /storage/sdcard1 0775 system system
+    mkdir /storage/usbdisk 0775 system system
+
+    # for backwards compatibility
+    symlink /storage/sdcard0 /sdcard
+    symlink /storage/sdcard0 /mnt/sdcard
+    symlink /storage/sdcard1 /external_sd
+    symlink /storage/sdcard1 /mnt/external_sd
+    symlink /storage/usbdisk /usbdisk
+    symlink /storage/usbdisk /mnt/usbdisk
+
+on early-fs
+    mkdir /system
+    mkdir /data 0771 system system
+    mkdir /persist 0771 system system
+    mkdir /cache 0771 system cache
+    mkdir /config 0500 root root
+
+on emmc-fs
+# mount mmc partitions
+    mount_all /fstab.qcom
+
+    class_start early_start
+    chown nobody shell /system/bin/RescueStarter
+    chmod 755 /system/bin/RescueStarter
+    chown nobody shell /system/bin/RescueServer
+    chmod 755 /system/bin/RescueServer
+    chmod 2755 /system/bin/pcscd
+
+# Device Encryption
+    setprop ro.crypto.keyfile.userdata /dev/block/mmcblk0p26

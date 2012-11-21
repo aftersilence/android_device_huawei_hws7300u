@@ -168,18 +168,14 @@ PRODUCT_PACKAGES += \
 
 # Boot ramdisk
 PRODUCT_COPY_FILES += \
-    device/huawei/hws7300u/root/init:root/init \
-    device/huawei/hws7300u/root/init.rc:root/init.rc \
+    device/huawei/hws7300u/root/init.emmc.rc:root/init.emmc.rc \
+    device/huawei/hws7300u/root/fstab.qcom:root/fstab.qcom \
     device/huawei/hws7300u/root/ueventd.rc:root/ueventd.rc \
-    device/huawei/hws7300u/root/init.hws7300x.usb.rc:root/init.hws7300x.usb.rc \
+    device/huawei/hws7300u/root/init.hws7300u.usb.rc:root/init.hws7300u.usb.rc \
     device/huawei/hws7300u/root/init.hws7300u.rc:root/init.hws7300u.rc \
     device/huawei/hws7300u/root/init.qcom.usb.sh:root/init.qcom.usb.sh \
     device/huawei/hws7300u/root/init.target.rc:root/init.target.rc \
     device/huawei/hws7300u/root/init.qcom.sh:root/init.qcom.sh
-
-# Recovery ramdisk
-PRODUCT_COPY_FILES += \
-    device/huawei/hws7300u/recovery/ueventd.rc:recovery/root/ueventd.rc
 
 # Scripts
 PRODUCT_COPY_FILES += \
