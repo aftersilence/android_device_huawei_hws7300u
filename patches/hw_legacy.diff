@@ -36,7 +36,7 @@ index 7facd29..46c2070 100644
 +		property_get("ro.serialno", serialno, "f6r6rd1212541368");
 +
 +		if(strlen(wlan_mac) == 0)		
-+			snprintf(huawei_module_arg, sizeof(huawei_module_arg), "%s wlan_mac=%02x%02x%02x%02x%02x%02x", DRIVER_MODULE_ARG, serialno[5], serialno[6], serialno[7], serialno[8], serialno[9], serialno[10]);
++			snprintf(huawei_module_arg, sizeof(huawei_module_arg), "%s wlan_mac=%02x%02x%02x%02x%02x%02x", DRIVER_MODULE_ARG, serialno[0], serialno[1], serialno[2], serialno[3], serialno[4], serialno[5]);
 +		else
 +			snprintf(huawei_module_arg, sizeof(huawei_module_arg), "%s wlan_mac=%s", DRIVER_MODULE_ARG, wlan_mac);	
 +
