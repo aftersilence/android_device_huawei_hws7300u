@@ -19,7 +19,6 @@ ro.telephony.ril.v3=signalstrength
 ro.use_data_netmgrd=true
 ro.ril.hsxpa=1
 ro.ril.gprsclass=10
-ro.vendor.extension_library=/system/lib/libqc-opt.so
 
 # wifi
 wifi.interface=wlan0
