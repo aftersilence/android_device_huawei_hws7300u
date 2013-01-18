@@ -25,7 +25,7 @@ wifi.interface=wlan0
 
 # graphics
 debug.composition.type=gpu
-debug.mdpcomp.maxlayer=2
+debug.mdpcomp.maxlayer=0
 debug.enabletr=true
 debug.sf.hw=1
 ro.opengles.version=131072

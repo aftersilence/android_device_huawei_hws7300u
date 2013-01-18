@@ -63,7 +63,6 @@ lib/libmmipl.so
 lib/libmmmpo.so
 lib/libmmstereo.so
 bin/mm-qcamera-daemon
-bin/mm-qcamera-test
 bin/mm-qcamera-testsuite-client
 bin/v4l2-qcamera-app
 
@@ -71,14 +70,9 @@ bin/v4l2-qcamera-app
 lib/libdiag.so
 
 # Wi-Fi
-etc/wifi/rtecdc-bcm4319.bin
-etc/wifi/rtecdc-apsta-bcm4319.bin
 etc/wifi/rtecdc-apsta-bcm4329.bin
-etc/wifi/nvram-bcm4319.txt
-etc/wifi/rtecdc-mfgtest-bcm4329.bin
 etc/wifi/nvram-bcm4329.txt
 etc/wifi/config
-etc/wifi/rtecdc-mfgtest-bcm4319.bin
 etc/wifi/rtecdc-bcm4329.bin
 
 # SAR
@@ -90,7 +84,7 @@ etc/sar/sar_312U.conf
 etc/sar/312U_NV.bin
 bin/sar
 
-# Other crap (something may be unneeded)
+# Other crap
 etc/audio_cal.acdb
 etc/audio_cal_bs300.acdb
 etc/voicemail-conf.xml
@@ -108,22 +102,15 @@ etc/coulometer/bq27510_pro.bqfs
 bin/hw_cifs
 bin/btnvtool
 bin/mpdecision
-bin/mm-vdec-omx-test
 bin/ntfs-3g
-bin/test-libwvm
-bin/mm-aenc-omxevrc-test
 bin/diagd
-bin/mm-jps-enc-test
 bin/radish
 bin/am
 bin/bmgr
 bin/svc
 bin/curl
 bin/sapd
-bin/mm-video-driver-test
-bin/mm-audio-alsa-test
 bin/dun-server
-bin/test_gemini
 bin/amploader
 bin/thermald
 bin/ccid_daemon
@@ -135,17 +122,14 @@ bin/ime
 bin/monkey
 bin/bu
 bin/tptest
-bin/test-wvdrmplugin
 bin/fmconfig
 bin/input
 bin/hci_qcomm_init
-bin/wpa_supplicant_wapi
 bin/pm
 bin/diag_uart_log
 bin/ATFWD-daemon
 bin/oem_rapid
 bin/load_logo
-bin/test-wvplayer_L3
 bin/usbhub
 bin/filebackup
 bin/nl_listener
@@ -203,15 +187,3 @@ lib/libulp2.so
 lib/libmm-abl.so
 
 bin/mm-abl-daemon
-bin/mm-aenc-omxaac-test
-bin/mm-mpo-enc-test
-bin/mm-video-encdrv-test
-bin/mm-adec-omxaac-test
-bin/mm-aenc-omxqcelp13-test
-bin/mm-venc-omx-test720p
-bin/mm-aenc-omxamr-test
-bin/mm-jpeg-enc-test
-bin/mm-mpo-dec-test
-bin/mm-audio-native-test
-bin/mm-adec-omxwma-test
-bin/mm-jpeg-dec-test

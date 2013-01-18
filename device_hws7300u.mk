@@ -185,12 +185,10 @@ PRODUCT_COPY_FILES += \
     device/huawei/hws7300u/prebuilt/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
     device/huawei/hws7300u/prebuilt/etc/init.hw.insmod.sh:system/etc/init.hw.insmod.sh \
     device/huawei/hws7300u/prebuilt/etc/init.brcm.bt.sh:system/etc/init.brcm.bt.sh \
-    device/huawei/hws7300u/prebuilt/etc/test.bt.sh:system/etc/test.bt.sh \
     device/huawei/hws7300u/prebuilt/etc/init.bt.sh:system/etc/init.bt.sh \
     device/huawei/hws7300u/prebuilt/etc/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
     device/huawei/hws7300u/prebuilt/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
     device/huawei/hws7300u/prebuilt/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
-    device/huawei/hws7300u/prebuilt/etc/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh \
     device/huawei/hws7300u/prebuilt/etc/bluetooth_power.sh:system/etc/bluetooth_power.sh
 
 # Firmware
@@ -231,7 +229,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/huawei/hws7300u/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf \
     device/huawei/hws7300u/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
-    device/huawei/hws7300u/prebuilt/usr/idc/t1320.idc:system/usr/idc/t1320.idc
+    device/huawei/hws7300u/prebuilt/usr/idc/t1320.idc:system/usr/idc/t1320.idc \
+    device/huawei/hws7300u/prebuilt/usr/idc/s7020.idc:system/usr/idc/s7020.idc
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
