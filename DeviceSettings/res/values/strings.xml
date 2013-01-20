@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DeviceSettings</string>
+    <string name="title_lcd_enhancement_color">Enhancement Color</string>
+    <string name="summary_lcd_enhancement_color">More saturated colors</string>
+
+    <string name="title_wlan_mac">Custom MAC</string>
+    <string name="summary_wlan_mac">Custom Wireless MAC Addres</string>
+
+    <string name="title_ext_internal">Ext. Internal</string>
+    <string name="summary_ext_internal">Sdcard as Internal memory (required reboot)</string>
+
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+</resources>

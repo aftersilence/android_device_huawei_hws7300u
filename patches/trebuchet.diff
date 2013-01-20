@@ -8,7 +8,7 @@ index 650f2f1..86d7d56 100644
      <!-- Workspace grid size -->
 -    <integer name="config_workspaceRows">4</integer>
 -    <integer name="config_workspaceColumns">4</integer>
-+    <integer name="config_workspaceRows">6</integer>
++    <integer name="config_workspaceRows">5</integer>
 +    <integer name="config_workspaceColumns">6</integer>
  </resources>
 diff --git a/packages/apps/Trebuchet/src/com/cyanogenmod/trebuchet/Workspace.java b/packages/apps/Trebuchet/src/com/cyanogenmod/trebuchet/Workspace.java

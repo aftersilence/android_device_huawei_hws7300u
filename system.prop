@@ -1,4 +1,4 @@
-#
+
 # system.prop for hws7300u
 #
 
@@ -20,18 +20,35 @@ mobiledata.interfaces=rmnet0
 ro.telephony.ril.v3=signalstrength
 ro.telephony.ril_class=QualcommSharedRIL
 ro.use_data_netmgrd=true
+ro.ril.hsxpa=1
+ro.ril.gprsclass=10
 
 # wifi
 wifi.interface=wlan0
 
 # graphics
-debug.composition.type=c2d
+debug.composition.type=gpu
 debug.enabletr=true
 debug.sf.hw=1
 ro.opengles.version=131072
 dev.pm.dyn_samplingrate=1
 windowsmgr.max_events_per_sec=240
 ro.sf.compbypass.enable=0
+persist.sys.color.enhance=true
+
+# system props for SD card emulation of emmc partition
+ro.emmc.sdcard.partition=23
+
+#system props for the MM modules
+media.stagefright.enable-player=true
+media.stagefright.enable-http=true
+media.stagefright.enable-fma2dp=false
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+
+# System props for audio
+persist.audio.fluence.mode=endfire
+persist.audio.vr.enable=false
 
 # hdmi
 com.qc.hardware=true

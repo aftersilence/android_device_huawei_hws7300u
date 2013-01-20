@@ -1,0 +1,38 @@
+on early-init
+    mount debugfs debugfs /sys/kernel/debug
+
+    mkdir /mnt/sdcard 0000 system system
+    # for backwards compatibility
+    symlink /mnt/sdcard /sdcard
+
+    mkdir /mnt/external_sd 0000 system system
+    symlink /mnt/external_sd /external_sd
+
+    mkdir /mnt/usbdisk 0755 system system
+
+    export EXTERNAL_STORAGE /mnt/sdcard
+
+on early-fs
+    mkdir /system
+    mkdir /data 0771 system system
+    mkdir /persist 0771 system system
+    mkdir /cache 0771 system cache
+    mkdir /config 0500 root root
+
+on emmc-fs
+# mount mmc partitions
+    mount ext4 /dev/block/mmcblk0p20 /system wait ro barrier=1
+    mount ext4 /dev/block/mmcblk0p22 /cache wait nosuid nodev barrier=1
+    mount ext4 /dev/block/mmcblk0p23 /tmpdata wait noatime nosuid nodev barrier=1 noauto_da_alloc
+    mount ext4 /dev/block/mmcblk0p21 /persist wait noatime nosuid nodev barrier=1
+    mount ext4 /dev/block/mmcblk0p27 /data wait noatime nosuid nodev barrier=1 noauto_da_alloc
+
+    class_start early_start
+    chown nobody shell /system/bin/RescueStarter
+    chmod 755 /system/bin/RescueStarter
+    chown nobody shell /system/bin/RescueServer
+    chmod 755 /system/bin/RescueServer
+    chmod 2755 /system/bin/pcscd
+
+# Device Encryption
+    setprop ro.crypto.keyfile.userdata /dev/block/mmcblk0p26

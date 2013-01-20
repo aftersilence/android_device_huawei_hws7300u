@@ -167,7 +167,10 @@
 /dev/msm_preproc_ctl      0660  system       audio
 /dev/msm_a2dp_in          0640  system       audio
 /dev/msm_amrnb_in         0640  system       audio
-/sys/devices/virtual/usb_composite/*   enable      0664  root   system
-/sys/devices/virtual/smdpkt/smdcntl*       open_timeout   0664 radio radio
+
 #permissions for sensors
 /dev/msm_dsps             0660  system       system
+
+# sysfs properties
+/sys/devices/virtual/usb_composite/*   enable      0664  root   system
+/sys/devices/virtual/smdpkt/smdcntl*       open_timeout   0664 radio radio

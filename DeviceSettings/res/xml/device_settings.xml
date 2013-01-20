@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+            android:key="lcd_color"
+            android:title="@string/title_lcd_enhancement_color"
+            android:persistent="false"
+            android:defaultValue="true"
+            android:summary="@string/summary_lcd_enhancement_color"/>
+    <Preference
+            android:key="wlan_mac"
+            android:title="@string/title_wlan_mac"
+            android:summary="@string/summary_wlan_mac"
+            />
+
+    <CheckBoxPreference
+            android:key="ext_internal"
+            android:title="@string/title_ext_internal"
+            android:persistent="false"
+            android:defaultValue="false"
+            android:summary="@string/summary_ext_internal"/>
+
+</PreferenceScreen>

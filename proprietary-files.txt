@@ -5,35 +5,25 @@ vendor/lib/drm/libdrmwvmplugin.so
 vendor/lib/libwvm.so
 lib/drm/libdrmhwomavoneplugin.so
 
-# Charging and shutdown animations
-media/shutdownanimation.zip
+# Charging animations
 media/charginganimation.zip
 bin/charginganimation
-bin/shutdownanimation
 bin/bootanimationex
 
+# Webkit
+lib/libv8.so     # needed_for_build
+
 # Audio
-lib/libacdbmapper.so
-lib/libaudioalsa.so
-lib/libacdbloader.so
+lib/libacdbmapper.so     # needed_for_build
+lib/libaudioalsa.so     # needed_for_build
+lib/libacdbloader.so     # needed_for_build
 lib/libaudcal.so
 lib/libaudioparsers.so
 
 # mmparser extended
+lib/libmmparser_divxdrmlib.so
 lib/libmmparser.so
 lib/libmmosal.so
-lib/libmmparser_divxdrmlib.so
-
-# Graphics
-lib/egl/eglsubAndroid.so
-lib/egl/libEGL_adreno200.so
-lib/egl/libGLESv1_CM_adreno200.so
-lib/egl/libGLESv2_adreno200.so
-lib/egl/libq3dtools_adreno200.so
-lib/libgsl.so
-lib/libC2D2.so
-lib/libOpenVG.so
-lib/libsc-a2xx.so
 
 # Radio
 bin/netmgrd
@@ -41,14 +31,11 @@ bin/qmiproxy
 bin/qmuxd
 bin/rmt_storage
 bin/rmt_oeminfo
-bin/rild
 lib/libqmi.so
 lib/libqmiservices.so
 lib/libqdi.so
 lib/libqdp.so
 lib/libqueue.so
-lib/libril.so
-lib/libreference-ril.so
 lib/libril-qc-qmi-1.so
 lib/libril-qcril-hook-oem.so
 lib/libdsutils.so
@@ -86,46 +73,17 @@ lib/libmmipl.so
 lib/libmmmpo.so
 lib/libmmstereo.so
 bin/mm-qcamera-daemon
-bin/mm-qcamera-test
 bin/mm-qcamera-testsuite-client
 bin/v4l2-qcamera-app
 
 # General
 lib/libdiag.so
 
-# Webkit
-lib/libv8.so
-
 # Wi-Fi
-etc/wifi/rtecdc-bcm4319.bin
-etc/wifi/rtecdc-apsta-bcm4319.bin
 etc/wifi/rtecdc-apsta-bcm4329.bin
-etc/wifi/nvram-bcm4319.txt
-etc/wifi/wpa_supplicant.conf
-etc/wifi/rtecdc-mfgtest-bcm4329.bin
 etc/wifi/nvram-bcm4329.txt
 etc/wifi/config
-etc/wifi/rtecdc-mfgtest-bcm4319.bin
 etc/wifi/rtecdc-bcm4329.bin
-
-# Firmware
-etc/firmware/cyttsp_8660_ffa.hex
-etc/firmware/cyttsp_8660_fluid_p2.hex
-etc/firmware/cyttsp_8660_fluid_p3.hex
-etc/firmware/dsps_fluid.b00
-etc/firmware/dsps_fluid.b01
-etc/firmware/dsps_fluid.b02
-etc/firmware/dsps_fluid.b03
-etc/firmware/dsps_fluid.mdt
-etc/firmware/leia_pfp_470.fw
-etc/firmware/leia_pm4_470.fw
-etc/firmware/vidc_1080p.fw
-etc/firmware/yamato_pfp.fw
-etc/firmware/yamato_pm4.fw
-etc/firmware/t1320_tm1828_001.img
-etc/firmware/t1320_tm1885_004.img
-etc/firmware/s7020_suc.img
-etc/firmware/atmel_cmi_pro.img
 
 # SAR
 etc/sar/sar_302U.conf
@@ -136,64 +94,15 @@ etc/sar/sar_312U.conf
 etc/sar/312U_NV.bin
 bin/sar
 
-# Helix libs
-lib/helix/asxrender.so
-lib/helix/raac.so
-lib/helix/vidsite.so
-lib/helix/rarender.so
-lib/helix/authmgr.so
-lib/helix/wma9.so
-lib/helix/smlrender.so
-lib/helix/cvt1.so
-lib/helix/drvc.so
-lib/helix/vidplin.so
-lib/helix/smlfformat.so
-lib/helix/hxdtdriver.so
-lib/helix/hxltcolor.so
-lib/helix/hxmedplyeng.so
-lib/helix/nullrend.so
-lib/helix/wmv9.so
-lib/helix/smplfsys.so
-lib/helix/ramfformat.so
-lib/helix/cook.so
-lib/helix/hxxml.so
-lib/helix/hxmedpltfm.so
-lib/helix/wmvrender.so
-lib/helix/atrc.so
-lib/helix/hxnetwksvc.so
-lib/helix/rv20.so
-lib/helix/dtdrplin.so
-lib/helix/asxff.so
-lib/helix/rn5auth.so
-lib/helix/drv2.so
-lib/helix/wmaA.so
-lib/helix/wm9v.so
-lib/helix/wmarender.so
-lib/helix/rmfformat.so
-lib/helix/audplin.so
-lib/helix/sipr.so
-lib/helix/clntxres.so
-lib/helix/wmerender.so
-lib/helix/rv30.so
-lib/helix/colorcvt.so
-lib/helix/rvrender.so
-lib/helix/omxv.so
-lib/helix/ramrender.so
-lib/helix/hxsdp.so
-lib/helix/ralf.so
-lib/helix/asfff.so
-lib/helix/rv40.so
-lib/helix/wmv8.so
-lib/libhelixplayer.so
-
-# Other crap (something may be unneeded)
+# Other crap
 etc/audio_cal.acdb
 etc/audio_cal_bs300.acdb
 etc/voicemail-conf.xml
 etc/bluetooth/BCM4329B1_37.4M.hcd
 etc/bluetooth/blacklist.conf
 etc/sn.txt
-etc/mtab
+bin/brcm_patchram_plus
+lib/libbluedroid.so
 etc/thermald.conf
 
 etc/coulometer/bq27510_version
@@ -203,23 +112,15 @@ etc/coulometer/bq27510_pro.bqfs
 bin/hw_cifs
 bin/btnvtool
 bin/mpdecision
-bin/mm-vdec-omx-test
 bin/ntfs-3g
-bin/test-libwvm
-bin/mm-aenc-omxevrc-test
 bin/diagd
-bin/mm-jps-enc-test
 bin/radish
-bin/setup_fs
 bin/am
 bin/bmgr
 bin/svc
 bin/curl
 bin/sapd
-bin/mm-video-driver-test
-bin/mm-audio-alsa-test
 bin/dun-server
-bin/test_gemini
 bin/amploader
 bin/thermald
 bin/ccid_daemon
@@ -231,27 +132,21 @@ bin/ime
 bin/monkey
 bin/bu
 bin/tptest
-bin/test-wvdrmplugin
 bin/fmconfig
 bin/input
 bin/hci_qcomm_init
-bin/wpa_supplicant_wapi
 bin/pm
 bin/diag_uart_log
 bin/ATFWD-daemon
 bin/oem_rapid
 bin/load_logo
-bin/test-wvplayer_L3
 bin/usbhub
 bin/filebackup
 bin/nl_listener
 bin/ftmdaemon
-bin/time_daemon
 bin/pcscd
 bin/testpcsc
 bin/ds_fmc_appd
-bin/make_ext4fs
-bin/mkfs.ext4
 bin/bridgemgrd
 bin/hw_rm
 lib/libdsm.so
@@ -263,7 +158,6 @@ lib/liboem_rapi.so
 lib/tcp-connections.so
 lib/libOmxQcelp13Enc.so
 lib/libmmmpod.so
-lib/libsrsprocessing.so
 lib/libtcpfinaggr.so
 lib/libstagefright_soft_ffmpegaudiodec.so
 lib/libdnshostprio.so
@@ -306,27 +200,9 @@ lib/libWVphoneAPI.so
 lib/libmm-color-convertor.so
 lib/libOmxQcelp13Dec.so
 lib/libOmxEvrcEnc.so
-lib/libdtsprocessing.so
 lib/libnetmonitor.so
 lib/libulp2.so
 lib/libmm-abl.so
-lib/libstagefright_soft_dtsaudiodec.so
 
 
 bin/mm-abl-daemon
-bin/mm-aenc-omxaac-test
-bin/mm-mpo-enc-test
-bin/mm-video-encdrv-test
-bin/mm-adec-omxaac-test
-bin/mm-aenc-omxqcelp13-test
-bin/mm-venc-omx-test720p
-bin/mm-aenc-omxamr-test
-bin/mm-jpeg-enc-test
-bin/mm-mpo-dec-test
-bin/mm-audio-native-test
-bin/mm-adec-omxwma-test
-bin/mm-jpeg-dec-test
-
-data/srs_processing.cfg
-xbin/zip
-xbin/iperf

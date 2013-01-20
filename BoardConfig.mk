@@ -1,5 +1,3 @@
-USE_CAMERA_STUB := false
-
 TARGET_SPECIFIC_HEADER_PATH := device/huawei/hws7300u/include
 
 # Bootloader, radio
@@ -12,6 +10,7 @@ TARGET_BOARD_PLATFORM := msm8660
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 
 # Architecture
+TARGET_ARCH := arm
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
@@ -42,6 +41,7 @@ BOARD_WLAN_DEVICE           := bcm4329
 WIFI_DRIVER_FW_PATH_STA     := "/etc/wifi/rtecdc-bcm4329.bin"
 WIFI_DRIVER_FW_PATH_AP      := "/etc/wifi/rtecdc-apsta-bcm4329.bin"
 WIFI_DRIVER_MODULE_ARG      := "firmware_path=/etc/wifi/rtecdc-bcm4329.bin nvram_path=/etc/wifi/nvram-bcm4329.txt"
+BOARD_HAVE_HUAWEI_WIFI := true
 
 # Audio
 COMMON_GLOBAL_CFLAGS += -DWITH_QCOM_LPA
@@ -53,20 +53,18 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
+TARGET_QCOM_HDMI_OUT := true
+TARGET_QCOM_HDMI_RESOLUTION_AUTO := true
 BOARD_USES_QCOM_GPS := true
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 
 # Graphics
 USE_OPENGL_RENDERER := true
-TARGET_HAVE_BYPASS := true
-TARGET_USES_SF_BYPASS := true
-TARGET_NO_BYPASS_CROPPING := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_OVERLAY := true
-TARGET_QCOM_HDMI_OUT := true
-TARGET_QCOM_HDMI_RESOLUTION_AUTO := true
-BOARD_EGL_CFG := device/huawei/hws7300u/prebuilt/egl.cfg
+
+BOARD_EGL_CFG := device/huawei/hws7300u/prebuilt/etc/egl.cfg
 
 # Webkit
 ENABLE_WEBGL := true
@@ -78,32 +76,36 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=hws7300u 
 BOARD_KERNEL_BASE := 0x40300000
 BOARD_KERNEL_PAGESIZE := 2048
 TARGET_PREBUILT_KERNEL := device/huawei/hws7300u/kernel
-# TARGET_KERNEL_SOURCE := kernel/huawei/hws7300u
-# TARGET_KERNEL_CONFIG := mediapad_defconfig
+#TARGET_KERNEL_SOURCE := kernel/huawei/hws7300u
+#TARGET_KERNEL_CONFIG := mediapad_defconfig
 
 # Usb connection to PC
-BOARD_MTP_DEVICE := "/dev/mtp_usb"
-BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
-# CWM Recovery
-TARGET_RECOVERY_INITRC := device/huawei/hws7300u/recovery/init-cwm.rc
-BOARD_HAS_LARGE_FILESYSTEM := true
-BOARD_CUSTOM_GRAPHICS:= ../../../device/huawei/hws7300u/recovery/graphics.c
-BOARD_HAS_NO_SELECT_BUTTON := true
+# Filesystem
+TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_BOOTIMAGE_PARTITION_SIZE := 12582912 # 12M
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216 # 16M
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 395313152 # 377M
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 5368709120 # 5G
+BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 
-# TWRP Recovery
-# TARGET_RECOVERY_INITRC := device/huawei/hws7300u/recovery/init-twrp.rc
+# Recovery
+BOARD_HAS_LARGE_FILESYSTEM := true
+BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+
+# CWM specific
+BOARD_CUSTOM_GRAPHICS:= ../../../device/huawei/hws7300u/recovery/graphics.c
+
+# TWRP specific
 # DEVICE_RESOLUTION := 1280x800
 # SP1_NAME := "cust"
 # SP1_BACKUP_METHOD := image
 # SP1_MOUNTABLE := 1
-# TW_INTERNAL_STORAGE_PATH := "/months/sdcard2"
+# TW_INTERNAL_STORAGE_PATH := "/data/media"
 # TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
-# TW_EXTERNAL_STORAGE_PATH := "/sdcard"
-# TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard"
-# TW_DEFAULT_EXTERNAL_STORAGE := true
-# TW_ALWAYS_RMRF := true
+# TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+# TW_EXTERNAL_STORAGE_MOUNT_POINT := "/external_sd"
 # TW_FLASH_FROM_STORAGE := true
-# TW_NO_BATT_PERCENT := true
+# RECOVERY_SDCARD_ON_DATA := true
