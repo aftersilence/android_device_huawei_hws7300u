@@ -47,7 +47,7 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
-TARGET_QCOM_HDMI_RESOLUTION_AUTO := true
+#TARGET_QCOM_HDMI_RESOLUTION_AUTO := true
 
 # GPS
 BOARD_USES_QCOM_GPS := true
@@ -58,7 +58,7 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 USE_OPENGL_RENDERER := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_PMEM := true
-BOARD_EGL_CFG := device/huawei/hws7300u/prebuilt/egl.cfg
+BOARD_EGL_CFG := device/huawei/hws7300u/prebuilt/etc/egl.cfg
 
 # Webkit
 ENABLE_WEBGL := true
