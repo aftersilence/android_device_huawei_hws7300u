@@ -230,7 +230,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/huawei/hws7300u/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
     device/huawei/hws7300u/prebuilt/usr/idc/t1320.idc:system/usr/idc/t1320.idc \
-    device/huawei/hws7300u/prebuilt/usr/idc/t7020.idc:system/usr/idc/t7020.idc
+    device/huawei/hws7300u/prebuilt/usr/idc/s7020.idc:system/usr/idc/s7020.idc
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
