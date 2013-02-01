@@ -19,13 +19,12 @@ ro.telephony.ril.v3=signalstrength
 ro.use_data_netmgrd=true
 ro.ril.hsxpa=1
 ro.ril.gprsclass=10
-
-# wifi
-wifi.interface=wlan0
+ro.vendor.extension_library=/system/lib/libqc-opt.so
 
 # graphics
 debug.composition.type=gpu
 debug.mdpcomp.maxlayer=0
+debug.mdpcomp.logs=0
 debug.enabletr=true
 debug.sf.hw=1
 ro.opengles.version=131072
@@ -48,7 +47,7 @@ persist.audio.fluence.mode=endfire
 persist.audio.vr.enable=false
 
 # LPA
-# lpa.decode=true
+# lpa.decode=false
 # lpa.use-stagefright=true
 
 # hdmi
@@ -77,3 +76,5 @@ persist.timed.enable=true
 
 # MTP on default
 persist.sys.usb.config=mtp,adb
+
+dalvik.vm.dexopt-data-only=1

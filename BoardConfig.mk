@@ -42,12 +42,13 @@ WIFI_DRIVER_MODULE_ARG      := "firmware_path=/etc/wifi/rtecdc-bcm4329.bin nvram
 BOARD_HAVE_HUAWEI_WIFI := true
 
 # Bluetooth
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_BCM := true
+#BOARD_HAVE_BLUETOOTH := true
+#BOARD_HAVE_BLUETOOTH_BCM := true
+#BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR ?= device/htc/msm8660-common/bluetooth/include
+#BOARD_BLUEDROID_VENDOR_CONF := device/huawei/hws7300u/bluetooth/vnd_hws7300u.txt
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
-#TARGET_QCOM_HDMI_RESOLUTION_AUTO := true
 
 # GPS
 BOARD_USES_QCOM_GPS := true
@@ -78,7 +79,7 @@ TARGET_PREBUILT_KERNEL := device/huawei/hws7300u/kernel
 #TARGET_KERNEL_CONFIG := mediapad_defconfig
 
 # Usb connection to PC
-TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
 
 # Audio
 # BOARD_USE_QCOM_LPA := true
@@ -111,5 +112,7 @@ BOARD_CUSTOM_GRAPHICS:= ../../../device/huawei/hws7300u/recovery/graphics.c
 # TW_FLASH_FROM_STORAGE := true
 # RECOVERY_SDCARD_ON_DATA := true
 
+# Hacks
 TARGET_NO_HW_VSYNC := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK
+BOARD_USES_LEGACY_QCOM := true

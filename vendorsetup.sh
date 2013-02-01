@@ -19,9 +19,9 @@
 # In particular, you can add lunch options with the add_lunch_combo
 # function: add_lunch_combo generic-eng
 
-add_lunch_combo cm_hws7300u-userdebug
-add_lunch_combo cm_hws7300u-eng
-add_lunch_combo cm_hws7300u-user
+add_lunch_combo ev_hws7300u-userdebug
+add_lunch_combo ev_hws7300u-eng
+add_lunch_combo ev_hws7300u-user
 echo ""
 echo "Applying patches for hws7300u"
 echo ""

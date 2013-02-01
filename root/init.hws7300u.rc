@@ -232,19 +232,12 @@ service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p11 /dev/block/mmc
     user root
     disabled
 
-on property:ro.emmc=1
+on property:ro.boot.emmc=true
     start rmt_storage
 
 service brcmpatch /system/bin/log -t brcm-bluetooth -p i "brcm_patchram_plus service requested"
     user bluetooth
     group bluetooth net_bt_admin
-    disabled
-    oneshot
-    
-service hciattach /system/bin/sh /system/etc/init.brcm.bt.sh
-    class late_start
-    user bluetooth
-    group qcom_oncrpc bluetooth net_bt_admin
     disabled
     oneshot
 
@@ -336,10 +329,10 @@ service amp_unload /system/bin/amploader -u
     disabled
     oneshot
 
-service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant -Dwext -iwlan0 -c/data/misc/wifi/wpa_supplicant.conf -dd
-    class late_start
+service wpa_supplicant /system/bin/wpa_supplicant -Dwext -iwlan0 -c /data/misc/wifi/wpa_supplicant.conf
     user root
     group wifi inet
+    class main
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
@@ -515,8 +508,8 @@ service sensor_daemon /system/bin/sensor_daemon
 # create virtual SD card at /storage/sdcard0, based on the /data/media directory
 # daemon will drop to user/group system/media_rw after initializing
 # underlying files in /data/media will be created with user and group media_rw (1023)
-service sdcard /system/bin/sdcard /data/media 1023 1023
-    class main
+service sdcard /system/bin/sdcard /data/media /mnt/shell/emulated 1023 1023
+    class late_start
 
 # For format error
 service hw_rm /system/bin/hw_rm

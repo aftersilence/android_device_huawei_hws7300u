@@ -29,7 +29,7 @@ DEVICE_PACKAGE_OVERLAYS := \
 
 PRODUCT_PROPERTY_OVERRIDES := \
     wifi.interface=wlan0 \
-    wifi.supplicant_scan_interval=15 \
+    wifi.supplicant_scan_interval=30 \
     tf.enable=y \
     drm.service.enabled=true
 
@@ -135,7 +135,8 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.default
+    gps.default \
+    librpc
 
 # Power
 PRODUCT_PACKAGES += \
@@ -227,10 +228,9 @@ PRODUCT_COPY_FILES += \
 
 # Some misc configuration files
 PRODUCT_COPY_FILES += \
-    device/huawei/hws7300u/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf \
     device/huawei/hws7300u/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
     device/huawei/hws7300u/prebuilt/usr/idc/t1320.idc:system/usr/idc/t1320.idc \
-    device/huawei/hws7300u/prebuilt/usr/idc/s7020.idc:system/usr/idc/s7020.idc
+    device/huawei/hws7300u/prebuilt/usr/idc/t7020.idc:system/usr/idc/t7020.idc
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
@@ -241,9 +241,11 @@ PRODUCT_COPY_FILES += \
 # Custom media config
 PRODUCT_COPY_FILES += \
     device/huawei/hws7300u/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
-    device/huawei/hws7300u/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml
+    device/huawei/hws7300u/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml \
+    device/huawei/hws7300u/prebuilt/etc/audio_effects.conf:system/etc/audio_effects.conf \
+    device/huawei/hws7300u/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf
 
-# Auto loading of gamepad modules
+# Auto loading of gamepad modules	
 PRODUCT_COPY_FILES += \
     device/huawei/hws7300u/prebuilt/etc/init.d/01x360ctrlr:system/etc/init.d/01x360ctrlr
 

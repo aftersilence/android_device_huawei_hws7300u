@@ -27,8 +27,10 @@
 #
 #
 
+import init.emmc.rc
+
 # on emmc mount the partition containing firmware
-on emmc-fs
+on fs
     mkdir /tombstones 0771 system system
     mount ext4 /dev/block/mmcblk0p24 /tombstones nosuid nodev barrier=1
     mkdir /tombstones/modem 0771 system system
