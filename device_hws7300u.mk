@@ -107,7 +107,7 @@ PRODUCT_PACKAGES += \
     liboverlay \
     libqdutils \
     libtilerenderer \
-    libI420colorconvert
+    libc2dcolorconvert 
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -131,12 +131,11 @@ PRODUCT_PACKAGES += \
 	
 # Device specific settings
 PRODUCT_PACKAGES += \
-     MediapadSettings \
+     MediapadSettings
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.default \
-    librpc
+    gps.default
 
 # Power
 PRODUCT_PACKAGES += \
@@ -249,14 +248,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/huawei/hws7300u/prebuilt/etc/init.d/01x360ctrlr:system/etc/init.d/01x360ctrlr
 
-## misc
+# Misc
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.setupwizard.enable_bypass=1 \
     dalvik.vm.lockprof.threshold=500 \
     ro.com.google.locationfeatures=1 \
     dalvik.vm.dexopt-flags=m=y
 
-# proprietary side of the device
+# Proprietary side of the device
 $(call inherit-product-if-exists, vendor/huawei/hws7300u/hws7300u-vendor.mk)
 
 # We have enough storage space to hold precise GC data

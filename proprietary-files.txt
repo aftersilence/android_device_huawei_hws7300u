@@ -91,8 +91,6 @@ etc/voicemail-conf.xml
 etc/bluetooth/BCM4329B1_37.4M.hcd
 etc/bluetooth/blacklist.conf
 etc/sn.txt
-bin/brcm_patchram_plus
-lib/libbluedroid.so
 etc/thermald.conf
 
 etc/coulometer/bq27510_version

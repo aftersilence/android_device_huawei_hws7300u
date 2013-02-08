@@ -21,7 +21,6 @@ on post-fs-data
     # double check the perms and set owner
     chown root root /devlog
     chmod 0700 /devlog
-    mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
     mkdir /data/misc/wifi 0770 wifi wifi
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
@@ -74,6 +73,8 @@ on boot
     chown system system /sys/devices/platform/msm_sdcc.2/polling
     chown system system /sys/devices/platform/msm_sdcc.3/polling
     chown system system /sys/devices/platform/msm_sdcc.4/polling
+
+    mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power  
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
@@ -88,6 +89,12 @@ on boot
     chmod 0660 /dev/ttyHS0
     chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
+
+    # bluetooth LPM
+    chmod 0220 /proc/bluetooth/sleep/lpm
+    chmod 0220 /proc/bluetooth/sleep/btwrite
+    chown bluetooth net_bt_stack /proc/bluetooth/sleep/lpm
+    chown bluetooth net_bt_stack /proc/bluetooth/sleep/btwrite
 
     # Tweak background writeout
     write /proc/sys/vm/dirty_writeback_centisecs 1500
@@ -218,13 +225,13 @@ on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd_wlan0
     stop iprenew_wlan0
 
-on property:bluetooth.isEnabled=true
-    start btwlancoex
-    start amp_load
-    write /sys/class/bluetooth/hci0/idle_timeout 7000
+#on property:bluetooth.isEnabled=true
+#    start btwlancoex
+#    start amp_load
+#    write /sys/class/bluetooth/hci0/idle_timeout 7000
 
-on property:bluetooth.isEnabled=false
-    start amp_unload
+#on property:bluetooth.isEnabled=false
+#    start amp_unload
 
 # for fix EFS partiton
 service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p11 /dev/block/mmcblk0p12 /dev/block/mmcblk0p14
@@ -234,36 +241,6 @@ service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p11 /dev/block/mmc
 
 on property:ro.boot.emmc=true
     start rmt_storage
-
-service brcmpatch /system/bin/log -t brcm-bluetooth -p i "brcm_patchram_plus service requested"
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
-
-service bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
-    class late_start
-    disabled
-    oneshot
-
-service bt-sap /system/bin/sapd 15
-    class late_start
-    disabled
-    oneshot
-
-service sapd /system/bin/sdptool add --channel=15 SAP
-    class late_start
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
-
-service dund /system/bin/sdptool add --channel=1 DUN
-    class late_start
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
 
 service bridgemgrd /system/bin/bridgemgrd
     class late_start
@@ -278,7 +255,7 @@ service port-bridge /system/bin/port-bridge /dev/smd0 /dev/ttyGS0
     disabled
 
 on property:ro.baseband="msm"
-    setprop ro.qualcomm.bluetooth.dun true
+#    setprop ro.qualcomm.bluetooth.dun true
 
 service qmiproxy /system/bin/qmiproxy
     class late_start
@@ -450,6 +427,7 @@ on property:persist.sys.coordinate=true
 
 on property:persist.sys.color.enhance=true
 	write /sys/bus/platform/drivers/lcdc_s7Pro_lvds_wxga/color_en 1
+
 on property:persist.sys.color.enhance=false
 	write /sys/bus/platform/drivers/lcdc_s7Pro_lvds_wxga/color_en 0
 
@@ -518,12 +496,6 @@ service hw_rm /system/bin/hw_rm
     disabled
     oneshot
 
-service hcidump /system/bin/sh /system/etc/hcidump.sh
-    user root
-    group bluetooth system net_bt_admin net_admin
-    disabled
-    oneshot
-
 service hw_cifs /system/bin/hw_cifs
     class late_start
     user root
@@ -533,11 +505,13 @@ service hw_cifs /system/bin/hw_cifs
 
 on property:persist.sys.cifs.ctl=1
     start hw_cifs
+
 on property:persist.sys.cifs.ctl=0
     stop hw_cifs
 
 on property:persist.sys.sdio.lowfreqmode=1
     write /sys/sdio_mode/lowfreqmode 1
+
 on property:persist.sys.sdio.lowfreqmode=0
     write /sys/sdio_mode/lowfreqmode 0
 
@@ -545,6 +519,7 @@ on property:sys.usb.fastboot=normal
     write /sys/module/g_android/parameters/usb_fastboot $sys.usb.fastboot
     wait aabbcc
     write /sys/class/android_usb/android0/enable 1
+
 on property:sys.usb.fastboot=deepsleep
     write /sys/class/android_usb/android0/enable 0
     write /sys/module/g_android/parameters/usb_fastboot $sys.usb.fastboot
@@ -556,9 +531,9 @@ service load_logo /system/bin/load_logo
     disabled
     oneshot
 
-service bt_init_off /system/bin/sh /system/etc/bluetooth_power.sh
-    class main
-    oneshot
+#service bt_init_off /system/bin/sh /system/etc/bluetooth_power.sh
+#    class main
+#    oneshot
 
 service rmt_oeminfo /system/bin/rmt_oeminfo
 on property:ro.emmc=1

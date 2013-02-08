@@ -48,7 +48,7 @@ public class BootService extends Service  {
                 if( SystemProperties.get( c , DeviceSettings.PROP_EXT_INTERNAL).equals("1"))
                 {
                     CMDProcessor cmd = new CMDProcessor();
-                    cmd.rootCommand("mount -t vfat -o umask=0000 /dev/block/vold/179:97 /storage/sdcard0");
+                    cmd.rootCommand("mount -t vfat -o umask=0000 /dev/block/vold/179:97 /storage/emulated/legacy");
                     cmd.rootCommand("mount -o bind /data/media /storage/sdcard1");
                 }
                 return null;
