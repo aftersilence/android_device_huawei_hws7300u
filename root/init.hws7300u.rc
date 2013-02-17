@@ -531,13 +531,15 @@ service load_logo /system/bin/load_logo
     disabled
     oneshot
 
-#service bt_init_off /system/bin/sh /system/etc/bluetooth_power.sh
-#    class main
-#    oneshot
+service bt_init_off /system/bin/sh /system/etc/bluetooth_power.sh
+    class main
+    oneshot
 
 service rmt_oeminfo /system/bin/rmt_oeminfo
+
 on property:ro.emmc=1
     start rmt_oeminfo
+
 service diagd /system/bin/diagd
     class main
 
