@@ -80,12 +80,11 @@ COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=hws7300u vmalloc=578M kgsl.ptcount=16
 BOARD_KERNEL_BASE := 0x40300000
 BOARD_KERNEL_PAGESIZE := 2048
-TARGET_PREBUILT_KERNEL := device/huawei/hws7300u/kernel
-#TARGET_KERNEL_SOURCE := kernel/huawei/hws7300u
-#TARGET_KERNEL_CONFIG := mediapad_defconfig
+TARGET_KERNEL_SOURCE := kernel/huawei/hws7300u
+TARGET_KERNEL_CONFIG := mediapad_defconfig
 
-# Usb connection to PC
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
+# USB
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
 
 # Audio
 # BOARD_USE_QCOM_LPA := true
