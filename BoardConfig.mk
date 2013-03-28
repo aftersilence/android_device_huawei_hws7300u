@@ -115,6 +115,7 @@ BOARD_CUSTOM_GRAPHICS:= ../../../device/huawei/hws7300u/recovery/graphics.c
 # TW_EXTERNAL_STORAGE_PATH := "/external_sd"
 # TW_EXTERNAL_STORAGE_MOUNT_POINT := "/external_sd"
 # TW_FLASH_FROM_STORAGE := true
+# TW_CUSTOM_BATTERY_PATH := "/sys/class/power_supply/battery_gauge/"
 # RECOVERY_SDCARD_ON_DATA := true
 
 # Hacks
