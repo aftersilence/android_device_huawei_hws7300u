@@ -133,6 +133,13 @@ PRODUCT_PACKAGES += \
     e2fsck \
     setup_fs
 
+# Bt
+PRODUCT_PACKAGES += \
+    bluetoothd \
+    hciconfig \
+    hcitool \
+    brcm_patchram_plus
+
 # Boot ramdisk
 PRODUCT_COPY_FILES += \
     device/huawei/hws7300u/root/init.emmc.rc:root/init.emmc.rc \
