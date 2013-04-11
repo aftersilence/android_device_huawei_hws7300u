@@ -90,12 +90,6 @@ on boot
     chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
 
-    # bluetooth LPM
-    chmod 0220 /proc/bluetooth/sleep/lpm
-    chmod 0220 /proc/bluetooth/sleep/btwrite
-    chown bluetooth net_bt_stack /proc/bluetooth/sleep/lpm
-    chown bluetooth net_bt_stack /proc/bluetooth/sleep/btwrite
-
     # Tweak background writeout
     write /proc/sys/vm/dirty_writeback_centisecs 1500
     write /proc/sys/vm/dirty_ratio 90
@@ -225,13 +219,13 @@ on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd_wlan0
     stop iprenew_wlan0
 
-#on property:bluetooth.isEnabled=true
-#    start btwlancoex
-#    start amp_load
-#    write /sys/class/bluetooth/hci0/idle_timeout 7000
+on property:bluetooth.isEnabled=true
+    start btwlancoex
+    start amp_load
+    write /sys/class/bluetooth/hci0/idle_timeout 7000
 
-#on property:bluetooth.isEnabled=false
-#    start amp_unload
+on property:bluetooth.isEnabled=false
+    start amp_unload
 
 # for fix EFS partiton
 service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p11 /dev/block/mmcblk0p12 /dev/block/mmcblk0p14
@@ -241,6 +235,43 @@ service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p11 /dev/block/mmc
 
 on property:ro.boot.emmc=true
     start rmt_storage
+
+service brcmpatch /system/bin/log -t brcm-bluetooth -p i "brcm_patchram_plus service requested"
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+service hciattach /system/bin/sh /system/etc/init.brcm.bt.sh
+    class late_start
+    user bluetooth
+    group qcom_oncrpc bluetooth net_bt_admin
+    disabled
+    oneshot
+
+service bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
+    class late_start
+    disabled
+    oneshot
+
+service bt-sap /system/bin/sapd 15
+    class late_start
+    disabled
+    oneshot
+
+service sapd /system/bin/sdptool add --channel=15 SAP
+    class late_start
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+service dund /system/bin/sdptool add --channel=1 DUN
+    class late_start
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
 
 service bridgemgrd /system/bin/bridgemgrd
     class late_start
@@ -255,7 +286,7 @@ service port-bridge /system/bin/port-bridge /dev/smd0 /dev/ttyGS0
     disabled
 
 on property:ro.baseband="msm"
-#    setprop ro.qualcomm.bluetooth.dun true
+    setprop ro.qualcomm.bluetooth.dun true
 
 service qmiproxy /system/bin/qmiproxy
     class late_start
