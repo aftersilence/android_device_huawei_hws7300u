@@ -125,7 +125,6 @@ bin/input
 bin/hci_qcomm_init
 bin/pm
 bin/diag_uart_log
-bin/ATFWD-daemon
 bin/oem_rapid
 bin/load_logo
 bin/usbhub

@@ -209,7 +209,8 @@ PRODUCT_COPY_FILES += \
     device/huawei/hws7300u/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/huawei/hws7300u/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml \
     device/huawei/hws7300u/prebuilt/etc/audio_effects.conf:system/etc/audio_effects.conf \
-    device/huawei/hws7300u/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf
+    device/huawei/hws7300u/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf \
+    device/huawei/hws7300u/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
 # Auto loading of gamepad modules	
 PRODUCT_COPY_FILES += \
