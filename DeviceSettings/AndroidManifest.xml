@@ -13,10 +13,9 @@
             >
         <activity
                 android:name="com.cyanogenmod.settings.device.DeviceSettings"
-                  android:label="@string/app_name">
+                android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-           <!--<category android:name="android.intent.category.LAUNCHER"></category> -->
                 <action android:name="com.cyanogenmod.action.LAUNCH_DEVICE_SETTINGS"/>
             </intent-filter>
         </activity>
@@ -25,8 +24,8 @@
                   android:enabled="true"
                   android:exported="false"
                   android:label="BootDeviceSettings"
-				  android:priority="100"
-                >
+                  android:priority="100"
+            >
             <intent-filter>
                 <action  android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

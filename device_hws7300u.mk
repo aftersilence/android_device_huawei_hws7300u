@@ -218,9 +218,10 @@ PRODUCT_COPY_FILES += \
     device/huawei/hws7300u/prebuilt/etc/audio_effects.conf:system/etc/audio_effects.conf \
     device/huawei/hws7300u/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf
 
-# Auto loading of gamepad modules	
+# Init.d scripts	
 PRODUCT_COPY_FILES += \
-    device/huawei/hws7300u/prebuilt/etc/init.d/01x360ctrlr:system/etc/init.d/01x360ctrlr
+    device/huawei/hws7300u/prebuilt/etc/init.d/01x360ctrlr:system/etc/init.d/01x360ctrlr \
+    device/huawei/hws7300u/prebuilt/etc/init.d/02extsd:system/etc/init.d/02extsd
 
 # Misc
 PRODUCT_PROPERTY_OVERRIDES += \

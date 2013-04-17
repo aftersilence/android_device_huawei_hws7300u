@@ -29,11 +29,18 @@
             android:summary="@string/summary_wlan_mac"
             />
 
-   </PreferenceCategory>
+    </PreferenceCategory>
         
-   <PreferenceCategory android:title="@string/title_system">
+    <PreferenceCategory android:title="@string/title_system">
 
-	<CheckBoxPreference
+    <CheckBoxPreference
+             android:key="ext_internal"
+             android:title="@string/title_ext_internal"
+             android:persistent="false"
+             android:defaultValue="true"
+             android:summary="@string/summary_ext_internal"/>
+
+    <CheckBoxPreference
             android:key="power_save"
             android:title="@string/title_power_save"
             android:persistent="false"

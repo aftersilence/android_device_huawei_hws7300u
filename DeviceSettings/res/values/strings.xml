@@ -14,10 +14,13 @@
 
     <string name="title_wlan_mac">Custom MAC</string>
     <string name="summary_wlan_mac">Custom wifi mac address</string>
+
+    <string name="title_ext_internal">Swap internal and external storages</string>
+    <string name="summary_ext_internal">Reboot is required for changes to take effect (use it on your own risk!)</string>
 	
     <string name="title_power_save">Power Save Mode</string>
     <string name="summary_power_save">Enable battery saving mode and lowers the CPU frequency</string>
-	
+
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
 

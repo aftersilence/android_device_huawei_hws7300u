@@ -33,14 +33,17 @@ public class DeviceSettings extends PreferenceActivity implements OnSharedPrefer
     public static final String KEY_DPI = "pref_dpi_list";
     public static final String KEY_WLAN_MAC = "wlan_mac";
     public static final String KEY_POWER_SAVE = "power_save";
+    public static final String KEY_EXT_INT = "ext_internal";
 
     public static final String PROP_COLOR_ENHANCE = "persist.sys.color.enhance";
     public static final String PROP_WLAN_MAC = "persist.wlan.mac";
     public static final String PROP_SYS_POWER_SAVE = "persist.sys.sdio.lowfreqmode";
+    public static final String PROP_EXT_INTERNAL = "persist.extinternal";
 
     private CheckBoxPreference mPrefColor;
     private Preference mPrefMac;
     private CheckBoxPreference mPowerSave;
+    private CheckBoxPreference  mExtInternal;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,13 +66,16 @@ public class DeviceSettings extends PreferenceActivity implements OnSharedPrefer
         if(preference == mPrefMac)
             setCustomMacDialog();
 	
-	if(preference == mPowerSave)
+        if(preference == mPowerSave)
 	{
 		String status = (mPowerSave.isChecked() ? "1" : "0");
 		setProp(PROP_SYS_POWER_SAVE, status);
-		new CMDProcessor().su.runWaitFor("echo "+status+" > /sys/sdio_mode/lowfreqmode &");
+		new CMDProcessor().su.run("echo "+status+" > /sys/sdio_mode/lowfreqmode &");
 	}
-	
+
+        if(preference == mExtInternal)
+		setProp(PROP_EXT_INTERNAL, (mExtInternal.isChecked() ? "1" : "0"));
+
         return false;
     }
 
@@ -96,6 +102,8 @@ public class DeviceSettings extends PreferenceActivity implements OnSharedPrefer
 	 mPowerSave = (CheckBoxPreference) findPreference(KEY_POWER_SAVE);
         mPowerSave.setChecked(getProp(PROP_SYS_POWER_SAVE,"0").equals("1"));
 
+        mExtInternal = (CheckBoxPreference) findPreference(KEY_EXT_INT);
+        mExtInternal.setChecked(getProp(PROP_EXT_INTERNAL,"0").equals("1"));
     }
 
     private void disableOverlaysOption(int status) {
@@ -179,9 +187,5 @@ public class DeviceSettings extends PreferenceActivity implements OnSharedPrefer
                 });
         alert.show();
     }
-
-
-
-
 
 }
