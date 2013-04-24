@@ -26,10 +26,6 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-#Set dirty_writeback_interval as default after booting animation for booting time
-echo 500 > /proc/sys/vm/dirty_writeback_centisecs
-echo 200 > /proc/sys/vm/dirty_expire_centisecs
-
 target=`getprop ro.board.platform`
 case "$target" in
     "msm7201a_ffa" | "msm7201a_surf" | "msm7627_ffa" | "msm7627_6x" | "msm7627a"  | "msm7627_surf" | \
@@ -72,28 +68,15 @@ case "$target" in
 	 echo 1 > /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/suspend_enabled
 	 echo 1 > /sys/module/pm_8x60/modes/cpu0/power_collapse/idle_enabled
 	 echo 1 > /sys/module/pm_8x60/modes/cpu1/power_collapse/idle_enabled
-	 echo 0 > /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/idle_enabled
-	 echo 0 > /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/idle_enabled
-	 echo 1 > /sys/module/pm_8660/modes/cpu0/power_collapse/suspend_enabled
-	 echo 1 > /sys/module/pm_8660/modes/cpu1/power_collapse/suspend_enabled
-	 echo 1 > /sys/module/pm_8660/modes/cpu0/standalone_power_collapse/suspend_enabled
-	 echo 1 > /sys/module/pm_8660/modes/cpu1/standalone_power_collapse/suspend_enabled
-	 echo 1 > /sys/module/pm_8660/modes/cpu0/power_collapse/idle_enabled
-	 echo 1 > /sys/module/pm_8660/modes/cpu1/power_collapse/idle_enabled
-	 echo 0 > /sys/module/pm_8660/modes/cpu0/standalone_power_collapse/idle_enabled
-	 echo 0 > /sys/module/pm_8660/modes/cpu1/standalone_power_collapse/idle_enabled
+	 echo 1 > /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/idle_enabled
+	 echo 1 > /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/idle_enabled
 	 echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 	 echo "interactive" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
-	 #echo 50000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
-	 #echo 85 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
-	 #echo 0 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
-	 #echo 4 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
-	 #echo 5 > /sys/devices/system/cpu/cpufreq/ondemand/down_differential 
+	 echo 50000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
 	 echo 192000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 	 echo 192000 > /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
 	 echo 1188000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 	 echo 1188000 > /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
-	 chown system /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
 	 chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 	 chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 	 chown system /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
@@ -160,6 +143,9 @@ case "$target" in
         ;;
 esac
 
+chown system /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
+chown system /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+chown system /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
 
 emmc_boot=`getprop ro.emmc`
 case "$emmc_boot"
