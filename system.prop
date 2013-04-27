@@ -23,7 +23,7 @@ ro.vendor.extension_library=/system/lib/libqc-opt.so
 
 # graphics
 debug.composition.type=gpu
-debug.mdpcomp.maxlayer=0
+debug.mdpcomp.maxlayer=3
 debug.mdpcomp.logs=0
 debug.enabletr=true
 debug.sf.hw=1
