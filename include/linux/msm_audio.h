@@ -169,12 +169,6 @@ struct msm_audio_stats {
 	uint32_t unused[2];
 };
 
-
-struct msm_audio_ion_info {
-	int fd;
-	void *vaddr;
-};
-
 struct msm_audio_pmem_info {
 	int fd;
 	void *vaddr;
