@@ -71,6 +71,4 @@ ro.qualcomm.bluetooth.dun=true
 # MTP on default
 persist.sys.usb.config=mtp,adb
 
-dalvik.vm.dexopt-data-only=1
-
 

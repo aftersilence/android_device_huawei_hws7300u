@@ -14,9 +14,6 @@
 
     <string name="title_wlan_mac">Изменение MAC-адреса</string>
     <string name="summary_wlan_mac">Задание пользовательского wifi МАС-адреса</string>
-	
-    <string name="title_power_save">Режим энергосбережения</string>
-    <string name="summary_power_save">Включить режим энергосбережения и понизить частоту процессора</string>
 
     <string name="title_ext_internal">Поменять местами внутреннюю и внешнюю память</string>
     <string name="summary_ext_internal">Для применения изменений необходима перезагрузка (использовать на свой страх и риск!)</string>

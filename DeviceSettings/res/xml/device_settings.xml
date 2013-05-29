@@ -40,13 +40,6 @@
              android:defaultValue="true"
              android:summary="@string/summary_ext_internal"/>
 
-    <CheckBoxPreference
-            android:key="power_save"
-            android:title="@string/title_power_save"
-            android:persistent="false"
-            android:defaultValue="false"
-            android:summary="@string/summary_power_save"/>
-
     </PreferenceCategory>
 
 </PreferenceScreen>
