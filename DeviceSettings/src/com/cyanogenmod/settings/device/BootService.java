@@ -55,13 +55,8 @@ public class BootService extends Service  {
 
             @Override
             protected Void doInBackground(Void... args) {
-				CMDProcessor cmd = new CMDProcessor();
-			
-				if( getProp(DeviceSettings.PROP_SYS_POWER_SAVE,"0").equals("1") )
-					cmd.su.runWaitFor("echo 1  > /sys/sdio_mode/lowfreqmode &");
                 return null;
             }
-            
 
             @Override
             protected void onPostExecute(Void result) {
