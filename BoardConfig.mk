@@ -75,7 +75,7 @@ BOARD_USES_QCOM_LEGACY_CAM_PARAMS := true
 COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
 
 #kernel
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=hws7300u vmalloc=578M kgsl.ptcount=16
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=hws7300u
 BOARD_KERNEL_BASE := 0x40300000
 BOARD_KERNEL_PAGESIZE := 2048
 TARGET_KERNEL_SOURCE := kernel/huawei/hws7300u

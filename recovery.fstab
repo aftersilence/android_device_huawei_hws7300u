@@ -7,6 +7,6 @@
 /data		    ext4		/dev/block/mmcblk0p27	length=-16384
 /cust		    ext4		/dev/block/mmcblk0p15
 /sdcard		    datamedia		/dev/null
-/external_sd	    vfat		/dev/block/mmcblk1p1	/dev/block/mmcblk1 
+/external_sd	    auto		/dev/block/mmcblk1p1	/dev/block/mmcblk1 
 
 

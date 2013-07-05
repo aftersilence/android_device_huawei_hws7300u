@@ -59,13 +59,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
-# for PDK build, include only when the dir exists
-# too early to use $(TARGET_BUILD_PDK)
-ifneq ($(wildcard packages/wallpapers/LivePicker),)
-PRODUCT_COPY_FILES += \
-    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
-endif
-
 # QCOM Display
 PRODUCT_PACKAGES += \
     copybit.msm8660 \
@@ -85,6 +78,7 @@ PRODUCT_PACKAGES += \
     audio.primary.msm8660 \
     audio.a2dp.default \
     audio_policy.msm8660 \
+    libaudio-resampler \
     libaudioutils
 
 # Omx
@@ -102,7 +96,8 @@ PRODUCT_PACKAGES += \
 
 # Device specific settings
 PRODUCT_PACKAGES += \
-    MediapadSettings
+    MediapadSettings \
+    HALO
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -111,6 +106,10 @@ PRODUCT_PACKAGES += \
 # Power
 PRODUCT_PACKAGES += \
     power.msm8660
+
+# WiFi
+PRODUCT_PACKAGES += \
+    libnetcmdiface
 
 # QRNGD
 PRODUCT_PACKAGES += \
@@ -129,7 +128,6 @@ PRODUCT_PACKAGES += \
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
-    make_ext4fs \
     e2fsck \
     setup_fs
 
