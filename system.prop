@@ -20,6 +20,7 @@ ro.use_data_netmgrd=true
 ro.ril.hsxpa=1
 ro.ril.gprsclass=10
 ro.vendor.extension_library=/system/lib/libqc-opt.so
+ro.telephony.ril_class=QualcommSharedRIL
 
 # graphics
 debug.composition.type=gpu
