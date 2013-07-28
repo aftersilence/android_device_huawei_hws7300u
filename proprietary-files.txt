@@ -89,7 +89,6 @@ etc/audio_cal.acdb
 etc/audio_cal_bs300.acdb
 etc/voicemail-conf.xml
 etc/bluetooth/BCM4329B1_37.4M.hcd
-etc/bluetooth/blacklist.conf
 etc/sn.txt
 bin/brcm_patchram_plus
 lib/libbluedroid.so
@@ -102,12 +101,8 @@ etc/coulometer/bq27510_pro.bqfs
 bin/hw_cifs
 bin/btnvtool
 bin/mpdecision
-bin/ntfs-3g
 bin/diagd
 bin/radish
-bin/am
-bin/bmgr
-bin/svc
 bin/curl
 bin/sapd
 bin/dun-server
@@ -118,14 +113,9 @@ bin/port-bridge
 bin/acdbtest
 bin/profiler_daemon
 bin/usbhub_init
-bin/ime
-bin/monkey
-bin/bu
 bin/tptest
 bin/fmconfig
-bin/input
 bin/hci_qcomm_init
-bin/pm
 bin/diag_uart_log
 bin/oem_rapid
 bin/load_logo
@@ -180,7 +170,6 @@ lib/libOmxAacDec.so
 lib/libthermal_mitigation.so
 lib/libWVphoneAPI.so
 lib/libmm-color-convertor.so
-lib/libOmxEvrcEnc.so
 lib/libnetmonitor.so
 lib/libulp2.so
 lib/libmm-abl.so
