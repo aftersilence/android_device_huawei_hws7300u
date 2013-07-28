@@ -155,7 +155,6 @@ PRODUCT_COPY_FILES += \
     device/huawei/hws7300u/prebuilt/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
     device/huawei/hws7300u/prebuilt/etc/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
     device/huawei/hws7300u/prebuilt/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
-    device/huawei/hws7300u/prebuilt/etc/init.hw.insmod.sh:system/etc/init.hw.insmod.sh \
     device/huawei/hws7300u/prebuilt/etc/init.brcm.bt.sh:system/etc/init.brcm.bt.sh \
     device/huawei/hws7300u/prebuilt/etc/init.bt.sh:system/etc/init.bt.sh \
     device/huawei/hws7300u/prebuilt/etc/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
