@@ -72,4 +72,5 @@ ro.qualcomm.bluetooth.dun=true
 # MTP on default
 persist.sys.usb.config=mtp,adb
 
-
+# Hack
+persist.hw.overlay=0
