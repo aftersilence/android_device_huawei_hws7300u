@@ -55,6 +55,23 @@ public class BootService extends Service  {
 
             @Override
             protected Void doInBackground(Void... args) {
+		CMDProcessor cmd = new CMDProcessor();
+
+			if( getProp(DeviceSettings.PROP_HW_OVERLAY,"1").equals("0") )
+			{
+				try {
+							IBinder flinger = ServiceManager.getService("SurfaceFlinger");
+							if (flinger != null) {
+								Parcel data = Parcel.obtain();
+								data.writeInterfaceToken("android.ui.ISurfaceComposer");
+								final int disableOverlays = 1; 
+								data.writeInt(disableOverlays);
+								flinger.transact(1008, data, null, 0);
+								data.recycle();
+							}
+					} catch (RemoteException ex) {	
+					}
+			}
                 return null;
             }
 
