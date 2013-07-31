@@ -140,13 +140,12 @@ PRODUCT_PACKAGES += \
 
 # Boot ramdisk
 PRODUCT_COPY_FILES += \
-    device/huawei/hws7300u/root/init.emmc.rc:root/init.emmc.rc \
+    device/huawei/hws7300u/root/init.hws7300u.rc:root/init.hws7300u.rc \
+    device/huawei/hws7300u/root/init.target.rc:root/init.target.rc \
+    device/huawei/hws7300u/root/init.hws7300u.usb.rc:root/init.hws7300u.usb.rc \
     device/huawei/hws7300u/root/fstab.qcom:root/fstab.qcom \
     device/huawei/hws7300u/root/ueventd.rc:root/ueventd.rc \
-    device/huawei/hws7300u/root/init.hws7300u.usb.rc:root/init.hws7300u.usb.rc \
-    device/huawei/hws7300u/root/init.hws7300u.rc:root/init.hws7300u.rc \
     device/huawei/hws7300u/root/init.qcom.usb.sh:root/init.qcom.usb.sh \
-    device/huawei/hws7300u/root/init.target.rc:root/init.target.rc \
     device/huawei/hws7300u/root/init.qcom.sh:root/init.qcom.sh
 
 # Scripts
@@ -213,7 +212,7 @@ PRODUCT_COPY_FILES += \
     device/huawei/hws7300u/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/huawei/hws7300u/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml \
     device/huawei/hws7300u/prebuilt/etc/audio_effects.conf:system/etc/audio_effects.conf \
-    device/huawei/hws7300u/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf
+    device/huawei/hws7300u/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf 
 
 # Init.d scripts	
 PRODUCT_COPY_FILES += \

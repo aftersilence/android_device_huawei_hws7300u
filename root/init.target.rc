@@ -27,21 +27,36 @@
 #
 #
 
-import init.emmc.rc
+on early-init
+    mkdir /firmware 0771 system system
 
-# on emmc mount the partition containing firmware
 on fs
+    mount_all /fstab.qcom
+
+    chown nobody shell /system/bin/RescueStarter
+    chmod 755 /system/bin/RescueStarter
+    chown nobody shell /system/bin/RescueServer
+    chmod 755 /system/bin/RescueServer
+    chmod 2755 /system/bin/pcscd
+
+    # Keeping following partitions outside fstab file. As user may not have
+    # these partition flashed on the device. Failure to mount any partition in fstab file
+    # results in failure to launch late-start class.
+    wait /dev/block/mmcblk0p22
+    mount ext4 /dev/block/mmcblk0p22 /cache nosuid nodev barrier=1
+
+on post-fs-data
     mkdir /tombstones 0771 system system
     mount ext4 /dev/block/mmcblk0p24 /tombstones nosuid nodev barrier=1
     mkdir /tombstones/modem 0771 system system
     mkdir /tombstones/mdm 0771 system system
     mkdir /tombstones/lpass 0771 system system
-    mkdir /firmware 0771 system system
     wait /dev/block/mmcblk0p1
     mount vfat /dev/block/mmcblk0p1 /firmware ro shortname=lower,dmask=0022
     exec /system/bin/sh /system/etc/init.qcom.modem_links.sh
 
     write /sys/devices/i2c-0/0-0024/cyttsp_update_fw 1
+
 service kickstart /system/bin/qcks l
     oneshot
     disabled
@@ -58,7 +73,6 @@ on property:ro.baseband=svlte2a
     mkdir /data/qcks 0770 system system
     exec /system/bin/sh /system/etc/init.qcom.mdm_links.sh
     start kickstart
-
 
 service dcvsd0 /system/bin/dcvsd -c 0 -f /data/misc/dcvsd/dcvsd0.conf
     user root
@@ -81,3 +95,6 @@ service qrngd /system/bin/qrngd -f
 on property:ro.baseband=svlte2a
    setprop ro.config.ehrpd true
    setprop ro.ril.svlte1x true
+
+# Device Encryption
+    setprop ro.crypto.keyfile.userdata /dev/block/mmcblk0p26

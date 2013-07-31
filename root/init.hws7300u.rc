@@ -1,11 +1,35 @@
 import init.hws7300u.usb.rc
 
 on init
+    # Set permissions for persist partition
+    mkdir /persist 0771 system system
+
+    mount debugfs debugfs /sys/kernel/debug
+
+    mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /storage 0550 system sdcard_r
+    mkdir /storage/emulated 0555 root root
+    mkdir /storage/sdcard1 0775 system system
+    mkdir /storage/usbdisk0 0775 system system
+
+    export EXTERNAL_STORAGE /storage/emulated/legacy
+    export SECONDARY_STORAGE /storage/sdcard1
+    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
+    export EMULATED_STORAGE_TARGET /storage/emulated
+
+    # for backwards compatibility
+    symlink /storage/emulated/legacy /sdcard
+    symlink /storage/emulated/legacy /mnt/sdcard
+    symlink /storage/emulated/legacy /storage/sdcard0
+    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
+    symlink /storage/sdcard1 /external_sd
+    symlink /storage/sdcard1 /mnt/external_sd
+    symlink /storage/usbdisk0 /usbdisk0
+    symlink /storage/usbdisk0 /mnt/usbdisk0
+
     mkdir /devlog 0700 root root
-    symlink /data/usercust /usercust
     mkdir /mnt/tmp 0000 system system
     mkdir /tmpdata 0771 system system
-    mkdir /persist 0771 system system
 
     chmod 0777 /dev/lcd_ctrl
     chmod 0777 /system/bin/diagd
@@ -29,10 +53,6 @@ on post-fs-data
     chown dhcp dhcp /data/misc/dhcp
 
     mkdir /data/misc/audio 0770 audio audio
-
-    mkdir /data/usercust
-    chown root root /data/usercust
-    chmod 0775 /data/usercust
 
     chown system system /sys/bus/i2c/drivers/bq275x0-battery/state
     chown system system /sys/bus/platform/drivers/msm-charger/chg_enable
@@ -573,9 +593,3 @@ on property:ro.emmc=1
 
 service diagd /system/bin/diagd
     class main
-
-service hwinsmod /system/bin/sh /etc/init.hw.insmod.sh
-    class early_start
-    user root
-    group root
-    oneshot
