@@ -140,8 +140,7 @@ PRODUCT_PACKAGES += \
 
 # Boot ramdisk
 PRODUCT_COPY_FILES += \
-    device/huawei/hws7300u/root/init.emmc.rc:root/init.emmc.rc \
-    device/huawei/hws7300u/root/fstab.qcom:root/fstab.qcom \
+    device/huawei/hws7300u/root/fstab.hws7300u:root/fstab.hws7300u \
     device/huawei/hws7300u/root/ueventd.rc:root/ueventd.rc \
     device/huawei/hws7300u/root/init.hws7300u.usb.rc:root/init.hws7300u.usb.rc \
     device/huawei/hws7300u/root/init.hws7300u.rc:root/init.hws7300u.rc \
@@ -198,7 +197,6 @@ PRODUCT_COPY_FILES += \
 
 # Some misc configuration files
 PRODUCT_COPY_FILES += \
-    device/huawei/hws7300u/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
     device/huawei/hws7300u/prebuilt/usr/idc/t1320.idc:system/usr/idc/t1320.idc \
     device/huawei/hws7300u/prebuilt/usr/idc/s7020.idc:system/usr/idc/s7020.idc
 

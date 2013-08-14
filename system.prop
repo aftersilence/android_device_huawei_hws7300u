@@ -20,17 +20,16 @@ ro.use_data_netmgrd=true
 ro.ril.hsxpa=1
 ro.ril.gprsclass=10
 ro.vendor.extension_library=/system/lib/libqc-opt.so
-ro.telephony.ril_class=QualcommSharedRIL
 
 # graphics
 debug.composition.type=gpu
-debug.mdpcomp.maxlayer=0
+debug.mdpcomp.maxlayer=3
 debug.mdpcomp.logs=0
 debug.enabletr=true
 debug.sf.hw=1
 ro.opengles.version=131072
 dev.pm.dyn_samplingrate=1
-ro.hwui.text_cache_width=2048
+ro.bq.gpu_to_cpu_unsupported=1
 persist.sys.color.enhance=true
 
 # system props for SD card emulation of emmc partition
@@ -71,5 +70,3 @@ ro.qualcomm.bluetooth.dun=true
 
 # MTP on default
 persist.sys.usb.config=mtp,adb
-
-
