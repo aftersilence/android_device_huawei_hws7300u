@@ -1,6 +1,32 @@
 import init.hws7300u.usb.rc
 
 on init
+    # Set permissions for persist partition
+    mkdir /persist 0771 system system
+
+    mount debugfs debugfs /sys/kernel/debug
+
+    mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /storage 0550 system sdcard_r
+    mkdir /storage/emulated 0555 root root
+    mkdir /storage/sdcard1 0775 system system
+    mkdir /storage/usbdisk0 0775 system system
+
+    export EXTERNAL_STORAGE /storage/emulated/legacy
+    export SECONDARY_STORAGE /storage/sdcard1
+    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
+    export EMULATED_STORAGE_TARGET /storage/emulated
+
+    # for backwards compatibility
+    symlink /storage/emulated/legacy /sdcard
+    symlink /storage/emulated/legacy /mnt/sdcard
+    symlink /storage/emulated/legacy /storage/sdcard0
+    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
+    symlink /storage/sdcard1 /external_sd
+    symlink /storage/sdcard1 /mnt/external_sd
+    symlink /storage/usbdisk0 /usbdisk0
+    symlink /storage/usbdisk0 /mnt/usbdisk0
+
     mkdir /devlog 0700 root root
     symlink /data/usercust /usercust
     mkdir /mnt/tmp 0000 system system
@@ -15,6 +41,9 @@ on early-boot
     setrlimit 8 67108864 67108864
 
 on post-fs-data
+    mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
+    chmod 0666 /sys/class/rfkill/rfkill0/state
+
     # we will remap this as /storage/sdcard0 with the sdcard fuse tool
     mkdir /data/media 0770 media_rw media_rw
     chown media_rw media_rw /data/media
@@ -74,17 +103,14 @@ on boot
     chown system system /sys/devices/platform/msm_sdcc.3/polling
     chown system system /sys/devices/platform/msm_sdcc.4/polling
 
-    mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
-    chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power  
+    chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /proc/bluetooth/sleep/proto
-    chown system system /sys/module/sco/parameters/disable_esco
-    chown bluetooth bluetooth /sys/module/hci_smd/parameters/hcismd_set
     chmod 0660 /sys/module/bluetooth_power/parameters/power
-    chmod 0660 /sys/module/hci_smd/parameters/hcismd_set
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chmod 0660 /proc/bluetooth/sleep/proto
+    chmod 0660 /proc/bluetooth/clock/proto
     chown bluetooth bluetooth /dev/ttyHS0
     chmod 0660 /dev/ttyHS0
     chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
@@ -206,6 +232,9 @@ on boot
     # overhead in the kernel. Turn it off.
     write /sys/block/mmcblk0/queue/add_random 0
 
+    # TelephonyManager.java requires this
+    chmod 0644 /proc/cmdline
+
 # Export GPIO56 for fusion targets to enable/disable hub
 service usbhub_init /system/bin/usbhub_init
     class late_start
@@ -235,19 +264,6 @@ service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p11 /dev/block/mmc
 
 on property:ro.boot.emmc=true
     start rmt_storage
-
-service brcmpatch /system/bin/log -t brcm-bluetooth -p i "brcm_patchram_plus service requested"
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
-
-service hciattach /system/bin/sh /system/etc/init.brcm.bt.sh
-    class late_start
-    user bluetooth
-    group qcom_oncrpc bluetooth net_bt_admin
-    disabled
-    oneshot
 
 service bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
     class late_start
@@ -519,6 +535,17 @@ service sensor_daemon /system/bin/sensor_daemon
 # underlying files in /data/media will be created with user and group media_rw (1023)
 service sdcard /system/bin/sdcard /data/media /mnt/shell/emulated 1023 1023
     class late_start
+    oneshot
+
+on property:ro.fuse_sdcard=true
+    start sdcard
+
+# This will make sure that sdcard service starts as late_start.
+on nonencrypted
+    setprop ro.fuse_sdcard ${persist.fuse_sdcard}
+
+on property:vold.decrypt=trigger_restart_framework
+    setprop ro.fuse_sdcard ${persist.fuse_sdcard}
 
 # For format error
 service hw_rm /system/bin/hw_rm
@@ -562,10 +589,6 @@ service load_logo /system/bin/load_logo
     disabled
     oneshot
 
-service bt_init_off /system/bin/sh /system/etc/bluetooth_power.sh
-    class main
-    oneshot
-
 service rmt_oeminfo /system/bin/rmt_oeminfo
 
 on property:ro.emmc=1
@@ -573,9 +596,3 @@ on property:ro.emmc=1
 
 service diagd /system/bin/diagd
     class main
-
-service hwinsmod /system/bin/sh /etc/init.hw.insmod.sh
-    class early_start
-    user root
-    group root
-    oneshot

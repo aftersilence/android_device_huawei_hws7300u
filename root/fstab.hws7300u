@@ -1,0 +1,22 @@
+# Android fstab file.
+# <src>						<mnt_point>		<type>		<mnt_flags and options>		<fs_mgr_flags>
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+/dev/block/mmcblk0p19    /boot               emmc      defaults                                                     defaults
+/dev/block/mmcblk0p17    /recovery           emmc      defaults                                                     defaults
+/dev/block/mmcblk0p18    /recovery2          emmc      defaults                                                     defaults
+/dev/block/mmcblk0p20    /system             ext4      ro,barrier=1                                                 wait
+/dev/block/mmcblk0p23    /tmpdata            ext4      noatime,nosuid,nodev,barrier=1,noauto_da_alloc               wait.check
+/dev/block/mmcblk0p21    /persist            ext4      noatime,nosuid,nodev,barrier=1                               wait.check
+/dev/block/mmcblk0p27    /data               ext4      noatime,nosuid,nodev,discard,noauto_da_alloc,errors=panic               wait,check,length=-16384
+
+# vold-managed volumes ("block device" is actually a sysfs devpath)
+/devices/platform/msm_sdcc.3/mmc_host/mmc1   /storage/sdcard1     auto     defaults     voldmanaged=sdcard1:auto
+/devices/platform/msm_hsusb_host.0/usb1      /storage/usbdisk0    auto     defaults     voldmanaged=usbdisk0:auto
+
+# recovery
+/dev/block/mmcblk0p19	/boot		emmc		defaults		recoveryonly
+/dev/block/mmcblk0p17	/recovery	emmc		defaults		recoveryonly
+/dev/block/mmcblk0p18	/recovery2	emmc		defaults		recoveryonly
+/dev/block/mmcblk1p1		/external_sd	auto		defaults		recoveryonly

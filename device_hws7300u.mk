@@ -29,7 +29,6 @@ PRODUCT_PROPERTY_OVERRIDES := \
 include frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
@@ -96,8 +95,7 @@ PRODUCT_PACKAGES += \
 
 # Device specific settings
 PRODUCT_PACKAGES += \
-    MediapadSettings \
-    HALO
+    MediapadSettings
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -131,17 +129,9 @@ PRODUCT_PACKAGES += \
     e2fsck \
     setup_fs
 
-# Bt
-PRODUCT_PACKAGES += \
-    bluetoothd \
-    hciconfig \
-    hcitool \
-    brcm_patchram_plus
-
 # Boot ramdisk
 PRODUCT_COPY_FILES += \
-    device/huawei/hws7300u/root/init.emmc.rc:root/init.emmc.rc \
-    device/huawei/hws7300u/root/fstab.qcom:root/fstab.qcom \
+    device/huawei/hws7300u/root/fstab.hws7300u:root/fstab.hws7300u \
     device/huawei/hws7300u/root/ueventd.rc:root/ueventd.rc \
     device/huawei/hws7300u/root/init.hws7300u.usb.rc:root/init.hws7300u.usb.rc \
     device/huawei/hws7300u/root/init.hws7300u.rc:root/init.hws7300u.rc \
@@ -155,7 +145,6 @@ PRODUCT_COPY_FILES += \
     device/huawei/hws7300u/prebuilt/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
     device/huawei/hws7300u/prebuilt/etc/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
     device/huawei/hws7300u/prebuilt/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
-    device/huawei/hws7300u/prebuilt/etc/init.brcm.bt.sh:system/etc/init.brcm.bt.sh \
     device/huawei/hws7300u/prebuilt/etc/init.bt.sh:system/etc/init.bt.sh \
     device/huawei/hws7300u/prebuilt/etc/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
     device/huawei/hws7300u/prebuilt/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
@@ -198,7 +187,6 @@ PRODUCT_COPY_FILES += \
 
 # Some misc configuration files
 PRODUCT_COPY_FILES += \
-    device/huawei/hws7300u/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
     device/huawei/hws7300u/prebuilt/usr/idc/t1320.idc:system/usr/idc/t1320.idc \
     device/huawei/hws7300u/prebuilt/usr/idc/s7020.idc:system/usr/idc/s7020.idc
 
