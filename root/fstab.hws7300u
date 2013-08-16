@@ -9,7 +9,7 @@
 /dev/block/mmcblk0p20    /system             ext4      ro,barrier=1                                                 wait
 /dev/block/mmcblk0p23    /tmpdata            ext4      noatime,nosuid,nodev,barrier=1,noauto_da_alloc               wait.check
 /dev/block/mmcblk0p21    /persist            ext4      noatime,nosuid,nodev,barrier=1                               wait.check
-/dev/block/mmcblk0p27    /data               ext4      noatime,nosuid,nodev,discard,noauto_da_alloc,errors=panic               wait,check
+/dev/block/mmcblk0p27    /data               ext4      noatime,nosuid,nodev,discard,noauto_da_alloc,errors=panic               wait,check,length=-16384
 
 # vold-managed volumes ("block device" is actually a sysfs devpath)
 /devices/platform/msm_sdcc.3/mmc_host/mmc1   /storage/sdcard1     auto     defaults     voldmanaged=sdcard1:auto
