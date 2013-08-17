@@ -1,7 +1,5 @@
 #!/system/bin/sh	
-extinternal=`getprop persist.extinternal`
-if [ "$extinternal" = "1" ];
-then
+less /data/system/extinternal | grep -q 1 || exit
 sleep 3
 mount -o remount,rw /
 mount -t vfat -o umask=0000 /dev/block/vold/179:97 /mnt/shell/emulated
@@ -10,4 +8,3 @@ chown system /data/media/0
 chgrp sdcard_rw /data/media/0
 chmod 0075 /data/media/0
 mount -o remount, ro /
-fi;
