@@ -67,7 +67,7 @@ public class DeviceSettings extends PreferenceActivity implements OnSharedPrefer
         if(preference == mExtInternal)
 		{
 			setProp(PROP_EXT_INTERNAL, (mExtInternal.isChecked() ? "1" : "0"));
-			new CMDProcessor().su.run("echo "+(mExtInternal.isChecked() ? "1" : "0")+" > /data/system/extinternal"));
+			new CMDProcessor().su.run("echo "+(mExtInternal.isChecked() ? "1" : "0")+" > /data/system/extinternal");
 		}
 
         return false;
