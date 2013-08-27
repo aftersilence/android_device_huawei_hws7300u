@@ -36,8 +36,8 @@ WIFI_DRIVER_MODULE_ARG      := "firmware_path=/etc/wifi/rtecdc-bcm4329.bin nvram
 BOARD_HAVE_HUAWEI_WIFI := true
 
 # Bluetooth
-# BOARD_HAVE_BLUETOOTH := true
-# BOARD_HAVE_BLUETOOTH_BCM := true
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_BCM := true
 
 # QCOM hardware
 TARGET_QCOM_DISPLAY_VARIANT := legacy
