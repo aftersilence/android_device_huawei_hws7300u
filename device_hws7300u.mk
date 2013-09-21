@@ -219,6 +219,9 @@ PRODUCT_COPY_FILES += \
     device/huawei/hws7300u/prebuilt/etc/init.d/01x360ctrlr:system/etc/init.d/01x360ctrlr \
     device/huawei/hws7300u/prebuilt/etc/init.d/02extsd:system/etc/init.d/02extsd
 
+# Bootanimation
+PRODUCT_BOOTANIMATION := vendor/cm/prebuilt/common/bootanimation/800.zip
+
 # Misc
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.setupwizard.enable_bypass=1 \
