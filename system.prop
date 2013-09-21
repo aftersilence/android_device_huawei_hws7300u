@@ -23,7 +23,7 @@ ro.vendor.extension_library=/system/lib/libqc-opt.so
 
 # graphics
 debug.composition.type=gpu
-debug.mdpcomp.maxlayer=3
+debug.mdpcomp.maxlayer=0
 debug.mdpcomp.logs=0
 debug.enabletr=true
 debug.sf.hw=1
@@ -72,4 +72,4 @@ ro.qualcomm.bluetooth.dun=true
 persist.sys.usb.config=mtp,adb
 
 # Hack
-persist.hw.overlay=0
+persist.hw.overlay=1

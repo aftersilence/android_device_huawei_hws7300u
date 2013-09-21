@@ -117,4 +117,5 @@ BOARD_CUSTOM_GRAPHICS:= ../../../device/huawei/hws7300u/recovery/graphics.c
 # RECOVERY_SDCARD_ON_DATA := true
 
 # Hacks
+TARGET_NO_HW_VSYNC := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK
