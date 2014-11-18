@@ -22,9 +22,11 @@ ro.ril.gprsclass=10
 ro.vendor.extension_library=/system/lib/libqc-opt.so
 
 # graphics
-debug.composition.type=gpu
-debug.mdpcomp.maxlayer=3
+debug.composition.type=dyn
+debug.mdpcomp.maxlayer=2
 debug.mdpcomp.logs=0
+persist.hwc.mdpcomp.enable=true
+debug.egl.recordable.rgba8888=1
 debug.enabletr=true
 debug.sf.hw=1
 ro.opengles.version=131072
@@ -47,8 +49,8 @@ persist.audio.fluence.mode=endfire
 persist.audio.vr.enable=false
 
 # LPA
-# lpa.decode=false
-# lpa.use-stagefright=true
+lpa.decode=true
+lpa.use-stagefright=true
 
 # hdmi
 com.qc.hardware=true
@@ -62,14 +64,8 @@ ro.config.hw_GSensorOptimize=true
 # System prop for sending transmit power request to RIL during WiFi hotspot on/off
 ro.ril.transmitpower=true
 
-# Bluetooth
-ro.bluetooth.remote.autoconnect=true
-ro.bluetooth.request.master=true
-ro.qualcomm.bluetooth.ftp=true
-ro.qualcomm.bluetooth.dun=true
-
 # MTP on default
+ro.emmc.sdcard.partition=23
 persist.sys.usb.config=mtp,adb
+ro.vold.umsdirtyratio=50
 
-# Hack
-persist.hw.overlay=0

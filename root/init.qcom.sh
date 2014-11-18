@@ -103,48 +103,11 @@ done
 # Start gpsone_daemon for SVLTE Type I & II devices
 #
 target=`getprop ro.board.platform`
-case "$target" in
-        "msm7630_fusion")
-        start gpsone_daemon
-esac
 case "$baseband" in
         "svlte2a")
         start gpsone_daemon
         start bridgemgrd
 esac
-case "$target" in
-        "msm7630_surf" | "msm8660" | "msm8960")
-        start quipc_igsn
-esac
-case "$target" in
-        "msm7630_surf" | "msm8660" | "msm8960")
-        start quipc_main
-esac
-
-case "$target" in
-    "msm7630_surf" | "msm7630_1x" | "msm7630_fusion")
-        insmod /system/lib/modules/ss_mfcinit.ko
-        insmod /system/lib/modules/ss_vencoder.ko
-        insmod /system/lib/modules/ss_vdecoder.ko
-        chmod 0666 /dev/ss_mfc_reg
-        chmod 0666 /dev/ss_vdec
-        chmod 0666 /dev/ss_venc
-
-        value=`cat /sys/devices/system/soc/soc0/hw_platform`
-
-        case "$value" in
-            "FFA" | "SVLTE_FFA")
-             # linking to surf_keypad_qwerty.kcm.bin instead of surf_keypad_numeric.kcm.bin so that
-             # the UI keyboard works fine.
-             ln -s  /system/usr/keychars/surf_keypad_qwerty.kcm.bin /system/usr/keychars/surf_keypad.kcm.bin;;
-            "Fluid")
-             setprop ro.sf.lcd_density 240
-             setprop qcom.bt.dev_power_class 2
-             start profiler_daemon;;
-            *)
-             ln -s  /system/usr/keychars/surf_keypad_qwerty.kcm.bin /system/usr/keychars/surf_keypad.kcm.bin;;
-
-        esac
 
 # Dynamic Memory Managment (DMM) provides a sys file system to the userspace
 # that can be used to plug in/out memory that has been configured as unstable.

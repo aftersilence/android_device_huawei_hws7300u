@@ -1,7 +1,7 @@
 on init
     write /sys/class/android_usb/android0/iSerial ${ro.serialno}
     write /sys/class/android_usb/android0/f_rndis/manufacturer Huawei
-    write /sys/class/android_usb/android0/f_rndis/vendorID 12D1
+    write /sys/class/android_usb/android0/f_rndis/vendorID 12d1
     write /sys/class/android_usb/android0/f_rndis/wceis 1
 
 service qcom-usb-sh /system/bin/sh /init.qcom.usb.sh
@@ -12,7 +12,7 @@ service qcom-usb-sh /system/bin/sh /init.qcom.usb.sh
 # USBPID_HUAWEI_S7_MSC_ADB  mass_storage  adb
 on property:sys.usb.config=mass_storage,adb
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 12D1
+    write /sys/class/android_usb/android0/idVendor 12d1
     write /sys/class/android_usb/android0/idProduct 360E
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -22,7 +22,7 @@ on property:sys.usb.config=mass_storage,adb
 # USBPID_HUAWEI_S7_MTP_ADB_MSC  mtp adb mass_storage  
 on property:sys.usb.config=mtp,adb
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 12D1
+    write /sys/class/android_usb/android0/idVendor 12d1
     write /sys/class/android_usb/android0/idProduct 360F
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -32,7 +32,7 @@ on property:sys.usb.config=mtp,adb
 # USBPID_HUAWEI_S7_PTP_ADB_MSC  ptp adb mass_storage  
 on property:sys.usb.config=ptp,adb
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 12D1
+    write /sys/class/android_usb/android0/idVendor 12d1
     write /sys/class/android_usb/android0/idProduct 360A
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -42,7 +42,7 @@ on property:sys.usb.config=ptp,adb
 # USBPID_HUAWEI_S7_DIAG_ADB_MSC  diag adb mass_storage  
 on property:sys.usb.config=diag,adb,mass_storage
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 12D1
+    write /sys/class/android_usb/android0/idVendor 12d1
     write /sys/class/android_usb/android0/idProduct 3610
     write /sys/class/android_usb/android0/f_diag/clients diag
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
@@ -53,7 +53,7 @@ on property:sys.usb.config=diag,adb,mass_storage
 # USBPID_HUAWEI_S7_DIAG_ADB  diag adb 
 on property:sys.usb.config=diag,adb
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 12D1
+    write /sys/class/android_usb/android0/idVendor 12d1
     write /sys/class/android_usb/android0/idProduct 3611
     write /sys/class/android_usb/android0/f_diag/clients diag
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
@@ -64,7 +64,7 @@ on property:sys.usb.config=diag,adb
 # USBPID_HUAWEI_S7_RNDIS_ADB  rndis adb 
 on property:sys.usb.config=rndis,adb
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 12D1
+    write /sys/class/android_usb/android0/idVendor 12d1
     write /sys/class/android_usb/android0/idProduct 3618
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -74,7 +74,7 @@ on property:sys.usb.config=rndis,adb
 # USBPID_HUAWEI_S7_MSC  mass_storage 
 on property:sys.usb.config=mass_storage
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 12D1
+    write /sys/class/android_usb/android0/idVendor 12d1
     write /sys/class/android_usb/android0/idProduct 361E
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -83,7 +83,7 @@ on property:sys.usb.config=mass_storage
 # USBPID_HUAWEI_S7_MTP_MSC  mtp mass_storage 
 on property:sys.usb.config=mtp
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 12D1
+    write /sys/class/android_usb/android0/idVendor 12d1
     write /sys/class/android_usb/android0/idProduct 361F
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -92,7 +92,7 @@ on property:sys.usb.config=mtp
 # USBPID_HUAWEI_S7_PTP_MSC  ptp mass_storage 
 on property:sys.usb.config=ptp
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 12D1
+    write /sys/class/android_usb/android0/idVendor 12d1
     write /sys/class/android_usb/android0/idProduct 361A
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -101,7 +101,7 @@ on property:sys.usb.config=ptp
 # USBPID_HUAWEI_S7_DIAG_MSC  diag mass_storage 
 on property:sys.usb.config=diag,mass_storage
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 12D1
+    write /sys/class/android_usb/android0/idVendor 12d1
     write /sys/class/android_usb/android0/idProduct 3620
     write /sys/class/android_usb/android0/f_diag/clients diag
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
@@ -111,7 +111,7 @@ on property:sys.usb.config=diag,mass_storage
 # USBPID_HUAWEI_S7_DIAG  diag 
 on property:sys.usb.config=diag
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 12D1
+    write /sys/class/android_usb/android0/idVendor 12d1
     write /sys/class/android_usb/android0/idProduct 3621
     write /sys/class/android_usb/android0/f_diag/clients diag
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
@@ -121,7 +121,7 @@ on property:sys.usb.config=diag
 # USBPID_HUAWEI_S7_RNDIS  rndis 
 on property:sys.usb.config=rndis
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 12D1
+    write /sys/class/android_usb/android0/idVendor 12d1
     write /sys/class/android_usb/android0/idProduct 3628
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
@@ -130,7 +130,7 @@ on property:sys.usb.config=rndis
 # USBPID_HUAWEI_S7_MTP_ADB_DIAG_GMDM_GNMEA_MSC_RMNET 
 on property:sys.usb.config=mtp,adb,diag,serial_smd,serial_tty,mass_storage,rmnet
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 12D1
+    write /sys/class/android_usb/android0/idVendor 12d1
     write /sys/class/android_usb/android0/idProduct 3614
     write /sys/class/android_usb/android0/f_diag/clients diag
     write /sys/class/android_usb/android0/f_serial/transports smd,tty
@@ -143,7 +143,7 @@ on property:sys.usb.config=mtp,adb,diag,serial_smd,serial_tty,mass_storage,rmnet
 # USBPID_HUAWEI_S7_MTP_DIAG_GMDM_GNMEA_MSC_RMNET 
 on property:sys.usb.config=mtp,diag,serial_smd,serial_tty,mass_storage,rmnet
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 12D1
+    write /sys/class/android_usb/android0/idVendor 12d1
     write /sys/class/android_usb/android0/idProduct 3624
     write /sys/class/android_usb/android0/f_diag/clients diag
     write /sys/class/android_usb/android0/f_serial/transports smd,tty

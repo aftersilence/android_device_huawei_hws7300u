@@ -1,0 +1,61 @@
+sromrev=3
+vendid=0x14e4
+devid=0x432f
+
+##<DTS2011052400205,modified by j00165480 for EVM FM test, begin 2011/5/24
+#modify boardtype 0x4b9 to 0x57f for EVM(NEC switcher)
+boardtype=0x57f
+#boadtype 4b9 or 4ff
+## DTS2011052400205,modified by j00165480 for EVM FM test, end 2011/5/24>
+
+boardrev=0x32
+boardflags=0x0200
+# 0200-w/o LNA 1200-w/LNA
+#37.4M for PRO VerB
+xtalfreq=37400
+
+aa2g=1
+aa5g=0
+ag0=255
+## begin: DTS2011090807135 modified by y00148990 for new fireware RF, 20110921
+pa0b0=0x15ca
+pa0b1=0xfb23
+pa0b2=0xfee9
+## end: DTS2011090807135 modified by y00148990 for new fireware RF, 20110921
+pa0itssit=62
+
+## begin: DTS2011061305376 modified by y00148990 j00165480 for WIFI RF, 20110613
+## begin: DTS2011090807135 modified by y00148990 for new fireware RF, 20110921
+pa0maxpwr=70
+## end: DTS2011090807135 modified by y00148990 for new fireware RF, 20110921
+## end: DTS2011061305376 modified by y00148990 j00165480 for WIFI RF, 20110613
+
+opo=0
+
+## begin: DTS2011061305376 modified by y00148990 j00165480 for WIFI RF, 20110613
+ofdmpo=0x44444444
+## end: DTS2011061305376 modified by y00148990 j00165480 for WIFI RF, 20110613
+
+## begin: DTS2011090807135 modified by y00148990 for new fireware RF, 20110921
+mcs2gpo0=0x4444
+mcs2gpo1=0x4444
+## end: DTS2011090807135 modified by y00148990 for new fireware RF, 20110921
+rssismf2g=0xa
+rssismc2g=0xb
+rssisav2g=0x3
+bxa2g=0
+ccode=ALL
+cctl=0x0
+cckdigfilttype=1
+#11b mask or EVM
+ofdmdigfilttype=1
+# not working
+rxpo2g=2
+# Rx hump tune
+boardnum=1
+macaddr=00:90:4c:c5:00:34
+nocrc=1
+otpimagesize=182
+
+hwhdr=0x05ffff031030031003100000
+RAW1=80 32 fe 21 02 0c 00 22 2a 01 01 00 00 c5 0 e6 00 00 00 00 00 40 00 00 ff ff 80 00 00 00 00 00 00 00 00 00 00 c8 00 00 00 00 00 00 00 00 00 00 00 00 00 ff 20 04 D0 2 29 43 21 02 0c 00 22 04 00 20 00 5A

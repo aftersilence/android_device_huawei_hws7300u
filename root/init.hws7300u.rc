@@ -73,18 +73,9 @@ on post-fs-data
     chown system system /sys/class/android_usb/android0/f_rndis/ethaddr
     chmod 0660 /sys/class/android_usb/android0/f_rndis/ethaddr
 
-    #Create directories for gpsone_daemon services
-    mkdir /data/misc/gpsone_d 0770 system system
-
-    #Create directories for QuIPS
-    mkdir /data/misc/quipc 0770 gps system
-
     #Create directory from IMS services
     mkdir /data/shared 0755
     chown system system /data/shared
-
-    #Provide the access to hostapd.conf only to root and group
-    chmod 0660 /data/hostapd/hostapd.conf
 
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
@@ -116,6 +107,12 @@ on boot
     chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
 
+     # bluetooth LPM
+    chmod 0220 /proc/bluetooth/sleep/lpm
+    chmod 0220 /proc/bluetooth/sleep/btwrite
+    chown bluetooth bluetooth /proc/bluetooth/sleep/lpm
+    chown bluetooth bluetooth /proc/bluetooth/sleep/btwrite
+
     # Tweak background writeout
     write /proc/sys/vm/dirty_writeback_centisecs 1500
     write /proc/sys/vm/dirty_ratio 90
@@ -136,6 +133,8 @@ on boot
     write /sys/block/mmcblk1/queue/iosched/slice_idle 0
     write /sys/block/mmcblk0boot0/queue/iosched/slice_idle 0
     write /sys/block/mmcblk0boot1/queue/iosched/slice_idle 0
+
+    write /proc/sys/vm/page-cluster 0
 
     chown system shell /sys/bus/platform/drivers/android_usb/state
     chown shell shell /sys/firmware/touchscreen/ts_debug
@@ -206,6 +205,14 @@ on boot
     chown system graphics /sys/devices/virtual/graphics/fb1/cec_wr_frame
     chown system graphics /sys/devices/virtual/graphics/fb1/product_description
     chown system graphics /sys/devices/virtual/graphics/fb1/vendor_name
+    #HDMID Permission for sys nodes
+    chown system graphics /sys/class/graphics/fb1/connected
+    chown system graphics /sys/class/graphics/fb1/edid_modes
+    chown system graphics /sys/class/graphics/fb1/power_state
+    chown system graphics /sys/class/graphics/fb1/hpd
+    chown system graphics /sys/class/graphics/fb1/hdcp_present
+    chown system graphics /sys/class/graphics/fb1/hdmi_mode
+    chmod 0660 /sys/class/graphics/fb1/power_state
 
     #For bridgemgr daemon to inform the USB driver of the correct transport
     chown radio radio /sys/class/android_usb/f_rmnet_smd_sdio/transport
@@ -228,12 +235,21 @@ on boot
     write /proc/sys/net/ipv6/conf/rmnet_sdio6/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet_sdio7/accept_ra 2
 
+    mkdir /dev/socket/qmux_radio 0770 radio radio
+    chmod 2770 /dev/socket/qmux_radio
+    mkdir /dev/socket/qmux_audio 0770 media audio
+    chmod 2770 /dev/socket/qmux_audio
+    mkdir /dev/socket/qmux_bluetooth 0770 bluetooth bluetooth
+    chmod 2770 /dev/socket/qmux_bluetooth
+    mkdir /dev/socket/qmux_gps 0770 gps gps
+    chmod 2770 /dev/socket/qmux_gps
+
     # Flash storage isn't a good entropy source, and only causes locking
     # overhead in the kernel. Turn it off.
     write /sys/block/mmcblk0/queue/add_random 0
 
-    # TelephonyManager.java requires this
-    chmod 0644 /proc/cmdline
+# 4.3 requires this
+     chmod 0644 /proc/cmdline
 
 # Export GPIO56 for fusion targets to enable/disable hub
 service usbhub_init /system/bin/usbhub_init
@@ -245,16 +261,8 @@ service usbhub_init /system/bin/usbhub_init
 # for WIFI enable ip renew
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
-    stop dhcpcd_wlan0
-    stop iprenew_wlan0
-
-on property:bluetooth.isEnabled=true
-    start btwlancoex
-    start amp_load
-    write /sys/class/bluetooth/hci0/idle_timeout 7000
-
-on property:bluetooth.isEnabled=false
-    start amp_unload
+    stop dhcpcd_eth0
+    stop iprenew_eth0
 
 # for fix EFS partiton
 service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p11 /dev/block/mmcblk0p12 /dev/block/mmcblk0p14
@@ -275,24 +283,10 @@ service bt-sap /system/bin/sapd 15
     disabled
     oneshot
 
-service sapd /system/bin/sdptool add --channel=15 SAP
-    class late_start
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
-
-service dund /system/bin/sdptool add --channel=1 DUN
-    class late_start
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
-
 service bridgemgrd /system/bin/bridgemgrd
     class late_start
     user radio
-    group radio
+    group radio qcom_diag
     disabled
 
 service port-bridge /system/bin/port-bridge /dev/smd0 /dev/ttyGS0
@@ -305,19 +299,19 @@ on property:ro.baseband="msm"
     setprop ro.qualcomm.bluetooth.dun true
 
 service qmiproxy /system/bin/qmiproxy
-    class late_start
+    class main
     user radio
-    group radio
+    group radio qcom_diag
     disabled
 
 service qmuxd /system/bin/qmuxd
-    class late_start
+    class main
     user radio
-    group radio
+    group radio audio bluetooth gps qcom_diag
     disabled
 
 service netmgrd /system/bin/netmgrd
-    class late_start
+    class main
     disabled
 
 service sensors /system/bin/sensors.qcom
@@ -335,82 +329,65 @@ on property:ro.use_data_netmgrd=false
 on property:ro.data.large_tcp_window_size=true
     write /proc/sys/net/ipv4/tcp_adv_win_scale  1
 
-service amp_init /system/bin/amploader -i
-    class late_start
-    user root
-    disabled
-    oneshot
+#service wpa_supplicant /system/bin/wpa_supplicant -Dwext -iwlan0 -c /data/misc/wifi/wpa_supplicant.conf
+#    user root
+#    group wifi inet
+#    class main
+#    socket wpa_wlan0 dgram 660 wifi wifi u:object_r:wpa_socket:s0
+#    disabled
+#    oneshot
 
-service amp_load /system/bin/amploader -l 7000
-    class late_start
-    user root
-    disabled
-    oneshot
-
-service amp_unload /system/bin/amploader -u
-    class late_start
-    user root
-    disabled
-    oneshot
-
-service wpa_supplicant /system/bin/wpa_supplicant -Dwext -iwlan0 -c /data/misc/wifi/wpa_supplicant.conf
-    user root
-    group wifi inet
+service wpa_supplicant /system/bin/wpa_supplicant -Dnl80211 -ieth0 -puse_p2p_group_interface=1 -W -c/data/misc/wifi/wpa_supplicant.conf
     class main
-    socket wpa_wlan0 dgram 660 wifi wifi
+    group wifi inet
+    socket wpa_eth0 dgram 660 wifi wifi
     disabled
     oneshot
 
-service dhcpcd_wlan0 /system/bin/dhcpcd -BKLG
+service p2p_supplicant /system/bin/wpa_supplicant -Dnl80211 -ieth0 -puse_p2p_group_interface=1 -W -c/data/misc/wifi/wpa_supplicant.conf
+    class main
+    group wifi inet
+    socket wpa_eth0 dgram 660 wifi wifi
+    disabled
+    oneshot
+
+service dhcpcd_eth0 /system/bin/dhcpcd -BKLG
+    class main
+    disabled
+    oneshot
+
+service iprenew_eth0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+service dhcpcd_p2p /system/bin/dhcpcd -BKLG
+    class main
+    disabled
+    oneshot
+
+service iprenew_p2p /system/bin/dhcpcd -n p2p
+    class main
+    disabled
+    oneshot
+
+service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
     class late_start
     disabled
     oneshot
 
-service iprenew_wlan0 /system/bin/dhcpcd -n
+service iprenew_bt-pan /system/bin/dhcpcd -n
     class late_start
     disabled
     oneshot
 
-service dhcpcd_bnep0 /system/bin/dhcpcd -BKLG
-    disabled
-    oneshot
+on property:crypto.driver.load=1
+     insmod /system/lib/modules/qce.ko
+     insmod /system/lib/modules/qcedev.ko
 
-service gpsone_daemon /system/bin/gpsone_daemon
-    class late_start
-    user system
-    group system qcom_oncrpc inet
-    disabled
-
-service quipc_igsn /system/bin/quipc_igsn
-    class late_start
-    user gps
-    group inet gps
-    disabled
-
-service quipc_main /system/bin/quipc_main
-    class late_start
-    user gps
-    group net_admin wifi inet gps
-    disabled
-
-service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
-    class late_start
-    user root
-    group system qcom_oncrpc
-    disabled
-    oneshot
-
-service drmdiag /system/bin/drmdiagapp
-    class late_start
-     user root
-     disabled
-     oneshot
-
-on property:drmdiag.load=1
-    start drmdiag
-
-on property:drmdiag.load=0
-    stop drmdiag
+on property:crypto.driver.load=0
+     exec /system/bin/rmmod qcedev.ko
+     exec /system/bin/rmmod qce.ko
 
 service qcom-sh /system/bin/sh /init.qcom.sh
     class late_start
@@ -426,15 +403,11 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
 on property:init.svc.bootanim=stopped
     start qcom-post-boot
 
+on property:sys.boot_completed=1
+    start qcom-post-boot
+
 service abld /system/bin/mm-abl-daemon
     class late_start
-    disabled
-
-service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
-    class late_start
-    user root
-    group root
-    oneshot
     disabled
 
 service oem_rapid /system/bin/oem_rapid
@@ -452,14 +425,6 @@ service ds_fmc_appd /system/bin/ds_fmc_appd -p "rmnet0" -D
 on property:persist.data.ds_fmc_app.mode=1
     start ds_fmc_appd
 
-service ims_regmanager /system/bin/exe-ims-regmanagerprocessnative
-    class late_start
-    user system
-    group qcom_oncrpc net_bt_admin inet radio wifi
-    disabled
-
-on property:persist.ims.regmanager.mode=1
-    start ims_regmanager
 
 # For sensor service
 on property:persist.sys.coordinate=false
@@ -487,29 +452,8 @@ service thermald /system/bin/thermald
 on property:persist.thermal.monitor=true
     start thermald
 
-service ftp /system/bin/sdptool add --psm=5257 --channel=20 FTP
-    class late_start
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
-
-service map0 /system/bin/sdptool add --channel=16 MAS0
-    class late_start
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
-
-service map1 /system/bin/sdptool add --channel=17 MAS1
-    class late_start
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
-
 service ril-daemon1 /system/bin/rild -c 1
-    class late_start
+    class main
     socket rild1 stream 660 root radio
     socket rild-debug1 stream 660 radio system
     user root

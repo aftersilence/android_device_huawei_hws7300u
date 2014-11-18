@@ -18,7 +18,8 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
-#define BTM_DEF_LOCAL_NAME   "Huawei MediaPad"
+#define BTM_DEF_LOCAL_NAME   "Mediapad"
 #define BTA_DISABLE_DELAY 1000 /* in milliseconds */
 
 #endif
+

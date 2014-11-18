@@ -1,0 +1,10 @@
+# mount point fstype device [device2]
+/boot         emmc         /dev/block/mmcblk0p19
+/recovery         emmc         /dev/block/mmcblk0p17
+/recovery2         emmc         /dev/block/mmcblk0p18
+/data         ext4         /dev/block/mmcblk0p27
+/cache        ext4        /dev/block/mmcblk0p22
+/system         ext4         /dev/block/mmcblk0p20
+/sdcard         vfat         /devices/platform/msm_sdcc.3/mmc_host/mmc1
+/external_sd         vfat         /dev/block/mmcblk1p1         flags=display="Micro SDcard";storage;wipeingui;removable
+/usb-otg         vfat       /dev/block/sda1         /dev/block/sda       flags=display="USB-OTG";storage;wipeingui;removable

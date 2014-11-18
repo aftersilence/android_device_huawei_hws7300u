@@ -37,7 +37,6 @@ public class DeviceSettings extends PreferenceActivity implements OnSharedPrefer
     public static final String PROP_COLOR_ENHANCE = "persist.sys.color.enhance";
     public static final String PROP_WLAN_MAC = "persist.wlan.mac";
     public static final String PROP_EXT_INTERNAL = "persist.extinternal";
-    public static final String PROP_HW_OVERLAY = "persist.hw.overlay";
 
     private CheckBoxPreference mPrefColor;
     private Preference mPrefMac;

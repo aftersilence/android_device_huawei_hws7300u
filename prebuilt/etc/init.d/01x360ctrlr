@@ -1,3 +1,0 @@
-#!/system/bin/sh	
-insmod system/lib/modules/ff-memless.ko
-insmod system/lib/modules/xpad.ko

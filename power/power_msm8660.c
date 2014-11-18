@@ -125,7 +125,7 @@ static void configure_governor()
     cm_power_set_interactive(NULL, 1);
 
     if (strncmp(governor, "ondemand", 8) == 0) {
-        sysfs_write("/sys/devices/system/cpu/cpufreq/ondemand/up_threshold", "90");
+        sysfs_write("/sys/devices/system/cpu/cpufreq/ondemand/up_threshold", "85");
         sysfs_write("/sys/devices/system/cpu/cpufreq/ondemand/io_is_busy", "1");
         sysfs_write("/sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor", "4");
         sysfs_write("/sys/devices/system/cpu/cpufreq/ondemand/down_differential", "10");
@@ -133,7 +133,7 @@ static void configure_governor()
     } else if (strncmp(governor, "interactive", 11) == 0) {
         sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/min_sample_time", "90000");
         sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/io_is_busy", "1");
-        sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/hispeed_freq", "1026000");
+        sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/hispeed_freq", "1180000");
         sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay", "30000");
     }
 }

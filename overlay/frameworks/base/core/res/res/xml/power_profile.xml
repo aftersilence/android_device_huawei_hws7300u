@@ -60,6 +60,10 @@
         <value>1404000</value>
         <value>1458000</value>
         <value>1512000</value>
+        <value>1566000</value>
+        <value>1620000</value>
+        <value>1674000</value>
+        <value>1728000</value>
   </array>
   <!-- Power consumption in suspend -->
   <item name="cpu.idle">2.8</item>

@@ -101,16 +101,15 @@ case "$usb_config" in
             * )
                 case "$baseband" in
                     "svlte2a")
-                         setprop persist.sys.usb.config diag,diag_mdm,serial_sdio,serial_smd,rmnet_smd_sdio,mass_storage,adb
+                         #setprop persist.sys.usb.config diag,diag_mdm,serial_sdio,serial_smd,rmnet_smd_sdio,mass_storage,adb
+                         setprop persist.sys.usb.config mtp
                     ;;
                     "csfb")
-                         setprop persist.sys.usb.config diag,diag_mdm,serial_sdio,serial_tty,rmnet_sdio,mass_storage,adb
+                          #setprop persist.sys.usb.config diag,diag_mdm,serial_sdio,serial_tty,rmnet_sdio,mass_storage,adb
+                          setprop persist.sys.usb.config mtp db
                     ;;
                     *)
-                         #Begin: DTS2011120706177 Added by c00181104 for usb function composite script, 2011/12/07
-                         #setprop persist.sys.usb.config diag,serial_tty,serial_tty,rmnet_smd,mass_storage,adb
-			 setprop persist.sys.usb.config mass_storage,adb
-                         #End: DTS2011120706177 Added by c00181104 for usb function composite script, 2011/12/07
+                         setprop persist.sys.usb.config mtp
                     ;;
                 esac
             ;;
@@ -119,3 +118,44 @@ case "$usb_config" in
     * ) ;; #USB persist config exists, do nothing
 esac
 
+# set module params for embedded rmnet devices
+#
+rmnetmux=`getprop persist.rmnet.mux`
+case "$baseband" in
+    "mdm" | "dsda" | "sglte2")
+        case "$rmnetmux" in
+            "enabled")
+                    echo 1 > /sys/module/rmnet_usb/parameters/mux_enabled
+                    echo 8 > /sys/module/rmnet_usb/parameters/no_fwd_rmnet_links
+                    echo 17 > /sys/module/rmnet_usb/parameters/no_rmnet_insts_per_dev
+            ;;
+        esac
+        echo 1 > /sys/module/rmnet_usb/parameters/rmnet_data_init
+        # Allow QMUX daemon to assign port open wait time
+        chown radio.radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
+    ;;
+    "dsda2")
+          echo 2 > /sys/module/rmnet_usb/parameters/no_rmnet_devs
+          echo hsicctl,hsusbctl > /sys/module/rmnet_usb/parameters/rmnet_dev_names
+          case "$rmnetmux" in
+               "enabled") #mux is neabled on both mdms
+                      echo 3 > /sys/module/rmnet_usb/parameters/mux_enabled
+                      echo 8 > /sys/module/rmnet_usb/parameters/no_fwd_rmnet_links
+                      echo 17 > write /sys/module/rmnet_usb/parameters/no_rmnet_insts_per_dev
+               ;;
+               "enabled_hsic") #mux is enabled on hsic mdm
+                      echo 1 > /sys/module/rmnet_usb/parameters/mux_enabled
+                      echo 8 > /sys/module/rmnet_usb/parameters/no_fwd_rmnet_links
+                      echo 17 > /sys/module/rmnet_usb/parameters/no_rmnet_insts_per_dev
+               ;;
+               "enabled_hsusb") #mux is enabled on hsusb mdm
+                      echo 2 > /sys/module/rmnet_usb/parameters/mux_enabled
+                      echo 8 > /sys/module/rmnet_usb/parameters/no_fwd_rmnet_links
+                      echo 17 > /sys/module/rmnet_usb/parameters/no_rmnet_insts_per_dev
+               ;;
+          esac
+          echo 1 > /sys/module/rmnet_usb/parameters/rmnet_data_init
+          # Allow QMUX daemon to assign port open wait time
+          chown radio.radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
+    ;;
+esac

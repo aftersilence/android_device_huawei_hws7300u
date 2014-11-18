@@ -33,10 +33,6 @@ on early-init
 on fs
     mount_all /fstab.hws7300u
 
-    chown nobody shell /system/bin/RescueStarter
-    chmod 755 /system/bin/RescueStarter
-    chown nobody shell /system/bin/RescueServer
-    chmod 755 /system/bin/RescueServer
     chmod 2755 /system/bin/pcscd
 
     # Keeping following partitions outside fstab file. As user may not have
@@ -57,10 +53,6 @@ on post-fs-data
 
     write /sys/devices/i2c-0/0-0024/cyttsp_update_fw 1
 
-service kickstart /system/bin/qcks l
-    oneshot
-    disabled
-
 # Start kickstart if csfb or svlte2a target
 on property:ro.baseband=csfb
     wait /dev/ttyHSL1
@@ -73,14 +65,6 @@ on property:ro.baseband=svlte2a
     mkdir /data/qcks 0770 system system
     exec /system/bin/sh /system/etc/init.qcom.mdm_links.sh
     start kickstart
-
-service dcvsd0 /system/bin/dcvsd -c 0 -f /data/misc/dcvsd/dcvsd0.conf
-    user root
-    disabled
-
-service dcvsd1 /system/bin/dcvsd -c 1 -f /data/misc/dcvsd/dcvsd1.conf
-    user root
-    disabled
 
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
     user root

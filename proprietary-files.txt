@@ -4,6 +4,7 @@ lib/libaudioalsa.so     # needed_for_build
 lib/libacdbloader.so     # needed_for_build
 lib/libaudcal.so
 lib/libaudioparsers.so
+lib/lib_iec_60958_61937.so
 
 # mmparser extended
 lib/libmmparser_divxdrmlib.so
@@ -29,7 +30,7 @@ lib/libidl.so
 lib/libnetmgr.so
 
 # GPS
-bin/gpsone_daemon
+#bin/gpsone_daemon
 etc/loc_parameter.ini
 bin/loc_api_app
 lib/liboncrpc.so
@@ -40,7 +41,9 @@ lib/libloc_api-rpc-qc.so
 lib/libloc_eng.so
 lib/libloc_ext.so
 lib/libcommondefs.so
-lib/libgpsone_bit_api.so
+#lib/libgpsone_bit_api.so
+lib/libulp.so
+lib/libulp2.so
 
 # Sensors
 lib/hw/sensors.default.so
@@ -50,13 +53,16 @@ bin/sensor_daemon
 bin/sensors.qcom
 
 # Camera
-lib/hw/camera.msm8660.so
+lib/hw/vendor-camera.msm8660.so
 lib/libmmjpeg.so
 lib/libgemini.so
 lib/liboemcamera.so
 lib/libmmipl.so
 lib/libmmmpo.so
 lib/libmmstereo.so
+lib/libmmjps.so
+lib/libmmmpod.so
+lib/libmm-color-convertor.so
 bin/mm-qcamera-daemon
 bin/mm-qcamera-testsuite-client
 bin/v4l2-qcamera-app
@@ -65,33 +71,28 @@ bin/v4l2-qcamera-app
 lib/libdiag.so
 
 # Wi-Fi
-etc/wifi/rtecdc-apsta-bcm4329.bin
-etc/wifi/nvram-bcm4329.txt
-etc/wifi/config
-etc/wifi/rtecdc-bcm4329.bin
+#etc/wifi/rtecdc-apsta-bcm4329.bin
+#etc/wifi/nvram-bcm4329.txt
+#etc/wifi/config
+#etc/wifi/rtecdc-bcm4329.bin
+#system/lib/libnetcmdiface.so
 
 # SAR
-etc/sar/sar_302U.conf
-etc/sar/303U_NV.bin
-etc/sar/sar_303U.conf
-etc/sar/302U_NV.bin
-etc/sar/sar_312U.conf
-etc/sar/312U_NV.bin
 bin/sar
 
 # Other crap
 etc/audio_cal.acdb
 etc/audio_cal_bs300.acdb
-etc/voicemail-conf.xml
-etc/bluetooth/BCM4329B1_37.4M.hcd
-etc/sn.txt
-bin/brcm_patchram_plus
-lib/libbluedroid.so
-etc/thermald.conf
+#etc/voicemail-conf.xml
+#etc/sn.txt
 
-etc/coulometer/bq27510_version
-etc/coulometer/bq27510_pro.dffs
-etc/coulometer/bq27510_pro.bqfs
+# Bluetooth
+bin/brcm_patchram_plus
+
+#thermal
+bin/thermald
+lib/libthermal_mitigation_fusion.so
+lib/libthermal_mitigation.so
 
 bin/hw_cifs
 bin/btnvtool
@@ -102,7 +103,6 @@ bin/curl
 bin/sapd
 bin/dun-server
 bin/amploader
-bin/thermald
 bin/ccid_daemon
 bin/port-bridge
 bin/acdbtest
@@ -110,7 +110,7 @@ bin/profiler_daemon
 bin/usbhub_init
 bin/tptest
 bin/fmconfig
-bin/hci_qcomm_init
+#bin/hci_qcomm_init
 bin/diag_uart_log
 bin/oem_rapid
 bin/load_logo
@@ -129,44 +129,26 @@ lib/libtime_genoff.so
 lib/libhwrpc.so
 lib/libdsucsdappif_apis_fusion.so
 lib/liboem_rapi.so
-lib/libmmmpod.so
-lib/libstagefright_soft_ffmpegaudiodec.so
 lib/libnode.so
-lib/libmmjps.so
 lib/libxml.so
 lib/libcurl.so
 lib/libbson.so
-lib/libQWiFiSoftApCfg.so
 lib/libtime_remote_atom.so
 lib/libnv.so
 lib/libNimsWrap.so
 lib/liboem_rapi_fusion.so
-lib/lib_iec_60958_61937.so
-lib/libwebkitaccel.so
-lib/libthermal_mitigation_fusion.so
 lib/libconfigdb.so
-
-lib/libulp.so
 lib/libqc-opt.so
 lib/libprofiler_msmadc.so
-lib/libffmpeg_huawei.so
 lib/libxt_v01.so
 lib/libping_apps.so
-lib/libstagefright_soft_ffmpegvideodec.so
 lib/libdss.so
-lib/libqsap_sdk.so
 lib/liballjoyn.so
 lib/libdsprofile.so
 lib/libping_lte_rpc.so
 lib/libping_mdm.so
 lib/liboeminfo.so
-lib/libOmxWmaDec.so
-lib/libOmxAacDec.so
-lib/libthermal_mitigation.so
 lib/libWVphoneAPI.so
-lib/libmm-color-convertor.so
 lib/libnetmonitor.so
-lib/libulp2.so
 lib/libmm-abl.so
-
 bin/mm-abl-daemon
