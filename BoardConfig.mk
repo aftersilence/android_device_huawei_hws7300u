@@ -97,7 +97,7 @@ USE_CAMERA_STUB := false
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=hws7300u androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x40300000
 BOARD_KERNEL_PAGESIZE := 2048
-TARGET_KERNEL_SOURCE := /home/ubu/android/kernel/kernel_mediapad
+TARGET_KERNEL_SOURCE := kernel/huawei/hws7300u
 TARGET_KERNEL_CONFIG := mediapad_defconfig
 
 # USB
