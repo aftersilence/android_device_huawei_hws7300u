@@ -121,9 +121,6 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_FSTAB := device/huawei/hws7300u/root/fstab.hws7300u
 RECOVERY_FSTAB_VERSION := 2
 
-# CWM specific
-BOARD_CUSTOM_GRAPHICS:= ../../../device/huawei/hws7300u/recovery/graphics.c
-
 # SELinux
 BOARD_SEPOLICY_DIRS += device/huawei/hws7300u/sepolicy
 
